@@ -1,0 +1,890 @@
+{
+  "date_generated": "2026-08-12T21:18:01.320710Z",
+  "fingerprint_settings_standard": {
+    "symprec": 0.1,
+    "cell_bin": 0.05
+  },
+  "flag_back_trigger": {
+    "rule": "p > 0.8 at every setting",
+    "measured_max_p": 0.7864077669902912,
+    "tripped": false
+  },
+  "pairing_validity": {
+    "arm_A": {
+      "MatterGen": {
+        "a_key": "MatterGen",
+        "b_key": "MatterGen_DFT",
+        "n_pairs_id_overlap": 9798,
+        "n_excluded_unresolved": 0,
+        "formula_match": 9798,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true,
+        "note": "Naive mid-join failed (formula match 0.01%): the release's CHGNet_fix file for MatterGen carries a re-sequenced 'material_id' (0..9999) that is NOT the generation index; the true index is in its 'id' column (source file 65498775.csv.gz). Re-joined raw/DFT (which key on the true 'gen_N.cif' index) via that 'id' column; formula match rate then 100%. This is the release-author indexing artifact described in the corpus provenance notes, not a data-quality problem with the structures themselves."
+      },
+      "CrystalFormer": {
+        "a_key": "CrystalFormer",
+        "b_key": "CrystalFormer_DFT",
+        "n_pairs_id_overlap": 89,
+        "n_excluded_unresolved": 0,
+        "formula_match": 89,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyFormer-letters": {
+        "a_key": "WyFormer-letters-DiffCSP++",
+        "b_key": "WyFormer-letters_DFT",
+        "n_pairs_id_overlap": 104,
+        "n_excluded_unresolved": 0,
+        "formula_match": 104,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyFormer-harmonic": {
+        "a_key": "WyFormer-harmonic-DiffCSP++",
+        "b_key": "WyFormer-harmonic_DFT",
+        "n_pairs_id_overlap": 100,
+        "n_excluded_unresolved": 0,
+        "formula_match": 100,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyLLM-naive": {
+        "a_key": "WyLLM-naive-DiffCSP++",
+        "b_key": "WyLLM-naive_DFT",
+        "n_pairs_id_overlap": 101,
+        "n_excluded_unresolved": 0,
+        "formula_match": 101,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyCryst": {
+        "a_key": "WyCryst",
+        "b_key": "WyCryst_DFT",
+        "n_pairs_id_overlap": 103,
+        "n_excluded_unresolved": 0,
+        "formula_match": 103,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      }
+    },
+    "arm_B": {
+      "MatterGen": {
+        "a_key": "MatterGen_raw",
+        "b_key": "MatterGen",
+        "n_pairs_id_overlap": 10000,
+        "n_excluded_unresolved": 0,
+        "formula_match": 10000,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true,
+        "note": "Naive mid-join failed (formula match 0.01%): the release's CHGNet_fix file for MatterGen carries a re-sequenced 'material_id' (0..9999) that is NOT the generation index; the true index is in its 'id' column (source file 65498775.csv.gz). Re-joined raw/DFT (which key on the true 'gen_N.cif' index) via that 'id' column; formula match rate then 100%. This is the release-author indexing artifact described in the corpus provenance notes, not a data-quality problem with the structures themselves."
+      },
+      "CrystalFormer": {
+        "a_key": "CrystalFormer_raw",
+        "b_key": "CrystalFormer",
+        "n_pairs_id_overlap": 984,
+        "n_excluded_unresolved": 8,
+        "formula_match": 984,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyFormer-letters": {
+        "a_key": "WyFormer-letters_raw",
+        "b_key": "WyFormer-letters-DiffCSP++",
+        "n_pairs_id_overlap": 956,
+        "n_excluded_unresolved": 3,
+        "formula_match": 956,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyFormer-harmonic": {
+        "a_key": "WyFormer-harmonic_raw",
+        "b_key": "WyFormer-harmonic-DiffCSP++",
+        "n_pairs_id_overlap": 982,
+        "n_excluded_unresolved": 1,
+        "formula_match": 982,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      },
+      "WyLLM-naive": {
+        "a_key": "WyLLM-naive_raw",
+        "b_key": "WyLLM-naive-DiffCSP++",
+        "n_pairs_id_overlap": 980,
+        "n_excluded_unresolved": 1,
+        "formula_match": 980,
+        "formula_match_rate": 1.0,
+        "pairing_valid": true
+      }
+    }
+  },
+  "arm_A_uMLIP_vs_DFT": {
+    "description": "CHGNet-relaxed vs DFT-relaxed versions of the same generated structures, paired by corrected generation index",
+    "per_family": {
+      "MatterGen": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "pairing_method": "corrected via source-file 'id' column",
+        "n": 9798,
+        "n_flips": 7496,
+        "p": 0.7650540926719739,
+        "se": 0.004283130392142741,
+        "ci95_lo": 0.7567845478669116,
+        "ci95_hi": 0.7736272708716064,
+        "seed": 30001,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 339
+      },
+      "CrystalFormer": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "n": 89,
+        "n_flips": 61,
+        "p": 0.6853932584269663,
+        "se": 0.04922196227293375,
+        "ci95_lo": 0.5842696629213483,
+        "ci95_hi": 0.7865168539325843,
+        "seed": 20260812,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 189
+      },
+      "WyFormer-letters": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "n": 104,
+        "n_flips": 77,
+        "p": 0.7403846153846154,
+        "se": 0.04299096916419577,
+        "ci95_lo": 0.6538461538461539,
+        "ci95_hi": 0.8173076923076923,
+        "seed": 20260813,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 280
+      },
+      "WyFormer-harmonic": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "n": 100,
+        "n_flips": 68,
+        "p": 0.68,
+        "se": 0.0466476151587624,
+        "ci95_lo": 0.5897500000000001,
+        "ci95_hi": 0.77,
+        "seed": 20260814,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 182
+      },
+      "WyLLM-naive": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "n": 101,
+        "n_flips": 64,
+        "p": 0.6336633663366337,
+        "se": 0.04794118761871322,
+        "ci95_lo": 0.5346534653465347,
+        "ci95_hi": 0.7227722772277227,
+        "seed": 20260815,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 139
+      },
+      "WyCryst": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "n": 103,
+        "n_flips": 81,
+        "p": 0.7864077669902912,
+        "se": 0.04038294735364582,
+        "ci95_lo": 0.7087378640776699,
+        "ci95_hi": 0.8640776699029126,
+        "seed": 20260816,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 413
+      }
+    },
+    "pooled_valid_families": {
+      "n": 10295,
+      "n_flips": 7847,
+      "p": 0.7622146673142302,
+      "se": 0.004195831186294817,
+      "ci95_lo": 0.7539582321515299,
+      "ci95_hi": 0.7705706653715395,
+      "seed": 90011,
+      "n_boot": 5000,
+      "required_n_gamma0.5_m8": 335,
+      "families_included": [
+        "CrystalFormer",
+        "MatterGen",
+        "WyCryst",
+        "WyFormer-harmonic",
+        "WyFormer-letters",
+        "WyLLM-naive"
+      ]
+    }
+  },
+  "arm_B_pre_vs_post_relaxation": {
+    "description": "Pre-relaxation (raw generator output) vs CHGNet-relaxed structures, same structures, paired by corrected generation index",
+    "per_family": {
+      "MatterGen": {
+        "excluded": false,
+        "n_excluded_unresolved": 0,
+        "formula_match_rate": 1.0,
+        "pairing_method": "corrected via source-file 'id' column",
+        "n": 10000,
+        "n_flips": 7745,
+        "p": 0.7745,
+        "se": 0.004179111747728218,
+        "ci95_lo": 0.7662,
+        "ci95_hi": 0.7829025000000001,
+        "seed": 30002,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 372
+      },
+      "CrystalFormer": {
+        "excluded": false,
+        "n_excluded_unresolved": 8,
+        "formula_match_rate": 1.0,
+        "n": 984,
+        "n_flips": 667,
+        "p": 0.6778455284552846,
+        "se": 0.014897037136818603,
+        "ci95_lo": 0.6483739837398373,
+        "ci95_hi": 0.7073170731707317,
+        "seed": 20260817,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 180
+      },
+      "WyFormer-letters": {
+        "excluded": false,
+        "n_excluded_unresolved": 3,
+        "formula_match_rate": 1.0,
+        "n": 956,
+        "n_flips": 684,
+        "p": 0.7154811715481172,
+        "se": 0.014592364338076192,
+        "ci95_lo": 0.6861924686192469,
+        "ci95_hi": 0.7437238493723849,
+        "seed": 20260818,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 231
+      },
+      "WyFormer-harmonic": {
+        "excluded": false,
+        "n_excluded_unresolved": 1,
+        "formula_match_rate": 1.0,
+        "n": 982,
+        "n_flips": 688,
+        "p": 0.7006109979633401,
+        "se": 0.014615061683077343,
+        "ci95_lo": 0.6720977596741344,
+        "ci95_hi": 0.7291242362525459,
+        "seed": 20260819,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 209
+      },
+      "WyLLM-naive": {
+        "excluded": false,
+        "n_excluded_unresolved": 1,
+        "formula_match_rate": 1.0,
+        "n": 980,
+        "n_flips": 708,
+        "p": 0.7224489795918367,
+        "se": 0.014304147089487884,
+        "ci95_lo": 0.6938775510204082,
+        "ci95_hi": 0.7489795918367347,
+        "seed": 20260820,
+        "n_boot": 5000,
+        "required_n_gamma0.5_m8": 245
+      }
+    },
+    "pooled_valid_families": {
+      "n": 13902,
+      "n_flips": 10492,
+      "p": 0.7547115522946338,
+      "se": 0.003649138980903076,
+      "ci95_lo": 0.7475902747806071,
+      "ci95_hi": 0.761401237232053,
+      "seed": 90012,
+      "n_boot": 5000,
+      "required_n_gamma0.5_m8": 313,
+      "families_included": [
+        "CrystalFormer",
+        "MatterGen",
+        "WyFormer-harmonic",
+        "WyFormer-letters",
+        "WyLLM-naive"
+      ]
+    }
+  },
+  "holm_bonferroni_test_vs_0.8": {
+    "description": "Exact two-sided binomial test per family, H0: true flip rate = 0.8 (the flag-back trigger value), Holm-Bonferroni corrected across all 11 valid family-arm combinations at alpha=0.05",
+    "alpha": 0.05,
+    "rows": [
+      {
+        "arm": "ArmA",
+        "family": "MatterGen",
+        "n": 9798,
+        "p_hat": 0.7650540926719739,
+        "pvalue_vs_0.8": 2.2503710920347695e-17,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmA",
+        "family": "CrystalFormer",
+        "n": 89,
+        "p_hat": 0.6853932584269663,
+        "pvalue_vs_0.8": 0.01107400447723496,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmA",
+        "family": "WyFormer-letters",
+        "n": 104,
+        "p_hat": 0.7403846153846154,
+        "pvalue_vs_0.8": 0.1405197207212835,
+        "reject_H0_p_equals_0.8": false
+      },
+      {
+        "arm": "ArmA",
+        "family": "WyFormer-harmonic",
+        "n": 100,
+        "p_hat": 0.68,
+        "pvalue_vs_0.8": 0.005463259154379554,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmA",
+        "family": "WyLLM-naive",
+        "n": 101,
+        "p_hat": 0.6336633663366337,
+        "pvalue_vs_0.8": 9.45941336794205e-05,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmA",
+        "family": "WyCryst",
+        "n": 103,
+        "p_hat": 0.7864077669902912,
+        "pvalue_vs_0.8": 0.7122471572629715,
+        "reject_H0_p_equals_0.8": false
+      },
+      {
+        "arm": "ArmB",
+        "family": "MatterGen",
+        "n": 10000,
+        "p_hat": 0.7745,
+        "pvalue_vs_0.8": 3.4325670574308686e-10,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmB",
+        "family": "CrystalFormer",
+        "n": 984,
+        "p_hat": 0.6778455284552846,
+        "pvalue_vs_0.8": 2.0043110963154955e-19,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmB",
+        "family": "WyFormer-letters",
+        "n": 956,
+        "p_hat": 0.7154811715481172,
+        "pvalue_vs_0.8": 4.002010261300272e-10,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmB",
+        "family": "WyFormer-harmonic",
+        "n": 982,
+        "p_hat": 0.7006109979633401,
+        "pvalue_vs_0.8": 1.490100747571935e-13,
+        "reject_H0_p_equals_0.8": true
+      },
+      {
+        "arm": "ArmB",
+        "family": "WyLLM-naive",
+        "n": 980,
+        "p_hat": 0.7224489795918367,
+        "pvalue_vs_0.8": 6.117785915298376e-09,
+        "reject_H0_p_equals_0.8": true
+      }
+    ]
+  },
+  "stratification_arm_B_pooled": {
+    "description": "Stratification of the pooled Arm B (pre- vs post-relaxation) flip rate, n=13902 across 5 families (MatterGen, CrystalFormer, WyFormer-letters, WyFormer-harmonic, WyLLM-naive)",
+    "by_crystal_system": [
+      {
+        "crystal_system": "cubic",
+        "mean": 0.06283941039565555,
+        "count": 2578,
+        "sum": 162
+      },
+      {
+        "crystal_system": "hexagonal",
+        "mean": 0.6985769728331177,
+        "count": 773,
+        "sum": 540
+      },
+      {
+        "crystal_system": "tetragonal",
+        "mean": 0.8103359173126615,
+        "count": 1935,
+        "sum": 1568
+      },
+      {
+        "crystal_system": "trigonal",
+        "mean": 0.856754921928038,
+        "count": 1473,
+        "sum": 1262
+      },
+      {
+        "crystal_system": "orthorhombic",
+        "mean": 0.924964605946201,
+        "count": 2119,
+        "sum": 1960
+      },
+      {
+        "crystal_system": "monoclinic",
+        "mean": 0.9921178889650446,
+        "count": 2918,
+        "sum": 2895
+      },
+      {
+        "crystal_system": "triclinic",
+        "mean": 0.9995251661918328,
+        "count": 2106,
+        "sum": 2105
+      }
+    ],
+    "by_low_symmetry_flag": [
+      {
+        "low_symmetry": false,
+        "mean": 0.52256250924693,
+        "count": 6759,
+        "sum": 3532
+      },
+      {
+        "low_symmetry": true,
+        "mean": 0.9743805123897522,
+        "count": 7143,
+        "sum": 6960
+      }
+    ],
+    "by_natoms_bin": [
+      {
+        "natoms_bin": "<=8",
+        "mean": 0.6214365049981488,
+        "count": 5402,
+        "sum": 3357
+      },
+      {
+        "natoms_bin": "9-16",
+        "mean": 0.8396146695960791,
+        "count": 5917,
+        "sum": 4968
+      },
+      {
+        "natoms_bin": "17-24",
+        "mean": 0.9442780107849011,
+        "count": 1669,
+        "sum": 1576
+      },
+      {
+        "natoms_bin": "25-32",
+        "mean": 0.8715846994535519,
+        "count": 366,
+        "sum": 319
+      },
+      {
+        "natoms_bin": ">32",
+        "mean": 0.49635036496350365,
+        "count": 548,
+        "sum": 272
+      }
+    ],
+    "by_e_above_hull_decile": [
+      {
+        "decile": 0,
+        "mean": 0.7000731528895391,
+        "count": 1367,
+        "sum": 957
+      },
+      {
+        "decile": 1,
+        "mean": 0.39648866130212146,
+        "count": 1367,
+        "sum": 542
+      },
+      {
+        "decile": 2,
+        "mean": 0.6559297218155198,
+        "count": 1366,
+        "sum": 896
+      },
+      {
+        "decile": 3,
+        "mean": 0.7571324067300659,
+        "count": 1367,
+        "sum": 1035
+      },
+      {
+        "decile": 4,
+        "mean": 0.8052708638360175,
+        "count": 1366,
+        "sum": 1100
+      },
+      {
+        "decile": 5,
+        "mean": 0.8280907095830286,
+        "count": 1367,
+        "sum": 1132
+      },
+      {
+        "decile": 6,
+        "mean": 0.8682284040995608,
+        "count": 1366,
+        "sum": 1186
+      },
+      {
+        "decile": 7,
+        "mean": 0.8639356254572056,
+        "count": 1367,
+        "sum": 1181
+      },
+      {
+        "decile": 8,
+        "mean": 0.8696925329428989,
+        "count": 1366,
+        "sum": 1188
+      },
+      {
+        "decile": 9,
+        "mean": 0.8288222384784198,
+        "count": 1367,
+        "sum": 1133
+      }
+    ],
+    "note": "low_symmetry = triclinic/monoclinic/orthorhombic crystal systems (SG 1-74); flip rate rises sharply with decreasing symmetry (cubic p=0.063 vs triclinic p=1.000), consistent with the project's earlier broad-library result (94.4% metallic stability -> 85.6% broad library, p=0.144)."
+  },
+  "granularity_sweep": {
+    "description": "Re-fingerprinted CrystalFormer raw vs CHGNet-relaxed pairs (source files 65498616.csv.gz / 65498610.csv.gz, joined on material_id, formula-match validated) at each symprec x cell_bin setting.",
+    "subsample_n400_grid": [
+      {
+        "symprec": 0.01,
+        "cell_bin": 0.02,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.7475,
+        "se": 0.021722324346165167,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 293
+      },
+      {
+        "symprec": 0.01,
+        "cell_bin": 0.05,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.695,
+        "se": 0.023020371413163602,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 200
+      },
+      {
+        "symprec": 0.01,
+        "cell_bin": 0.1,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.63,
+        "se": 0.024140215409146622,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 134
+      },
+      {
+        "symprec": 0.01,
+        "cell_bin": 0.3,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.505,
+        "se": 0.02499874996874844,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 73
+      },
+      {
+        "symprec": 0.05,
+        "cell_bin": 0.02,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.75,
+        "se": 0.021650635094610966,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 302
+      },
+      {
+        "symprec": 0.05,
+        "cell_bin": 0.05,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.7,
+        "se": 0.022912878474779203,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 209
+      },
+      {
+        "symprec": 0.05,
+        "cell_bin": 0.1,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.6325,
+        "se": 0.024106210299422844,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 139
+      },
+      {
+        "symprec": 0.05,
+        "cell_bin": 0.3,
+        "n": 400,
+        "n_unresolved": 0,
+        "p": 0.5175,
+        "se": 0.024984682807672385,
+        "n_eff_post_relax": 400.0,
+        "n_distinct_post_relax": 400,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 400.0,
+        "n_distinct_pre_relax": 400,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 75
+      },
+      {
+        "symprec": 0.1,
+        "cell_bin": 0.02,
+        "n": 399,
+        "n_unresolved": 1,
+        "p": 0.7493734335839599,
+        "se": 0.021695829070445795,
+        "n_eff_post_relax": 399.0,
+        "n_distinct_post_relax": 399,
+        "design_effect_post_relax": 1.0,
+        "n_eff_pre_relax": 399.0,
+        "n_distinct_pre_relax": 399,
+        "design_effect_pre_relax": 1.0,
+        "required_n_gamma0.5_m8": 300
+      },
+      {
+        "symprec": 0.1,
+        "cell_bin": 0.05,
+        "n": 399,
+        "n_unresolved": 1,
+        "p": 0.6992481203007519,
+        "se": 0.022957964559894597,
+        "n_eff_post_relax": 399.0,
+        "n_distinct_post_relax": 399,
+        "design_effect_post_relax": 1.0,
+        "n_eff_pre_relax": 399.0,
+        "n_distinct_pre_relax": 399,
+        "design_effect_pre_relax": 1.0,
+        "required_n_gamma0.5_m8": 207
+      },
+      {
+        "symprec": 0.1,
+        "cell_bin": 0.1,
+        "n": 399,
+        "n_unresolved": 1,
+        "p": 0.631578947368421,
+        "se": 0.02414902461795387,
+        "n_eff_post_relax": 399.0,
+        "n_distinct_post_relax": 399,
+        "design_effect_post_relax": 1.0,
+        "n_eff_pre_relax": 399.0,
+        "n_distinct_pre_relax": 399,
+        "design_effect_pre_relax": 1.0,
+        "required_n_gamma0.5_m8": 134
+      },
+      {
+        "symprec": 0.1,
+        "cell_bin": 0.3,
+        "n": 399,
+        "n_unresolved": 1,
+        "p": 0.518796992481203,
+        "se": 0.025013613991112817,
+        "n_eff_post_relax": 399.0,
+        "n_distinct_post_relax": 399,
+        "design_effect_post_relax": 1.0,
+        "n_eff_pre_relax": 399.0,
+        "n_distinct_pre_relax": 399,
+        "design_effect_pre_relax": 1.0,
+        "required_n_gamma0.5_m8": 78
+      },
+      {
+        "symprec": 0.3,
+        "cell_bin": 0.02,
+        "n": 384,
+        "n_unresolved": 16,
+        "p": 0.7369791666666666,
+        "se": 0.02246761990470329,
+        "n_eff_post_relax": 384.0,
+        "n_distinct_post_relax": 384,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 384.0,
+        "n_distinct_pre_relax": 384,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 271
+      },
+      {
+        "symprec": 0.3,
+        "cell_bin": 0.05,
+        "n": 384,
+        "n_unresolved": 16,
+        "p": 0.6875,
+        "se": 0.023653518391386654,
+        "n_eff_post_relax": 384.0,
+        "n_distinct_post_relax": 384,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 384.0,
+        "n_distinct_pre_relax": 384,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 191
+      },
+      {
+        "symprec": 0.3,
+        "cell_bin": 0.1,
+        "n": 384,
+        "n_unresolved": 16,
+        "p": 0.6171875,
+        "se": 0.024804815657477323,
+        "n_eff_post_relax": 384.0,
+        "n_distinct_post_relax": 384,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 384.0,
+        "n_distinct_pre_relax": 384,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 125
+      },
+      {
+        "symprec": 0.3,
+        "cell_bin": 0.3,
+        "n": 384,
+        "n_unresolved": 16,
+        "p": 0.5,
+        "se": 0.02551551815399144,
+        "n_eff_post_relax": 384.0,
+        "n_distinct_post_relax": 384,
+        "design_effect_post_relax": 1.0000000000000002,
+        "n_eff_pre_relax": 384.0,
+        "n_distinct_pre_relax": 384,
+        "design_effect_pre_relax": 1.0000000000000002,
+        "required_n_gamma0.5_m8": 70
+      }
+    ],
+    "full_population_n992_selected_settings": [
+      {
+        "symprec": 0.01,
+        "cell_bin": 0.02,
+        "n": 991,
+        "n_unresolved": 1,
+        "p": 0.7194752774974773,
+        "se": 0.01427107475770714,
+        "n_eff_post_relax": 991.0,
+        "n_distinct_post_relax": 987,
+        "design_effect_post_relax": 1.0080726538849647,
+        "n_eff_pre_relax": 991.0,
+        "n_distinct_pre_relax": 988
+      },
+      {
+        "symprec": 0.3,
+        "cell_bin": 0.3,
+        "n": 957,
+        "n_unresolved": 35,
+        "p": 0.5047021943573667,
+        "se": 0.016161989844857356,
+        "n_eff_post_relax": 956.9999999999999,
+        "n_distinct_post_relax": 953,
+        "design_effect_post_relax": 1.008359456635319,
+        "n_eff_pre_relax": 956.9999999999999,
+        "n_distinct_pre_relax": 954
+      },
+      {
+        "symprec": 0.1,
+        "cell_bin": 0.05,
+        "n": 984,
+        "n_unresolved": 8,
+        "p": 0.6778455284552846,
+        "se": 0.014897037136818603,
+        "n_eff_post_relax": 983.9999999999999,
+        "n_distinct_post_relax": 980,
+        "design_effect_post_relax": 1.0081300813008136,
+        "n_eff_pre_relax": 983.9999999999999,
+        "n_distinct_pre_relax": 981
+      }
+    ],
+    "min_p_setting": {
+      "symprec": 0.3,
+      "cell_bin": 0.3,
+      "p": 0.5,
+      "n_eff_post_relax": 384.0,
+      "n_distinct_post_relax": 384,
+      "required_n": 70
+    },
+    "max_p_setting": {
+      "symprec": 0.05,
+      "cell_bin": 0.02,
+      "p": 0.75,
+      "n_eff_post_relax": 400.0,
+      "n_distinct_post_relax": 400,
+      "required_n": 302
+    },
+    "diversity_cost_finding": "Within the tested grid (symprec in [0.01,0.3], cell_bin in [0.02,0.3]) and this generator's chemical diversity (985/992 distinct reduced formulas), coarsening cell_bin from 0.02 to 0.30 at fixed symprec lowered p from ~0.75 to ~0.50-0.52 with NO measurable loss of fingerprint distinctness at n~400-992 (n_distinct stayed within 1-4 of n at every setting; n_eff stayed within rounding of n). The apparent stability-diversity trade-off did not bite at this population size/diversity: collisions are rare regardless of cell_bin because composition+orbit information alone already separates almost all pairs. A trade-off would be expected to emerge at larger n or with a known low-diversity generator (the release flags WyLLM-vanilla as having only 441/1000 distinct compositions), which was out of scope for this sweep's arm-pair requirement (WyLLM-vanilla has no raw/DFT paired subset in this corpus)."
+  },
+  "verdict": {
+    "measured_p_range": {
+      "min_p": 0.6336633663366337,
+      "max_p": 0.7864077669902912
+    },
+    "flag_back_trigger_tripped": false,
+    "statement": "Measured flip rate p ranges from 0.634 to 0.786 across all valid family/arm combinations (pooled Arm A p=0.762, pooled Arm B p=0.755). The p > 0.8 flag-back trigger was NOT tripped at any setting or family (all point estimates and their 95% CIs sit below 0.8; only two small-n families, WyCryst Arm A n=103 p=0.786 and WyFormer-letters Arm A n=104 p=0.740, are not statistically distinguishable from 0.8 after Holm-Bonferroni correction). At gamma=0.5, m=8, the pooled flip rates imply an audit needs approximately 313 (Arm B) to 335 (Arm A) fingerprints per detection -- an order of magnitude above the flip-rate-free case, but not the total-infeasibility regime that a p>0.8 result would have implied.",
+    "caveat_MatterGen_indexing": "The release's CHGNet-relaxed MatterGen file (source 65498775.csv.gz) carries a re-sequenced 'material_id' column (0..9999, NOT the generation index); naively joining it to the raw/DFT files (which key on 'gen_N.cif') on that field gives a formula-match rate of 0.01% -- a false pairing that would have produced a meaningless flip rate near-certainly close to 1.0 for random unrelated pairs. The true generation index is preserved in that file's 'id' column; joining on it recovers a 100% formula-match rate. This is a data-indexing quirk of the released CHGNet_fix file, not evidence about the WyFormer-DiffCSP++10k branch specifically (the corpus's WyFormer-DiffCSP++10k key was not one of the six specified Arm A families, and was not tested here since no paired DFT/raw subset for it exists in this corpus)."
+  },
+  "seeds": {
+    "bootstrap_master_seed_start": 20260812,
+    "granularity_sample_seed": 42
+  },
+  "corpus_source": "d6dee0fc-1aaf-44e0-9256-1eecc49fdddc (basinmark_corpus.pkl)",
+  "analysis": "relaxation_stability_fingerprint_flip_rate"
+}

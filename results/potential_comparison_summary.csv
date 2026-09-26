@@ -1,0 +1,6 @@
+potential,engine,p_naive,p_reweighted,ci95_lo,ci95_hi,median_rmsd,rmsd_excl_pct,N_needed_naive_pool,N_needed_reweighted
+"7net-mf-ompa, modal=mpa (package sevenn 0.13.0)",sevennet,0.763,0.7181,0.7029,0.7333,0.01359,14.2,347,241
+orb_v3_conservative_inf_omat (package orb_models v0.5.5),orb-v3,0.77,0.7255,0.71,0.741,0.01411,14.0,364,252
+"mace-mp medium-mpa-0 (package mace 0.3.16, default_dtype=float64)",mace-mpa,0.777,0.7347,0.7203,0.7491,0.01632,14.3,388,272
+m3gnet default checkpoint via Potential.from_checkpoint() (package mattersim 1.2.3),mattersim,0.778,0.7384,0.7242,0.7525,0.01706,13.8,390,281
+"chgnet-default (package chgnet 0.4.2, model CHGNet v0.3.0, 412,525 parameters)",chgnet,0.8,0.7689,0.7558,0.7819,0.02358,15.7,483,362

@@ -1,0 +1,703 @@
+{
+  "date_generated": "2026-08-16",
+  "purpose": "The manuscript's Table tab:ablation reads the feasible operating window off a 1-D slice (fixed symprec=0.1, cell_bin/level swept 1-5). Check whether that window survives across the untested dimension (symprec 0.01-0.3) using the full grid already computed in fingerprint_ablation_results.json.",
+  "data_source": "results/fingerprint_ablation.json, datasets.<generator>.settings -- ALREADY CONTAINS the full 5(fingerprint level/cell_bin) x 4(symprec) = 20-setting joint grid per generator, for MatterGen (n=1500 paired subsample) and CrystalFormer (n=992 full population). No new computation was required; this experiment re-reads the existing grid as a 2-D surface instead of the manuscript's 1-D slice at symprec=0.1.",
+  "feasibility_criterion": "p <= 0.5 (majority of pairs keep the same fingerprint after relaxation) AND n_eff above the auditability frontier N*=10 (gamma=0.5, m=8)",
+  "joint_grid": {
+    "MatterGen": [
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.01,
+        "p": 0.3893333333333333,
+        "p_ci_lo": 0.364,
+        "p_ci_hi": 0.41533333333333333,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      },
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.05,
+        "p": 0.3933333333333333,
+        "p_ci_lo": 0.368,
+        "p_ci_hi": 0.418,
+        "n_eff": 1500.0,
+        "design_effect": 1.008
+      },
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.1,
+        "p": 0.25666666666666665,
+        "p_ci_lo": 0.234,
+        "p_ci_hi": 0.2793333333333333,
+        "n_eff": 1500.0,
+        "design_effect": 1.0066666666666668
+      },
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.3,
+        "p": 0.152,
+        "p_ci_lo": 0.13333333333333333,
+        "p_ci_hi": 0.17133333333333334,
+        "n_eff": 1500.0,
+        "design_effect": 1.0093333333333334
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.01,
+        "p": 0.9266666666666666,
+        "p_ci_lo": 0.9133166666666667,
+        "p_ci_hi": 0.9393499999999999,
+        "n_eff": 1500.0,
+        "design_effect": 0.9999999999999998
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.05,
+        "p": 0.7686666666666667,
+        "p_ci_lo": 0.748,
+        "p_ci_hi": 0.79,
+        "n_eff": 1500.0,
+        "design_effect": 1.004
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.1,
+        "p": 0.6566666666666666,
+        "p_ci_lo": 0.632,
+        "p_ci_hi": 0.68,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.3,
+        "p": 0.5906666666666667,
+        "p_ci_lo": 0.5673333333333334,
+        "p_ci_hi": 0.6166666666666667,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.01,
+        "p": 0.9453333333333334,
+        "p_ci_lo": 0.9333333333333333,
+        "p_ci_hi": 0.956,
+        "n_eff": 1500.0,
+        "design_effect": 0.9999999999999998
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.05,
+        "p": 0.818,
+        "p_ci_lo": 0.798,
+        "p_ci_hi": 0.8366666666666667,
+        "n_eff": 1500.0,
+        "design_effect": 1.004
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.1,
+        "p": 0.738,
+        "p_ci_lo": 0.7146666666666667,
+        "p_ci_hi": 0.76,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.3,
+        "p": 0.694,
+        "p_ci_lo": 0.6713166666666667,
+        "p_ci_hi": 0.718,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.01,
+        "p": 0.9553333333333334,
+        "p_ci_lo": 0.9453333333333334,
+        "p_ci_hi": 0.9653333333333334,
+        "n_eff": 1500.0,
+        "design_effect": 0.9999999999999998
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.05,
+        "p": 0.8406666666666667,
+        "p_ci_lo": 0.82265,
+        "p_ci_hi": 0.86,
+        "n_eff": 1500.0,
+        "design_effect": 1.0026666666666666
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.1,
+        "p": 0.78,
+        "p_ci_lo": 0.7586666666666667,
+        "p_ci_hi": 0.8013333333333333,
+        "n_eff": 1500.0,
+        "design_effect": 1.0026666666666666
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.3,
+        "p": 0.7473333333333333,
+        "p_ci_lo": 0.726,
+        "p_ci_hi": 0.7706666666666667,
+        "n_eff": 1500.0,
+        "design_effect": 1.0026666666666666
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.01,
+        "p": 0.964,
+        "p_ci_lo": 0.95465,
+        "p_ci_hi": 0.9733333333333334,
+        "n_eff": 1500.0,
+        "design_effect": 0.9999999999999998
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.05,
+        "p": 0.8633333333333333,
+        "p_ci_lo": 0.8466666666666667,
+        "p_ci_hi": 0.8806666666666667,
+        "n_eff": 1500.0,
+        "design_effect": 1.004
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.1,
+        "p": 0.816,
+        "p_ci_lo": 0.7959833333333334,
+        "p_ci_hi": 0.8353333333333334,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.3,
+        "p": 0.7966666666666666,
+        "p_ci_lo": 0.7753333333333333,
+        "p_ci_hi": 0.8166666666666667,
+        "n_eff": 1500.0,
+        "design_effect": 1.0053333333333334
+      }
+    ],
+    "CrystalFormer": [
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.01,
+        "p": 0.016145307769929364,
+        "p_ci_lo": 0.009081735620585268,
+        "p_ci_hi": 0.024243188698284422,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.05,
+        "p": 0.029263370332996974,
+        "p_ci_lo": 0.01917255297679112,
+        "p_ci_hi": 0.039354187689202826,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.1,
+        "p": 0.039634146341463415,
+        "p_ci_lo": 0.027439024390243903,
+        "p_ci_hi": 0.052845528455284556,
+        "n_eff": 989.0,
+        "design_effect": 1.0080889787664307
+      },
+      {
+        "level": 1,
+        "cell_bin": null,
+        "symprec": 0.3,
+        "p": 0.047021943573667714,
+        "p_ci_lo": 0.034482758620689655,
+        "p_ci_hi": 0.06165099268547544,
+        "n_eff": 958.0000000000001,
+        "design_effect": 1.008350730688935
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.01,
+        "p": 0.5105953582240161,
+        "p_ci_lo": 0.4803229061553986,
+        "p_ci_hi": 0.5408678102926338,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.05,
+        "p": 0.5176589303733602,
+        "p_ci_lo": 0.4873864783047427,
+        "p_ci_hi": 0.5469223007063572,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.1,
+        "p": 0.5172764227642277,
+        "p_ci_lo": 0.4867886178861789,
+        "p_ci_hi": 0.5487804878048781,
+        "n_eff": 989.0,
+        "design_effect": 1.0080889787664307
+      },
+      {
+        "level": 2,
+        "cell_bin": 0.3,
+        "symprec": 0.3,
+        "p": 0.5047021943573667,
+        "p_ci_lo": 0.4723092998955068,
+        "p_ci_hi": 0.5360501567398119,
+        "n_eff": 958.0000000000001,
+        "design_effect": 1.008350730688935
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.01,
+        "p": 0.6074672048435923,
+        "p_ci_lo": 0.5782038345105953,
+        "p_ci_hi": 0.6377396569122099,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.05,
+        "p": 0.6094853683148335,
+        "p_ci_lo": 0.579212916246216,
+        "p_ci_hi": 0.6387487386478304,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.1,
+        "p": 0.6077235772357723,
+        "p_ci_lo": 0.5782520325203252,
+        "p_ci_hi": 0.6382113821138211,
+        "n_eff": 989.0,
+        "design_effect": 1.0080889787664307
+      },
+      {
+        "level": 3,
+        "cell_bin": 0.1,
+        "symprec": 0.3,
+        "p": 0.5966562173458725,
+        "p_ci_lo": 0.5653082549634274,
+        "p_ci_hi": 0.6269592476489029,
+        "n_eff": 958.0000000000001,
+        "design_effect": 1.008350730688935
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.01,
+        "p": 0.6750756811301716,
+        "p_ci_lo": 0.6458123107971746,
+        "p_ci_hi": 0.7033299697275479,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.05,
+        "p": 0.6791120080726539,
+        "p_ci_lo": 0.649848637739657,
+        "p_ci_hi": 0.7053481331987891,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.1,
+        "p": 0.6778455284552846,
+        "p_ci_lo": 0.6483739837398373,
+        "p_ci_hi": 0.7063008130081301,
+        "n_eff": 989.0,
+        "design_effect": 1.0080889787664307
+      },
+      {
+        "level": 4,
+        "cell_bin": 0.05,
+        "symprec": 0.3,
+        "p": 0.6656217345872518,
+        "p_ci_lo": 0.6353187042842215,
+        "p_ci_hi": 0.6938349007314525,
+        "n_eff": 958.0000000000001,
+        "design_effect": 1.008350730688935
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.01,
+        "p": 0.7194752774974773,
+        "p_ci_lo": 0.692204843592331,
+        "p_ci_hi": 0.7467204843592331,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.05,
+        "p": 0.7214934409687185,
+        "p_ci_lo": 0.6922300706357215,
+        "p_ci_hi": 0.7477295660948536,
+        "n_eff": 991.0,
+        "design_effect": 1.0080726538849647
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.1,
+        "p": 0.7205284552845529,
+        "p_ci_lo": 0.693089430894309,
+        "p_ci_hi": 0.75,
+        "n_eff": 989.0,
+        "design_effect": 1.0080889787664307
+      },
+      {
+        "level": 5,
+        "cell_bin": 0.02,
+        "symprec": 0.3,
+        "p": 0.7105538140020898,
+        "p_ci_lo": 0.6812957157784744,
+        "p_ci_hi": 0.7387669801462905,
+        "n_eff": 958.0000000000001,
+        "design_effect": 1.008350730688935
+      }
+    ]
+  },
+  "feasibility_map": {
+    "MatterGen": [
+      {
+        "level": 1,
+        "symprec": 0.01,
+        "p": 0.3893333333333333,
+        "n_eff": 1500.0,
+        "feasible": true
+      },
+      {
+        "level": 1,
+        "symprec": 0.05,
+        "p": 0.3933333333333333,
+        "n_eff": 1500.0,
+        "feasible": true
+      },
+      {
+        "level": 1,
+        "symprec": 0.1,
+        "p": 0.25666666666666665,
+        "n_eff": 1500.0,
+        "feasible": true
+      },
+      {
+        "level": 1,
+        "symprec": 0.3,
+        "p": 0.152,
+        "n_eff": 1500.0,
+        "feasible": true
+      },
+      {
+        "level": 2,
+        "symprec": 0.01,
+        "p": 0.9266666666666666,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 2,
+        "symprec": 0.05,
+        "p": 0.7686666666666667,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 2,
+        "symprec": 0.1,
+        "p": 0.6566666666666666,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 2,
+        "symprec": 0.3,
+        "p": 0.5906666666666667,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.01,
+        "p": 0.9453333333333334,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.05,
+        "p": 0.818,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.1,
+        "p": 0.738,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.3,
+        "p": 0.694,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.01,
+        "p": 0.9553333333333334,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.05,
+        "p": 0.8406666666666667,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.1,
+        "p": 0.78,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.3,
+        "p": 0.7473333333333333,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.01,
+        "p": 0.964,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.05,
+        "p": 0.8633333333333333,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.1,
+        "p": 0.816,
+        "n_eff": 1500.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.3,
+        "p": 0.7966666666666666,
+        "n_eff": 1500.0,
+        "feasible": false
+      }
+    ],
+    "CrystalFormer": [
+      {
+        "level": 1,
+        "symprec": 0.01,
+        "p": 0.016145307769929364,
+        "n_eff": 991.0,
+        "feasible": true
+      },
+      {
+        "level": 1,
+        "symprec": 0.05,
+        "p": 0.029263370332996974,
+        "n_eff": 991.0,
+        "feasible": true
+      },
+      {
+        "level": 1,
+        "symprec": 0.1,
+        "p": 0.039634146341463415,
+        "n_eff": 989.0,
+        "feasible": true
+      },
+      {
+        "level": 1,
+        "symprec": 0.3,
+        "p": 0.047021943573667714,
+        "n_eff": 958.0000000000001,
+        "feasible": true
+      },
+      {
+        "level": 2,
+        "symprec": 0.01,
+        "p": 0.5105953582240161,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 2,
+        "symprec": 0.05,
+        "p": 0.5176589303733602,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 2,
+        "symprec": 0.1,
+        "p": 0.5172764227642277,
+        "n_eff": 989.0,
+        "feasible": false
+      },
+      {
+        "level": 2,
+        "symprec": 0.3,
+        "p": 0.5047021943573667,
+        "n_eff": 958.0000000000001,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.01,
+        "p": 0.6074672048435923,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.05,
+        "p": 0.6094853683148335,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.1,
+        "p": 0.6077235772357723,
+        "n_eff": 989.0,
+        "feasible": false
+      },
+      {
+        "level": 3,
+        "symprec": 0.3,
+        "p": 0.5966562173458725,
+        "n_eff": 958.0000000000001,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.01,
+        "p": 0.6750756811301716,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.05,
+        "p": 0.6791120080726539,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.1,
+        "p": 0.6778455284552846,
+        "n_eff": 989.0,
+        "feasible": false
+      },
+      {
+        "level": 4,
+        "symprec": 0.3,
+        "p": 0.6656217345872518,
+        "n_eff": 958.0000000000001,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.01,
+        "p": 0.7194752774974773,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.05,
+        "p": 0.7214934409687185,
+        "n_eff": 991.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.1,
+        "p": 0.7205284552845529,
+        "n_eff": 989.0,
+        "feasible": false
+      },
+      {
+        "level": 5,
+        "symprec": 0.3,
+        "p": 0.7105538140020898,
+        "n_eff": 958.0000000000001,
+        "feasible": false
+      }
+    ]
+  },
+  "result": "For BOTH generators, the feasible region is EXACTLY level 1 (no cell shape) at ALL FOUR tested symprec values (0.01, 0.05, 0.1, 0.3) -- 4/4 feasible at level 1, 0/4 feasible at levels 2-5, for both MatterGen and CrystalFormer. Symprec, within the tested range, never pushes any level-2-through-5 setting below p=0.5, and never pushes level 1 above p=0.5 either (MatterGen level 1: p ranges 0.152-0.393 across symprec; CrystalFormer level 1: p ranges 0.016-0.047).",
+  "feasible_window_survives_2d": "YES. The manuscript's 1-D slice (Table tab:ablation, fixed symprec=0.1) reports level 1 as the only feasible cell-bin setting for both generators. The full 2-D grid confirms this is not an artifact of the particular symprec chosen for that table: the same level-1-only feasible region holds at every symprec value tested (0.01-0.3). The design recommendation (drop cell shape; keep composition+orbit information only) is validated across the full tested tolerance range, not just at the single symprec value the manuscript happened to tabulate.",
+  "correction_to_design_recommendation": "None needed. This is a confirmation, not a correction: no narrower true window was hiding in the untested symprec dimension, and no wider apparent window at symprec=0.1 fails to generalize to other symprec values.",
+  "caveat": "The joint grid covers only the two generators with paired raw/DFT-relaxed sets (MatterGen, CrystalFormer). WyLLM-vanilla-DiffCSP++ has no paired relaxed set in this corpus, so its stability side of the trade-off (and therefore any 2-D feasibility statement for it) remains unmeasurable, exactly as already documented in fingerprint_ablation_results.json and the manuscript's table note.",
+  "analysis": "joint_granularity: joint symprec x cell_bin grid, feasible-window-in-2D check"
+}

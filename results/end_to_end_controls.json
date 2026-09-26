@@ -1,0 +1,40 @@
+{
+  "GEN-SUB": {
+    "n_slots": 70,
+    "m": 6,
+    "TPR_marked": 1.0,
+    "FPR_unmarked_dedup": 0.0,
+    "FPR_unmarked_naive": 0.0,
+    "FPR_shuffled_key": 0.0,
+    "FPR_templates": 0.0,
+    "green_fraction_marked": 0.9794582473775981,
+    "q_theory": 0.984375,
+    "energy_penalty_meV_per_atom": 5422.663735225974,
+    "diversity": {
+      "n": 70,
+      "distinct": 55,
+      "n_eff": 70.0,
+      "deff": 1.5428571428571423
+    },
+    "frontier_distinct": 14
+  },
+  "GEN-RSS": {
+    "n_slots": 70,
+    "m": 6,
+    "TPR_marked": 1.0,
+    "FPR_unmarked_dedup": 0.0,
+    "FPR_unmarked_naive": 0.0,
+    "FPR_shuffled_key": 0.0,
+    "FPR_templates": 0.0,
+    "green_fraction_marked": 0.9841418219461698,
+    "q_theory": 0.984375,
+    "energy_penalty_meV_per_atom": 16136.29666229877,
+    "diversity": {
+      "n": 70,
+      "distinct": 70,
+      "n_eff": 70.0,
+      "deff": 1.0000000000000004
+    },
+    "frontier_distinct": 14
+  }
+}

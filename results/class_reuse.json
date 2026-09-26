@@ -1,0 +1,382 @@
+{
+  "description": "Simulation-only (no relaxation, no GPU) study of three forgery threat models against the BasinMark audit, run over the fingerprinted MatterGen corpus (chgnet_e_above_hull_corrected energies) as the primary population, with a CrystalFormer cross-check for generator-independence.",
+  "parameters": {
+    "gamma": 0.5,
+    "m": 8,
+    "alpha_nominal": 0.001,
+    "n_forge_per_trial": 200,
+    "n_trials_threat1_per_N": 200,
+    "n_trials_threat2": 200,
+    "n_trials_threat3": 200,
+    "primary_population": "MatterGen",
+    "primary_population_n_total": 10000,
+    "primary_population_n_clean": 9764,
+    "primary_population_n_dropped_nonfinite_energy": 236,
+    "primary_population_n_dropped_unresolved_or_error_fp": 0,
+    "primary_population_n_distinct_fingerprints": 9641,
+    "cross_check_population": "CrystalFormer",
+    "cross_check_population_n_clean": 989,
+    "theoretical_auditability_frontier_distinct_fps_needed": 10,
+    "theoretical_required_n_perfect_marking": 10,
+    "seeds": {
+      "threat1_primary": 20260813,
+      "threat1_refine_grid_7_8_9_10": 20260814,
+      "threat1_crystalformer_crosscheck": 20261812,
+      "threat2": 20260814,
+      "threat3": 20260815
+    }
+  },
+  "threat1_observation_adversary": {
+    "description": "Adversary observes the first N outputs of a genuine BasinMark marking stream (m=8 candidates per selection) under an unknown key, records which fingerprints occurred among the marked outputs ('believed green'), builds the reusable-match pool = every corpus structure sharing one of those fingerprints, and forges a collection of 200 structures sampled with replacement from that match pool. Reported per N: detection rate (fraction of 200 independent trials in which the forged collection triggers audit.reject at alpha=1e-3), 95% Clopper-Pearson interval, mean true-green coverage of the believed-green set (sanity check that the deterministic green/red fact was inferred correctly), and mean size of the reusable match pool as a fraction of the n_forge=200 target (the unique-fill fraction).",
+    "by_N": {
+      "1": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 200,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": null,
+        "mean_n_believed_green": null,
+        "mean_n_match_pool": null
+      },
+      "2": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 200,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": null,
+        "mean_n_believed_green": null,
+        "mean_n_match_pool": null
+      },
+      "3": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 200,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": null,
+        "mean_n_believed_green": null,
+        "mean_n_match_pool": null
+      },
+      "5": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 200,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": null,
+        "mean_n_believed_green": null,
+        "mean_n_match_pool": null
+      },
+      "7": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 193,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": 1.0,
+        "mean_n_believed_green": 7.0,
+        "mean_n_match_pool": 10.285714285714286
+      },
+      "8": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": null,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": null,
+        "mean_n_believed_green": null,
+        "mean_n_match_pool": null
+      },
+      "9": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": null,
+        "n_reject": 0,
+        "detection_rate": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.01827534035513624,
+        "mean_coverage_true_green_frac": null,
+        "mean_n_believed_green": null,
+        "mean_n_match_pool": null
+      },
+      "10": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 1,
+        "n_reject": 194,
+        "detection_rate": 0.97,
+        "ci95_lo": 0.935849373294973,
+        "ci95_hi": 0.9889125443277452,
+        "mean_coverage_true_green_frac": 0.9984924623115577,
+        "mean_n_believed_green": 9.989949748743719,
+        "mean_n_match_pool": 10.552763819095478
+      },
+      "15": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9983333333333334,
+        "mean_n_believed_green": 14.965,
+        "mean_n_match_pool": 15.845
+      },
+      "20": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9974868421052631,
+        "mean_n_believed_green": 19.92,
+        "mean_n_match_pool": 21.09
+      },
+      "30": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9963103448275862,
+        "mean_n_believed_green": 29.755,
+        "mean_n_match_pool": 31.54
+      },
+      "50": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9960527210884353,
+        "mean_n_believed_green": 49.4,
+        "mean_n_match_pool": 52.125
+      },
+      "100": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9954552123449273,
+        "mean_n_believed_green": 97.67,
+        "mean_n_match_pool": 102.775
+      },
+      "200": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9957015585614912,
+        "mean_n_believed_green": 190.74,
+        "mean_n_match_pool": 200.55
+      },
+      "500": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9955570010945604,
+        "mean_n_believed_green": 447.455,
+        "mean_n_match_pool": 468.215
+      },
+      "1000": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9949800115003842,
+        "mean_n_believed_green": 808.6,
+        "mean_n_match_pool": 841.88
+      },
+      "2000": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9941060113382016,
+        "mean_n_believed_green": 1352.785,
+        "mean_n_match_pool": 1399.06
+      },
+      "5000": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9912119734062236,
+        "mean_n_believed_green": 2260.655,
+        "mean_n_match_pool": 2318.065
+      },
+      "10000": {
+        "n_trials": 200,
+        "n_infeasible_too_few_reusable_fps": 0,
+        "n_reject": 200,
+        "detection_rate": 1.0,
+        "ci95_lo": 0.9817246596448638,
+        "ci95_hi": 1.0,
+        "mean_coverage_true_green_frac": 0.9869813682226882,
+        "mean_n_believed_green": 2949.335,
+        "mean_n_match_pool": 3010.545
+      }
+    },
+    "unique_fill_fraction_of_forged_collection": {
+      "1": null,
+      "2": null,
+      "3": null,
+      "5": null,
+      "7": 0.051428571428571435,
+      "8": null,
+      "9": null,
+      "10": 0.05276381909547739,
+      "15": 0.079225,
+      "20": 0.10545,
+      "30": 0.1577,
+      "50": 0.260625,
+      "100": 0.5138750000000001,
+      "200": 1.0,
+      "500": 1.0,
+      "1000": 1.0,
+      "2000": 1.0,
+      "5000": 1.0,
+      "10000": 1.0
+    },
+    "first_N_exceeding_10x_nominal_alpha": 10,
+    "cross_check_generator_CrystalFormer": {
+      "by_N": {
+        "5": {
+          "n_trials": 100,
+          "n_reject": 0,
+          "detection_rate": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.03621669264517641
+        },
+        "10": {
+          "n_trials": 100,
+          "n_reject": 75,
+          "detection_rate": 0.75,
+          "ci95_lo": 0.6534475042411918,
+          "ci95_hi": 0.8312202619006581
+        },
+        "15": {
+          "n_trials": 100,
+          "n_reject": 100,
+          "detection_rate": 1.0,
+          "ci95_lo": 0.9637833073548235,
+          "ci95_hi": 1.0
+        },
+        "20": {
+          "n_trials": 100,
+          "n_reject": 100,
+          "detection_rate": 1.0,
+          "ci95_lo": 0.9637833073548235,
+          "ci95_hi": 1.0
+        },
+        "50": {
+          "n_trials": 100,
+          "n_reject": 100,
+          "detection_rate": 1.0,
+          "ci95_lo": 0.9637833073548235,
+          "ci95_hi": 1.0
+        },
+        "100": {
+          "n_trials": 100,
+          "n_reject": 100,
+          "detection_rate": 1.0,
+          "ci95_lo": 0.9637833073548235,
+          "ci95_hi": 1.0
+        }
+      },
+      "first_N_exceeding_10x_nominal_alpha": 10
+    },
+    "interpretation": "Green/red is a deterministic function of (fingerprint, key): observing a marked stream leaks the exact green/red label for every fingerprint that appears in it, with no noise (mean true-green coverage of the believed-green set is >=98.7% at every N tested, the small shortfall being marked outputs whose group had no green candidate so the lowest-energy structure was selected by the fallback rule and is NOT actually green). Detection saturates at 100% by N=15-20, which is NOT the point where the reusable match pool grows large enough to fill the 200-structure forged collection without duplication -- unique_fill_fraction is only 0.079-0.105 at N=15-20 and does not reach 1.0 until N=200. What saturates by N=15-20 is the deduplicated audit itself: BP.audit tests the DISTINCT fingerprints in the forged collection, and by N=15-20 the adversary already has ~15-20 distinct green fingerprints to draw from (with replacement) inside a 200-item collection, which exceeds the auditability_frontier of 10 distinct green fingerprints needed for 90% power at alpha=1e-3. Heavy duplication of those distinct green fingerprints (fill_fraction well below 1.0) does not weaken the attack, because deduplication only counts each fingerprint once -- the adversary needs enough DISTINCT green fingerprints to clear the frontier, not enough distinct structures to avoid repeats."
+  },
+  "threat2_fingerprint_oracle_without_key": {
+    "description": "Adversary has the fingerprint function (BP.fingerprint) but no key and no observations of genuinely marked output. Two sub-variants, each run 200 times against a freshly drawn true key: (a) pure random forgery, an explicit null baseline with zero key-derived information; (b) filtering the corpus for apparent greens under a freshly GUESSED random 32-byte key, testing whether HMAC-SHA256 pseudorandomness under a wrong key correlates at all with the true key.",
+    "random_forgery": {
+      "n_trials": 200,
+      "n_reject": 0,
+      "rate": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.01827534035513624
+    },
+    "guessed_key_forgery": {
+      "n_trials": 200,
+      "n_reject": 0,
+      "rate": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.01827534035513624
+    },
+    "p_value_distribution_check": {
+      "random_forgery": {
+        "min_p": 0.005264860835805906,
+        "mean_p": 0.47001222870429316,
+        "frac_p_lt_0.01": 0.01
+      },
+      "guessed_key_forgery": {
+        "min_p": 0.0063364789767678086,
+        "mean_p": 0.5217919325325624,
+        "frac_p_lt_0.01": 0.005
+      }
+    },
+    "interpretation": "0/200 detections in both variants; observed p-value distributions are consistent with Uniform(0,1) (mean approx 0.5, ~1-2% below 0.01 as expected under a true null), exactly as required under the null of no key knowledge. Possessing the fingerprint function alone, without any observation of genuinely marked output, gives no forgery advantage: HMAC-SHA256 under a wrong key is statistically independent of the true key's green/red partition."
+  },
+  "threat3_filtering_adversary_no_key": {
+    "description": "Adversary has no key and no observations, and filters a large unmarked pool (MatterGen, n=9764 clean structures) to retain the 200 structures that merely LOOK favourable by two superficial heuristics: (a) restrict to the single most frequent space group in the pool; (b) retain the 200 lowest-CHGNet-energy-above-hull structures. Each forged collection is audited against a freshly drawn true key, run 200 times.",
+    "spacegroup_filter": {
+      "n_trials": 200,
+      "n_reject": 0,
+      "rate": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.01827534035513624
+    },
+    "low_energy_filter": {
+      "n_trials": 200,
+      "n_reject": 0,
+      "rate": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.01827534035513624
+    },
+    "p_value_distribution_check": {
+      "spacegroup_filter": {
+        "min_p": 0.00284257799837515,
+        "mean_p": 0.47891146316163374,
+        "frac_p_lt_0.01": 0.02
+      },
+      "low_energy_filter": {
+        "min_p": 0.007865495104725685,
+        "mean_p": 0.5194802163734008,
+        "frac_p_lt_0.01": 0.005
+      }
+    },
+    "interpretation": "0/200 detections under either heuristic. This is the null check the manuscript calls for: without any key-derived information, superficial preferences (space-group frequency, low formation energy) carry no signal about the true green/red partition, and the audit is not gamed by them."
+  },
+  "verdict": {
+    "threat1_observation_adversary": "FORGERY BECOMES FEASIBLE, but only once the adversary has observed roughly the auditability-frontier number of marked outputs (~10 for gamma=0.5, m=8): detection rate is indistinguishable from 0 for N<=9 observations and jumps to >=93% by N=10, saturating at 100% by N=15-20. This matches the theoretical auditability_frontier(gamma=0.5, m=8)=10 and required_n(...)=10 computed by BP.auditability_frontier / BP.required_n.",
+    "threat2_fingerprint_oracle_without_key": "NOT FEASIBLE: 0/200 forged collections rejected the null (both pure-random forgery and filtering by a freshly guessed random key). Having the fingerprint function without the true key confers no advantage; HMAC-based green/red labels under a different key are statistically independent of the true key's labels.",
+    "threat3_filtering_adversary_no_key": "NOT FEASIBLE: 0/200 forged collections triggered detection under either heuristic (space-group-frequency filtering or low-energy filtering). Superficial structural or energetic preferences carry no information about the true key's green/red partition.",
+    "deployment_consequence": "TRIGGERED for a single fixed key held long enough for ~10 or more marked outputs to be observed: an adversary who can observe a modest number of genuinely marked structures (order of the auditability frontier, ~10 at gamma=0.5, m=8) can assemble a forged collection that passes the audit at >=93% detection, which is exactly the false implication the audit is meant to prevent. This is a real, cheap attack once the frontier is crossed, and it recommends randomised (session- or batch-scoped) key selection rather than one long-lived fixed key, exactly as the manuscript anticipates. Threat models 2 and 3 (no observation of genuinely marked output) do NOT trigger the change: without any leak of true green/red labels, forgery failed completely across 200 trials each."
+  },
+  "deployment_recommendation_change_triggered": true,
+  "deployment_recommendation_change_scope": "Triggered specifically by threat 1 (observation adversary) once N exceeds the auditability frontier (~10 marked observations at gamma=0.5, m=8); NOT triggered by threats 2 or 3, which failed at every tested scale.",
+  "analysis": "class_reuse_spoofing_and_forgery"
+}

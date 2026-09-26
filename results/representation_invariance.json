@@ -1,0 +1,267 @@
+{
+  "supercell 2x1x1": {
+    "total": [
+      212,
+      212
+    ],
+    "by_system": {
+      "triclinic": [
+        18,
+        18
+      ],
+      "monoclinic": [
+        36,
+        36
+      ],
+      "orthorhombic": [
+        45,
+        45
+      ],
+      "tetragonal": [
+        54,
+        54
+      ],
+      "trigonal": [
+        19,
+        19
+      ],
+      "hexagonal": [
+        36,
+        36
+      ],
+      "cubic": [
+        4,
+        4
+      ]
+    }
+  },
+  "supercell 2x2x2": {
+    "total": [
+      212,
+      212
+    ],
+    "by_system": {
+      "triclinic": [
+        18,
+        18
+      ],
+      "monoclinic": [
+        36,
+        36
+      ],
+      "orthorhombic": [
+        45,
+        45
+      ],
+      "tetragonal": [
+        54,
+        54
+      ],
+      "trigonal": [
+        19,
+        19
+      ],
+      "hexagonal": [
+        36,
+        36
+      ],
+      "cubic": [
+        4,
+        4
+      ]
+    }
+  },
+  "origin shift": {
+    "total": [
+      212,
+      212
+    ],
+    "by_system": {
+      "triclinic": [
+        18,
+        18
+      ],
+      "monoclinic": [
+        36,
+        36
+      ],
+      "orthorhombic": [
+        45,
+        45
+      ],
+      "tetragonal": [
+        54,
+        54
+      ],
+      "trigonal": [
+        19,
+        19
+      ],
+      "hexagonal": [
+        36,
+        36
+      ],
+      "cubic": [
+        4,
+        4
+      ]
+    }
+  },
+  "atom relabelling": {
+    "total": [
+      212,
+      212
+    ],
+    "by_system": {
+      "triclinic": [
+        18,
+        18
+      ],
+      "monoclinic": [
+        36,
+        36
+      ],
+      "orthorhombic": [
+        45,
+        45
+      ],
+      "tetragonal": [
+        54,
+        54
+      ],
+      "trigonal": [
+        19,
+        19
+      ],
+      "hexagonal": [
+        36,
+        36
+      ],
+      "cubic": [
+        4,
+        4
+      ]
+    }
+  },
+  "unimodular basis": {
+    "total": [
+      212,
+      212
+    ],
+    "by_system": {
+      "triclinic": [
+        18,
+        18
+      ],
+      "monoclinic": [
+        36,
+        36
+      ],
+      "orthorhombic": [
+        45,
+        45
+      ],
+      "tetragonal": [
+        54,
+        54
+      ],
+      "trigonal": [
+        19,
+        19
+      ],
+      "hexagonal": [
+        36,
+        36
+      ],
+      "cubic": [
+        4,
+        4
+      ]
+    }
+  },
+  "rigid rotation": {
+    "total": [
+      212,
+      212
+    ],
+    "by_system": {
+      "triclinic": [
+        18,
+        18
+      ],
+      "monoclinic": [
+        36,
+        36
+      ],
+      "orthorhombic": [
+        45,
+        45
+      ],
+      "tetragonal": [
+        54,
+        54
+      ],
+      "trigonal": [
+        19,
+        19
+      ],
+      "hexagonal": [
+        36,
+        36
+      ],
+      "cubic": [
+        4,
+        4
+      ]
+    }
+  },
+  "cross_tolerance": {
+    "by_system": {
+      "triclinic": [
+        12,
+        12
+      ],
+      "monoclinic": [
+        18,
+        22
+      ],
+      "orthorhombic": [
+        20,
+        25
+      ],
+      "tetragonal": [
+        11,
+        12
+      ],
+      "trigonal": [
+        1,
+        2
+      ],
+      "hexagonal": [
+        15,
+        17
+      ],
+      "cubic": [
+        0,
+        0
+      ]
+    },
+    "total": [
+      77,
+      90
+    ]
+  },
+  "library": {
+    "n": 212,
+    "distinct_sg": 25,
+    "by_system": {
+      "tetragonal": 54,
+      "orthorhombic": 45,
+      "hexagonal": 36,
+      "triclinic": 18,
+      "monoclinic": 36,
+      "trigonal": 19,
+      "cubic": 4
+    }
+  }
+}
