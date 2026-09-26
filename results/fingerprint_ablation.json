@@ -1,0 +1,4847 @@
+{
+  "date_generated": "2026-08-12T21:53:55.435669Z",
+  "purpose": "Direct empirical test of the manuscript's stability-diversity trade-off theorem: report n_eff (diversity) AND flip rate p (stability) JOINTLY at each fingerprint granularity, never either alone.",
+  "fingerprint_levels": [
+    {
+      "level": 1,
+      "description": "SG+orbits+composition, no cell",
+      "use_cell": false,
+      "cell_bin": null
+    },
+    {
+      "level": 2,
+      "description": "+cell shape, coarse",
+      "use_cell": true,
+      "cell_bin": 0.3
+    },
+    {
+      "level": 3,
+      "description": "+cell shape, medium",
+      "use_cell": true,
+      "cell_bin": 0.1
+    },
+    {
+      "level": 4,
+      "description": "+cell shape, fine",
+      "use_cell": true,
+      "cell_bin": 0.05
+    },
+    {
+      "level": 5,
+      "description": "+cell shape, very fine",
+      "use_cell": true,
+      "cell_bin": 0.02
+    }
+  ],
+  "symprec_sweep": [
+    0.01,
+    0.05,
+    0.1,
+    0.3
+  ],
+  "gamma_sweep": [
+    0.25,
+    0.5
+  ],
+  "m_sweep": [
+    4,
+    8,
+    16
+  ],
+  "auditability_frontier_Nstar_grid": {
+    "gamma=0.25,m=4": 25,
+    "gamma=0.25,m=8": 10,
+    "gamma=0.25,m=16": 5,
+    "gamma=0.5,m=4": 18,
+    "gamma=0.5,m=8": 10,
+    "gamma=0.5,m=16": 10
+  },
+  "datasets": {
+    "MatterGen": {
+      "description": "Raw generator output (file 65498772) paired with CHGNet-relaxed output (file 65498775) via the corrected 'id'-column join (material_id in 65498775 is a re-sequenced 0..9999 counter, NOT the generation index; formula-match rate 100% under the 'id' join vs 0.01% under naive material_id join).",
+      "n_full_paired_population": 10000,
+      "subsample_n": 1500,
+      "subsample_seed": 60601,
+      "diversity_measured_on": "CHGNet-relaxed (post-relaxation) fingerprints, consistent with generator_calibration convention",
+      "settings": [
+        {
+          "generator": "MatterGen",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.01,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 584,
+            "p": 0.3893333333333333,
+            "se": 0.0125897548000716,
+            "ci95_lo": 0.364,
+            "ci95_hi": 0.41533333333333333
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1495,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1488.095238095238,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.008
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 53,
+              "8": 24,
+              "16": 19
+            },
+            "0.5": {
+              "4": 60,
+              "8": 45,
+              "16": 45
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.05,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 590,
+            "p": 0.3933333333333333,
+            "se": 0.012612750749994288,
+            "ci95_lo": 0.368,
+            "ci95_hi": 0.418
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1495,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1488.095238095238,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.008
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 53,
+              "8": 25,
+              "16": 19
+            },
+            "0.5": {
+              "4": 60,
+              "8": 45,
+              "16": 45
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.1,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 385,
+            "p": 0.25666666666666665,
+            "se": 0.011277969347031964,
+            "ci95_lo": 0.234,
+            "ci95_hi": 0.2793333333333333
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1495,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1490.0662251655629,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0066666666666668
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 38,
+              "8": 15,
+              "16": 12
+            },
+            "0.5": {
+              "4": 37,
+              "8": 29,
+              "16": 29
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.3,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 228,
+            "p": 0.152,
+            "se": 0.009269879538951229,
+            "ci95_lo": 0.13333333333333333,
+            "ci95_hi": 0.17133333333333334
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1494,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1486.1294583883753,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0093333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1494,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1486.1294583883753,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0093333333333334
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 29,
+              "8": 12,
+              "16": 8
+            },
+            "0.5": {
+              "4": 29,
+              "8": 20,
+              "16": 20
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.01,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1390,
+            "p": 0.9266666666666666,
+            "se": 0.006730802604719865,
+            "ci95_lo": 0.9133166666666667,
+            "ci95_hi": 0.9393499999999999
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 3595,
+              "8": 1613,
+              "16": 1250
+            },
+            "0.5": {
+              "4": 4612,
+              "8": 3581,
+              "16": 3532
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.05,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1153,
+            "p": 0.7686666666666667,
+            "se": 0.010887859361760762,
+            "ci95_lo": 0.748,
+            "ci95_hi": 0.79
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 369,
+              "8": 169,
+              "16": 130
+            },
+            "0.5": {
+              "4": 454,
+              "8": 352,
+              "16": 348
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.1,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 985,
+            "p": 0.6566666666666666,
+            "se": 0.012259841096184882,
+            "ci95_lo": 0.632,
+            "ci95_hi": 0.68
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1498,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1496.0106382978724,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0026666666666666
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 170,
+              "8": 77,
+              "16": 61
+            },
+            "0.5": {
+              "4": 202,
+              "8": 157,
+              "16": 155
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.3,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 886,
+            "p": 0.5906666666666667,
+            "se": 0.012695919437770955,
+            "ci95_lo": 0.5673333333333334,
+            "ci95_hi": 0.6166666666666667
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 121,
+              "8": 53,
+              "16": 41
+            },
+            "0.5": {
+              "4": 141,
+              "8": 111,
+              "16": 106
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.01,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1418,
+            "p": 0.9453333333333334,
+            "se": 0.005869595228646361,
+            "ci95_lo": 0.9333333333333333,
+            "ci95_hi": 0.956
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 6450,
+              "8": 2888,
+              "16": 2231
+            },
+            "0.5": {
+              "4": 8316,
+              "8": 6471,
+              "16": 6369
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.05,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1227,
+            "p": 0.818,
+            "se": 0.009962462881570334,
+            "ci95_lo": 0.798,
+            "ci95_hi": 0.8366666666666667
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 597,
+              "8": 268,
+              "16": 210
+            },
+            "0.5": {
+              "4": 738,
+              "8": 572,
+              "16": 568
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.1,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1107,
+            "p": 0.738,
+            "se": 0.01135358974069435,
+            "ci95_lo": 0.7146666666666667,
+            "ci95_hi": 0.76
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 289,
+              "8": 133,
+              "16": 104
+            },
+            "0.5": {
+              "4": 352,
+              "8": 271,
+              "16": 269
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.3,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1041,
+            "p": 0.694,
+            "se": 0.01189857134281255,
+            "ci95_lo": 0.6713166666666667,
+            "ci95_hi": 0.718
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 216,
+              "8": 98,
+              "16": 76
+            },
+            "0.5": {
+              "4": 258,
+              "8": 200,
+              "16": 193
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.01,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1433,
+            "p": 0.9553333333333334,
+            "se": 0.005333638880136495,
+            "ci95_lo": 0.9453333333333334,
+            "ci95_hi": 0.9653333333333334
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 9646,
+              "8": 4316,
+              "16": 3331
+            },
+            "0.5": {
+              "4": 12461,
+              "8": 9707,
+              "16": 9540
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.05,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1261,
+            "p": 0.8406666666666667,
+            "se": 0.009449734466189063,
+            "ci95_lo": 0.82265,
+            "ci95_hi": 0.86
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1498,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1496.0106382978724,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0026666666666666
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 778,
+              "8": 348,
+              "16": 268
+            },
+            "0.5": {
+              "4": 973,
+              "8": 751,
+              "16": 738
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.1,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1170,
+            "p": 0.78,
+            "se": 0.01069579356569675,
+            "ci95_lo": 0.7586666666666667,
+            "ci95_hi": 0.8013333333333333
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1498,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1496.0106382978724,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0026666666666666
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 411,
+              "8": 186,
+              "16": 143
+            },
+            "0.5": {
+              "4": 506,
+              "8": 389,
+              "16": 385
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.3,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1121,
+            "p": 0.7473333333333333,
+            "se": 0.011219810521936106,
+            "ci95_lo": 0.726,
+            "ci95_hi": 0.7706666666666667
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1498,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1496.0106382978724,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0026666666666666
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 313,
+              "8": 140,
+              "16": 108
+            },
+            "0.5": {
+              "4": 383,
+              "8": 293,
+              "16": 291
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.01,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1446,
+            "p": 0.964,
+            "se": 0.0048099896049783744,
+            "ci95_lo": 0.95465,
+            "ci95_hi": 0.9733333333333334
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1500,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1500.0000000000002,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 0.9999999999999998
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 14824,
+              "8": 6624,
+              "16": 5113
+            },
+            "0.5": {
+              "4": 19227,
+              "8": 14938,
+              "16": 14705
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.05,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1295,
+            "p": 0.8633333333333333,
+            "se": 0.008869005539476187,
+            "ci95_lo": 0.8466666666666667,
+            "ci95_hi": 0.8806666666666667
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 1050,
+              "8": 475,
+              "16": 362
+            },
+            "0.5": {
+              "4": 1325,
+              "8": 1023,
+              "16": 1013
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.1,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1224,
+            "p": 0.816,
+            "se": 0.01000479884855263,
+            "ci95_lo": 0.7959833333333334,
+            "ci95_hi": 0.8353333333333334
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1499,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1498.0026631158457,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0013333333333332
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 586,
+              "8": 264,
+              "16": 203
+            },
+            "0.5": {
+              "4": 721,
+              "8": 564,
+              "16": 553
+            }
+          }
+        },
+        {
+          "generator": "MatterGen",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.3,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 1500,
+          "raw_n_bad": 0,
+          "chg_n_bad": 0,
+          "flip": {
+            "n": 1500,
+            "n_excluded_unresolved": 0,
+            "n_flips": 1195,
+            "p": 0.7966666666666666,
+            "se": 0.010391948450247076,
+            "ci95_lo": 0.7753333333333333,
+            "ci95_hi": 0.8166666666666667
+          },
+          "diversity_chg": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1496,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1492.0424403183024,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.0053333333333334
+          },
+          "diversity_raw": {
+            "n_valid": 1500,
+            "n_bad": 0,
+            "n": 1500,
+            "n_distinct": 1497,
+            "n_eff": 1500.0,
+            "n_eff_plugin": 1494.0239043824702,
+            "H2_bits": 10.550746785383243,
+            "design_effect": 1.004
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 1500.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 482,
+              "8": 217,
+              "16": 169
+            },
+            "0.5": {
+              "4": 589,
+              "8": 456,
+              "16": 452
+            }
+          }
+        }
+      ]
+    },
+    "CrystalFormer": {
+      "description": "Raw generator output (file 65498616, n=999) paired with CHGNet-relaxed output (file 65498610, n=992) via material_id join; full population used (no subsampling, ~1000 total).",
+      "n_full_paired_population": 992,
+      "subsample_n": null,
+      "subsample_seed": null,
+      "diversity_measured_on": "CHGNet-relaxed (post-relaxation) fingerprints, consistent with generator_calibration convention",
+      "settings": [
+        {
+          "generator": "CrystalFormer",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.01,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 16,
+            "p": 0.016145307769929364,
+            "se": 0.004003610480410563,
+            "ci95_lo": 0.009081735620585268,
+            "ci95_hi": 0.024243188698284422
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 988,
+            "n_eff": 992.0,
+            "n_eff_plugin": 984.0639999999999,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0080645161290325
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 20,
+              "8": 8,
+              "16": 4
+            },
+            "0.5": {
+              "4": 20,
+              "8": 14,
+              "16": 10
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.05,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 29,
+            "p": 0.029263370332996974,
+            "se": 0.005353971477792536,
+            "ci95_lo": 0.01917255297679112,
+            "ci95_hi": 0.039354187689202826
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 988,
+            "n_eff": 992.0,
+            "n_eff_plugin": 984.0639999999999,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0080645161290325
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 20,
+              "8": 8,
+              "16": 6
+            },
+            "0.5": {
+              "4": 20,
+              "8": 14,
+              "16": 14
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.1,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 992,
+          "raw_n_bad": 5,
+          "chg_n_bad": 3,
+          "flip": {
+            "n": 984,
+            "n_excluded_unresolved": 8,
+            "n_flips": 39,
+            "p": 0.039634146341463415,
+            "se": 0.006219501259744735,
+            "ci95_lo": 0.027439024390243903,
+            "ci95_hi": 0.052845528455284556
+          },
+          "diversity_chg": {
+            "n_valid": 989,
+            "n_bad": 3,
+            "n": 989,
+            "n_distinct": 985,
+            "n_eff": 989.0,
+            "n_eff_plugin": 981.0641925777333,
+            "H2_bits": 9.94982671075911,
+            "design_effect": 1.0080889787664307
+          },
+          "diversity_raw": {
+            "n_valid": 987,
+            "n_bad": 5,
+            "n": 987,
+            "n_distinct": 983,
+            "n_eff": 986.9999999999999,
+            "n_eff_plugin": 979.0643216080402,
+            "H2_bits": 9.946906274456397,
+            "design_effect": 1.0081053698074975
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 20,
+              "8": 8,
+              "16": 6
+            },
+            "0.5": {
+              "4": 20,
+              "8": 14,
+              "16": 14
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.3,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_pairs_total": 992,
+          "raw_n_bad": 12,
+          "chg_n_bad": 34,
+          "flip": {
+            "n": 957,
+            "n_excluded_unresolved": 35,
+            "n_flips": 45,
+            "p": 0.047021943573667714,
+            "se": 0.006842830294025594,
+            "ci95_lo": 0.034482758620689655,
+            "ci95_hi": 0.06165099268547544
+          },
+          "diversity_chg": {
+            "n_valid": 958,
+            "n_bad": 34,
+            "n": 958,
+            "n_distinct": 954,
+            "n_eff": 958.0000000000001,
+            "n_eff_plugin": 950.066252587992,
+            "H2_bits": 9.90388184573618,
+            "design_effect": 1.008350730688935
+          },
+          "diversity_raw": {
+            "n_valid": 980,
+            "n_bad": 12,
+            "n": 980,
+            "n_distinct": 976,
+            "n_eff": 979.9999999999999,
+            "n_eff_plugin": 972.0647773279351,
+            "H2_bits": 9.936637939002571,
+            "design_effect": 1.0081632653061225
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 20,
+              "8": 8,
+              "16": 6
+            },
+            "0.5": {
+              "4": 20,
+              "8": 14,
+              "16": 14
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.01,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 506,
+            "p": 0.5105953582240161,
+            "se": 0.01587945694156243,
+            "ci95_lo": 0.4803229061553986,
+            "ci95_hi": 0.5408678102926338
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 83,
+              "8": 38,
+              "16": 30
+            },
+            "0.5": {
+              "4": 97,
+              "8": 75,
+              "16": 73
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.05,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 513,
+            "p": 0.5176589303733602,
+            "se": 0.01587311450392014,
+            "ci95_lo": 0.4873864783047427,
+            "ci95_hi": 0.5469223007063572
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 86,
+              "8": 40,
+              "16": 30
+            },
+            "0.5": {
+              "4": 99,
+              "8": 75,
+              "16": 75
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.1,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 5,
+          "chg_n_bad": 3,
+          "flip": {
+            "n": 984,
+            "n_excluded_unresolved": 8,
+            "n_flips": 509,
+            "p": 0.5172764227642277,
+            "se": 0.015929899956320052,
+            "ci95_lo": 0.4867886178861789,
+            "ci95_hi": 0.5487804878048781
+          },
+          "diversity_chg": {
+            "n_valid": 989,
+            "n_bad": 3,
+            "n": 989,
+            "n_distinct": 985,
+            "n_eff": 989.0,
+            "n_eff_plugin": 981.0641925777333,
+            "H2_bits": 9.94982671075911,
+            "design_effect": 1.0080889787664307
+          },
+          "diversity_raw": {
+            "n_valid": 987,
+            "n_bad": 5,
+            "n": 987,
+            "n_distinct": 984,
+            "n_eff": 986.9999999999999,
+            "n_eff_plugin": 981.0362537764352,
+            "H2_bits": 9.946906274456397,
+            "design_effect": 1.006079027355623
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 86,
+              "8": 40,
+              "16": 30
+            },
+            "0.5": {
+              "4": 99,
+              "8": 75,
+              "16": 75
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.3,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 12,
+          "chg_n_bad": 34,
+          "flip": {
+            "n": 957,
+            "n_excluded_unresolved": 35,
+            "n_flips": 483,
+            "p": 0.5047021943573667,
+            "se": 0.016161989844857356,
+            "ci95_lo": 0.4723092998955068,
+            "ci95_hi": 0.5360501567398119
+          },
+          "diversity_chg": {
+            "n_valid": 958,
+            "n_bad": 34,
+            "n": 958,
+            "n_distinct": 954,
+            "n_eff": 958.0000000000001,
+            "n_eff_plugin": 950.066252587992,
+            "H2_bits": 9.90388184573618,
+            "design_effect": 1.008350730688935
+          },
+          "diversity_raw": {
+            "n_valid": 980,
+            "n_bad": 12,
+            "n": 980,
+            "n_distinct": 977,
+            "n_eff": 979.9999999999999,
+            "n_eff_plugin": 974.0365111561864,
+            "H2_bits": 9.936637939002571,
+            "design_effect": 1.0061224489795921
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 83,
+              "8": 38,
+              "16": 29
+            },
+            "0.5": {
+              "4": 94,
+              "8": 73,
+              "16": 70
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.01,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 602,
+            "p": 0.6074672048435923,
+            "se": 0.015511813143735353,
+            "ci95_lo": 0.5782038345105953,
+            "ci95_hi": 0.6377396569122099
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 133,
+              "8": 61,
+              "16": 44
+            },
+            "0.5": {
+              "4": 155,
+              "8": 118,
+              "16": 118
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.05,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 604,
+            "p": 0.6094853683148335,
+            "se": 0.015497565126451403,
+            "ci95_lo": 0.579212916246216,
+            "ci95_hi": 0.6387487386478304
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 134,
+              "8": 61,
+              "16": 47
+            },
+            "0.5": {
+              "4": 157,
+              "8": 120,
+              "16": 118
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.1,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 5,
+          "chg_n_bad": 3,
+          "flip": {
+            "n": 984,
+            "n_excluded_unresolved": 8,
+            "n_flips": 598,
+            "p": 0.6077235772357723,
+            "se": 0.01556508858405895,
+            "ci95_lo": 0.5782520325203252,
+            "ci95_hi": 0.6382113821138211
+          },
+          "diversity_chg": {
+            "n_valid": 989,
+            "n_bad": 3,
+            "n": 989,
+            "n_distinct": 985,
+            "n_eff": 989.0,
+            "n_eff_plugin": 981.0641925777333,
+            "H2_bits": 9.94982671075911,
+            "design_effect": 1.0080889787664307
+          },
+          "diversity_raw": {
+            "n_valid": 987,
+            "n_bad": 5,
+            "n": 987,
+            "n_distinct": 984,
+            "n_eff": 986.9999999999999,
+            "n_eff_plugin": 981.0362537764352,
+            "H2_bits": 9.946906274456397,
+            "design_effect": 1.006079027355623
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 133,
+              "8": 61,
+              "16": 44
+            },
+            "0.5": {
+              "4": 155,
+              "8": 118,
+              "16": 118
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.3,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 12,
+          "chg_n_bad": 34,
+          "flip": {
+            "n": 957,
+            "n_excluded_unresolved": 35,
+            "n_flips": 571,
+            "p": 0.5966562173458725,
+            "se": 0.01585783153363672,
+            "ci95_lo": 0.5653082549634274,
+            "ci95_hi": 0.6269592476489029
+          },
+          "diversity_chg": {
+            "n_valid": 958,
+            "n_bad": 34,
+            "n": 958,
+            "n_distinct": 954,
+            "n_eff": 958.0000000000001,
+            "n_eff_plugin": 950.066252587992,
+            "H2_bits": 9.90388184573618,
+            "design_effect": 1.008350730688935
+          },
+          "diversity_raw": {
+            "n_valid": 980,
+            "n_bad": 12,
+            "n": 980,
+            "n_distinct": 977,
+            "n_eff": 979.9999999999999,
+            "n_eff_plugin": 974.0365111561864,
+            "H2_bits": 9.936637939002571,
+            "design_effect": 1.0061224489795921
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 124,
+              "8": 58,
+              "16": 44
+            },
+            "0.5": {
+              "4": 143,
+              "8": 113,
+              "16": 111
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.01,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 669,
+            "p": 0.6750756811301716,
+            "se": 0.0148775189805273,
+            "ci95_lo": 0.6458123107971746,
+            "ci95_hi": 0.7033299697275479
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 190,
+              "8": 86,
+              "16": 67
+            },
+            "0.5": {
+              "4": 229,
+              "8": 175,
+              "16": 173
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.05,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 673,
+            "p": 0.6791120080726539,
+            "se": 0.014828957154731186,
+            "ci95_lo": 0.649848637739657,
+            "ci95_hi": 0.7053481331987891
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 196,
+              "8": 86,
+              "16": 70
+            },
+            "0.5": {
+              "4": 231,
+              "8": 182,
+              "16": 175
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.1,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 5,
+          "chg_n_bad": 3,
+          "flip": {
+            "n": 984,
+            "n_excluded_unresolved": 8,
+            "n_flips": 667,
+            "p": 0.6778455284552846,
+            "se": 0.014897037136818603,
+            "ci95_lo": 0.6483739837398373,
+            "ci95_hi": 0.7063008130081301
+          },
+          "diversity_chg": {
+            "n_valid": 989,
+            "n_bad": 3,
+            "n": 989,
+            "n_distinct": 985,
+            "n_eff": 989.0,
+            "n_eff_plugin": 981.0641925777333,
+            "H2_bits": 9.94982671075911,
+            "design_effect": 1.0080889787664307
+          },
+          "diversity_raw": {
+            "n_valid": 987,
+            "n_bad": 5,
+            "n": 987,
+            "n_distinct": 984,
+            "n_eff": 986.9999999999999,
+            "n_eff_plugin": 981.0362537764352,
+            "H2_bits": 9.946906274456397,
+            "design_effect": 1.006079027355623
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 193,
+              "8": 86,
+              "16": 70
+            },
+            "0.5": {
+              "4": 231,
+              "8": 180,
+              "16": 175
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.3,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 12,
+          "chg_n_bad": 34,
+          "flip": {
+            "n": 957,
+            "n_excluded_unresolved": 35,
+            "n_flips": 637,
+            "p": 0.6656217345872518,
+            "se": 0.015250244222047389,
+            "ci95_lo": 0.6353187042842215,
+            "ci95_hi": 0.6938349007314525
+          },
+          "diversity_chg": {
+            "n_valid": 958,
+            "n_bad": 34,
+            "n": 958,
+            "n_distinct": 954,
+            "n_eff": 958.0000000000001,
+            "n_eff_plugin": 950.066252587992,
+            "H2_bits": 9.90388184573618,
+            "design_effect": 1.008350730688935
+          },
+          "diversity_raw": {
+            "n_valid": 980,
+            "n_bad": 12,
+            "n": 980,
+            "n_distinct": 977,
+            "n_eff": 979.9999999999999,
+            "n_eff_plugin": 974.0365111561864,
+            "H2_bits": 9.936637939002571,
+            "design_effect": 1.0061224489795921
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 180,
+              "8": 80,
+              "16": 64
+            },
+            "0.5": {
+              "4": 216,
+              "8": 166,
+              "16": 164
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.01,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 713,
+            "p": 0.7194752774974773,
+            "se": 0.01427107475770714,
+            "ci95_lo": 0.692204843592331,
+            "ci95_hi": 0.7467204843592331
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 254,
+              "8": 114,
+              "16": 89
+            },
+            "0.5": {
+              "4": 311,
+              "8": 238,
+              "16": 231
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.05,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 0,
+          "chg_n_bad": 1,
+          "flip": {
+            "n": 991,
+            "n_excluded_unresolved": 1,
+            "n_flips": 715,
+            "p": 0.7214934409687185,
+            "se": 0.014239576732385491,
+            "ci95_lo": 0.6922300706357215,
+            "ci95_hi": 0.7477295660948536
+          },
+          "diversity_chg": {
+            "n_valid": 991,
+            "n_bad": 1,
+            "n": 991,
+            "n_distinct": 987,
+            "n_eff": 991.0,
+            "n_eff_plugin": 983.0640640640639,
+            "H2_bits": 9.952741247186488,
+            "design_effect": 1.0080726538849647
+          },
+          "diversity_raw": {
+            "n_valid": 992,
+            "n_bad": 0,
+            "n": 992,
+            "n_distinct": 989,
+            "n_eff": 992.0,
+            "n_eff_plugin": 986.0360721442884,
+            "H2_bits": 9.954196310386875,
+            "design_effect": 1.0060483870967745
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 991.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 258,
+              "8": 117,
+              "16": 89
+            },
+            "0.5": {
+              "4": 313,
+              "8": 240,
+              "16": 238
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.1,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 5,
+          "chg_n_bad": 3,
+          "flip": {
+            "n": 984,
+            "n_excluded_unresolved": 8,
+            "n_flips": 709,
+            "p": 0.7205284552845529,
+            "se": 0.01430529495785063,
+            "ci95_lo": 0.693089430894309,
+            "ci95_hi": 0.75
+          },
+          "diversity_chg": {
+            "n_valid": 989,
+            "n_bad": 3,
+            "n": 989,
+            "n_distinct": 985,
+            "n_eff": 989.0,
+            "n_eff_plugin": 981.0641925777333,
+            "H2_bits": 9.94982671075911,
+            "design_effect": 1.0080889787664307
+          },
+          "diversity_raw": {
+            "n_valid": 987,
+            "n_bad": 5,
+            "n": 987,
+            "n_distinct": 984,
+            "n_eff": 986.9999999999999,
+            "n_eff_plugin": 981.0362537764352,
+            "H2_bits": 9.946906274456397,
+            "design_effect": 1.006079027355623
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 989.0,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 258,
+              "8": 117,
+              "16": 89
+            },
+            "0.5": {
+              "4": 311,
+              "8": 240,
+              "16": 238
+            }
+          }
+        },
+        {
+          "generator": "CrystalFormer",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.3,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_pairs_total": 992,
+          "raw_n_bad": 12,
+          "chg_n_bad": 34,
+          "flip": {
+            "n": 957,
+            "n_excluded_unresolved": 35,
+            "n_flips": 680,
+            "p": 0.7105538140020898,
+            "se": 0.014659745614893496,
+            "ci95_lo": 0.6812957157784744,
+            "ci95_hi": 0.7387669801462905
+          },
+          "diversity_chg": {
+            "n_valid": 958,
+            "n_bad": 34,
+            "n": 958,
+            "n_distinct": 954,
+            "n_eff": 958.0000000000001,
+            "n_eff_plugin": 950.066252587992,
+            "H2_bits": 9.90388184573618,
+            "design_effect": 1.008350730688935
+          },
+          "diversity_raw": {
+            "n_valid": 980,
+            "n_bad": 12,
+            "n": 980,
+            "n_distinct": 977,
+            "n_eff": 979.9999999999999,
+            "n_eff_plugin": 974.0365111561864,
+            "H2_bits": 9.936637939002571,
+            "design_effect": 1.0061224489795921
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 958.0000000000001,
+                "above_frontier": true
+              }
+            }
+          },
+          "required_n": {
+            "0.25": {
+              "4": 240,
+              "8": 105,
+              "16": 83
+            },
+            "0.5": {
+              "4": 289,
+              "8": 225,
+              "16": 220
+            }
+          }
+        }
+      ]
+    },
+    "WyLLM-vanilla-DiffCSP++": {
+      "description": "Raw generator output only (file 65498649, n=1000). No paired CHGNet-relaxed/raw set exists for this generator in this corpus, so the STABILITY (flip-rate) half of this experiment is UNAVAILABLE for WyLLM-vanilla. Included in the DIVERSITY half only, because it is the most collision-prone released generator (generator_calibration: 649/999 distinct at standard settings, design effect 4.32) and therefore the population where coarsening is expected to cost diversity most.",
+      "n_total": 1000,
+      "stability_available": false,
+      "diversity_measured_on": "Raw generator fingerprints (no relaxed counterpart available)",
+      "settings": [
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.01,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_total": 1000,
+          "n_bad": 0,
+          "diversity": {
+            "n_valid": 1000,
+            "n_bad": 0,
+            "n": 1000,
+            "n_distinct": 522,
+            "n_eff": 179.41810344827587,
+            "n_eff_plugin": 152.25334957369063,
+            "H2_bits": 7.487181656605777,
+            "design_effect": 6.568
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 179.41810344827587,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 179.41810344827587,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 179.41810344827587,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 179.41810344827587,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 179.41810344827587,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 179.41810344827587,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.05,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 524,
+            "n_eff": 179.51062297443286,
+            "n_eff_plugin": 152.29681062108958,
+            "H2_bits": 7.487925411310833,
+            "design_effect": 6.55955955955956
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.1,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 525,
+            "n_eff": 179.51062297443286,
+            "n_eff_plugin": 152.29681062108958,
+            "H2_bits": 7.487925411310833,
+            "design_effect": 6.55955955955956
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 179.51062297443286,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 1,
+          "level_desc": "SG+orbits+composition, no cell",
+          "symprec": 0.3,
+          "cell_bin": null,
+          "use_cell": false,
+          "n_total": 1000,
+          "n_bad": 2,
+          "diversity": {
+            "n_valid": 998,
+            "n_bad": 2,
+            "n": 998,
+            "n_distinct": 526,
+            "n_eff": 180.0589938472675,
+            "n_eff_plugin": 152.66768853464134,
+            "H2_bits": 7.492325852922965,
+            "design_effect": 6.537074148296592
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 180.0589938472675,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 180.0589938472675,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 180.0589938472675,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 180.0589938472675,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 180.0589938472675,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 180.0589938472675,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.01,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 0,
+          "diversity": {
+            "n_valid": 1000,
+            "n_bad": 0,
+            "n": 1000,
+            "n_distinct": 581,
+            "n_eff": 232.86713286713285,
+            "n_eff_plugin": 189.0359168241966,
+            "H2_bits": 7.863363220067598,
+            "design_effect": 5.29
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 232.86713286713285,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 232.86713286713285,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 232.86713286713285,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 232.86713286713285,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 232.86713286713285,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 232.86713286713285,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.05,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 582,
+            "n_eff": 232.9443925233645,
+            "n_eff_plugin": 189.05114605038833,
+            "H2_bits": 7.863841791841169,
+            "design_effect": 5.2842842842842845
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 232.9443925233645,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 232.9443925233645,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 232.9443925233645,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 232.9443925233645,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 232.9443925233645,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 232.9443925233645,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.1,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 583,
+            "n_eff": 233.05329593267876,
+            "n_eff_plugin": 189.12279704377485,
+            "H2_bits": 7.8645161059646345,
+            "design_effect": 5.282282282282283
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 233.05329593267876,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 233.05329593267876,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 233.05329593267876,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 233.05329593267876,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 233.05329593267876,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 233.05329593267876,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 2,
+          "level_desc": "+cell shape, coarse",
+          "symprec": 0.3,
+          "cell_bin": 0.3,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 2,
+          "diversity": {
+            "n_valid": 998,
+            "n_bad": 2,
+            "n": 998,
+            "n_distinct": 581,
+            "n_eff": 233.35037523452164,
+            "n_eff_plugin": 189.28240212846828,
+            "H2_bits": 7.866353976976281,
+            "design_effect": 5.27254509018036
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 233.35037523452164,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 233.35037523452164,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 233.35037523452164,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 233.35037523452164,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 233.35037523452164,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 233.35037523452164,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.01,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 0,
+          "diversity": {
+            "n_valid": 1000,
+            "n_bad": 0,
+            "n": 1000,
+            "n_distinct": 618,
+            "n_eff": 280.6179775280899,
+            "n_eff_plugin": 219.2982456140351,
+            "H2_bits": 8.132463626600746,
+            "design_effect": 4.56
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 280.6179775280899,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 280.6179775280899,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 280.6179775280899,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 280.6179775280899,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 280.6179775280899,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 280.6179775280899,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.05,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 618,
+            "n_eff": 280.52954417557686,
+            "n_eff_plugin": 219.19635405227325,
+            "H2_bits": 8.132008907101001,
+            "design_effect": 4.557557557557557
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.1,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 618,
+            "n_eff": 280.52954417557686,
+            "n_eff_plugin": 219.19635405227325,
+            "H2_bits": 8.132008907101001,
+            "design_effect": 4.557557557557557
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 280.52954417557686,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 3,
+          "level_desc": "+cell shape, medium",
+          "symprec": 0.3,
+          "cell_bin": 0.1,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 2,
+          "diversity": {
+            "n_valid": 998,
+            "n_bad": 2,
+            "n": 998,
+            "n_distinct": 618,
+            "n_eff": 281.55234861346923,
+            "n_eff_plugin": 219.77140335392767,
+            "H2_bits": 8.13725937518384,
+            "design_effect": 4.541082164328657
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 281.55234861346923,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 281.55234861346923,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 281.55234861346923,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 281.55234861346923,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 281.55234861346923,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 281.55234861346923,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.01,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 0,
+          "diversity": {
+            "n_valid": 1000,
+            "n_bad": 0,
+            "n": 1000,
+            "n_distinct": 649,
+            "n_eff": 300.36079374624177,
+            "n_eff_plugin": 231.16042533518262,
+            "H2_bits": 8.230552699167236,
+            "design_effect": 4.326
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 300.36079374624177,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 300.36079374624177,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 300.36079374624177,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 300.36079374624177,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 300.36079374624177,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 300.36079374624177,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.05,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 649,
+            "n_eff": 300.3018072289157,
+            "n_eff_plugin": 231.07223894420005,
+            "H2_bits": 8.230269346895392,
+            "design_effect": 4.323323323323323
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.1,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 649,
+            "n_eff": 300.3018072289157,
+            "n_eff_plugin": 231.07223894420005,
+            "H2_bits": 8.230269346895392,
+            "design_effect": 4.323323323323323
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 300.3018072289157,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 4,
+          "level_desc": "+cell shape, fine",
+          "symprec": 0.3,
+          "cell_bin": 0.05,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 2,
+          "diversity": {
+            "n_valid": 998,
+            "n_bad": 2,
+            "n": 998,
+            "n_distinct": 649,
+            "n_eff": 301.51696969696974,
+            "n_eff_plugin": 231.73662168450443,
+            "H2_bits": 8.236095390602278,
+            "design_effect": 4.306613226452906
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 301.51696969696974,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 301.51696969696974,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 301.51696969696974,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 301.51696969696974,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 301.51696969696974,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 301.51696969696974,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.01,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 0,
+          "diversity": {
+            "n_valid": 1000,
+            "n_bad": 0,
+            "n": 1000,
+            "n_distinct": 677,
+            "n_eff": 314.5465994962217,
+            "n_eff_plugin": 239.46360153256705,
+            "H2_bits": 8.297129955311547,
+            "design_effect": 4.176
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 314.5465994962217,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 314.5465994962217,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 314.5465994962217,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 314.5465994962217,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 314.5465994962217,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 314.5465994962217,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.05,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 677,
+            "n_eff": 314.5116719242903,
+            "n_eff_plugin": 239.38618373710725,
+            "H2_bits": 8.29696974810291,
+            "design_effect": 4.173173173173173
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.1,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 1,
+          "diversity": {
+            "n_valid": 999,
+            "n_bad": 1,
+            "n": 999,
+            "n_distinct": 677,
+            "n_eff": 314.5116719242903,
+            "n_eff_plugin": 239.38618373710725,
+            "H2_bits": 8.29696974810291,
+            "design_effect": 4.173173173173173
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 314.5116719242903,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        },
+        {
+          "generator": "WyLLM-vanilla-DiffCSP++ (raw, diversity-only; no paired relaxed set)",
+          "level": 5,
+          "level_desc": "+cell shape, very fine",
+          "symprec": 0.3,
+          "cell_bin": 0.02,
+          "use_cell": true,
+          "n_total": 1000,
+          "n_bad": 2,
+          "diversity": {
+            "n_valid": 998,
+            "n_bad": 2,
+            "n": 998,
+            "n_distinct": 677,
+            "n_eff": 315.87492063492067,
+            "n_eff_plugin": 240.11668273866923,
+            "H2_bits": 8.303209586460815,
+            "design_effect": 4.156312625250501
+          },
+          "frontier": {
+            "0.25": {
+              "4": {
+                "N_star": 25,
+                "n_eff": 315.87492063492067,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 315.87492063492067,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 5,
+                "n_eff": 315.87492063492067,
+                "above_frontier": true
+              }
+            },
+            "0.5": {
+              "4": {
+                "N_star": 18,
+                "n_eff": 315.87492063492067,
+                "above_frontier": true
+              },
+              "8": {
+                "N_star": 10,
+                "n_eff": 315.87492063492067,
+                "above_frontier": true
+              },
+              "16": {
+                "N_star": 10,
+                "n_eff": 315.87492063492067,
+                "above_frontier": true
+              }
+            }
+          },
+          "stability_available": false
+        }
+      ]
+    }
+  },
+  "feasible_window_analysis": {
+    "criterion": "p <= 0.5 (majority of pairs keep the same fingerprint after relaxation) AND n_eff above the auditability frontier N* at gamma=0.5, m=8 (N*=10)",
+    "MatterGen": {
+      "feasible_settings": [
+        {
+          "level": 1,
+          "symprec": 0.01,
+          "p": 0.3893333333333333,
+          "n_eff": 1500.0,
+          "required_n_gamma0.5_m8": 45
+        },
+        {
+          "level": 1,
+          "symprec": 0.05,
+          "p": 0.3933333333333333,
+          "n_eff": 1500.0,
+          "required_n_gamma0.5_m8": 45
+        },
+        {
+          "level": 1,
+          "symprec": 0.1,
+          "p": 0.25666666666666665,
+          "n_eff": 1500.0,
+          "required_n_gamma0.5_m8": 29
+        },
+        {
+          "level": 1,
+          "symprec": 0.3,
+          "p": 0.152,
+          "n_eff": 1500.0,
+          "required_n_gamma0.5_m8": 20
+        }
+      ],
+      "verdict": "Feasible window EXISTS, but only at granularity level 1 (space group + orbits + composition, no cell shape). At level 1, p ranges 0.152-0.393 across the symprec sweep and n_eff stays at n=1500 (design effect ~1.0-1.01), far above N*=10. required_n at gamma=0.5,m=8 is small (20-45). Every level that adds cell-shape information (2 through 5) pushes p above 0.5 (up to 0.964 at level 5, symprec 0.01) with NO compensating diversity gain (n_eff stays pinned at n throughout) -- the window closes as soon as cell information is added, purely on the stability side."
+    },
+    "CrystalFormer": {
+      "feasible_settings": [
+        {
+          "level": 1,
+          "symprec": 0.01,
+          "p": 0.016145307769929364,
+          "n_eff": 991.0,
+          "required_n_gamma0.5_m8": 14
+        },
+        {
+          "level": 1,
+          "symprec": 0.05,
+          "p": 0.029263370332996974,
+          "n_eff": 991.0,
+          "required_n_gamma0.5_m8": 14
+        },
+        {
+          "level": 1,
+          "symprec": 0.1,
+          "p": 0.039634146341463415,
+          "n_eff": 989.0,
+          "required_n_gamma0.5_m8": 14
+        },
+        {
+          "level": 1,
+          "symprec": 0.3,
+          "p": 0.047021943573667714,
+          "n_eff": 958.0000000000001,
+          "required_n_gamma0.5_m8": 14
+        }
+      ],
+      "verdict": "Feasible window EXISTS, again only at granularity level 1: p ranges 0.016-0.047 (very low), n_eff stays at 958-991 (design effect ~1.008, essentially unchanged across ALL levels 1-5), required_n is 14 throughout. From level 2 onward p jumps to 0.50-0.72 with no diversity payoff -- same qualitative pattern as MatterGen: the window closes purely on the stability side, not because diversity needed to be traded away."
+    },
+    "WyLLM-vanilla-DiffCSP++": {
+      "stability_available": false,
+      "note": "Cannot state a feasible window directly (no paired relaxed set), but this is the generator where the trade-off's diversity side is real: n_eff rises monotonically from 179.6 (level 1, mean over the four symprec values; range 179.4-180.1) to 314.9 (level 5; range 314.5-315.9) as cell information is added, design effect falling from 6.6 to 4.2 -- i.e. dropping cell shape (level 1) that was diversity-free for MatterGen/CrystalFormer costs this repetitive generator roughly 43% of its already-thin effective diversity (179 vs 315). By the monotonic p-vs-level pattern seen in both paired generators, the symmetric prediction is that this generator's flip rate would ALSO rise with added cell granularity -- meaning WyLLM-vanilla is the one generator in this corpus for which the theorem's cost is plausibly paid on both sides at once, though this cannot be confirmed without a paired relaxed set."
+    }
+  },
+  "theorem_test_verdict": {
+    "statement": "The stability-diversity trade-off theorem predicts that no single fingerprint refinement can buy diversity without paying stability. The direct joint test on the two generators with paired raw/relaxed structures (MatterGen, CrystalFormer) shows the trade-off manifests ASYMMETRICALLY at this population size: adding cell-shape information (levels 2-5) uniformly INCREASES the flip rate p (MatterGen: 0.15-0.39 -> 0.59-0.96; CrystalFormer: 0.02-0.05 -> 0.50-0.72) while NEVER increasing n_eff beyond its already-near-n ceiling (design effect stays within 1.000-1.009 for both generators at every level) -- i.e. for these two chemically-diverse, high-n_eff generators, the diversity side of the trade never binds because composition+orbit information alone already separates almost every structure; the coarsening cost is paid entirely in stability with zero diversity return. On the collision-prone WyLLM-vanilla-DiffCSP++ (diversity-only half), the same coarsening produces a real, substantial diversity cost (n_eff 179->315 across levels, design effect 6.6->4.2), consistent with the theorem's mechanism operating precisely where a generator's chemical/structural diversity is already thin. This is a negative result for the SPECIFIC claim that the trade-off always binds on both axes simultaneously for any generator, and a positive, mechanistically consistent result for the theorem's underlying claim once diversity is not already saturated.",
+    "feasible_window_exists": true,
+    "feasible_window_location": "Granularity level 1 (SG + orbits + composition, no cell shape) for both MatterGen and CrystalFormer, at any tested symprec in [0.01, 0.3].",
+    "caveat": "The feasible window at level 1 is the COARSEST tested setting, i.e. the setting closest to the fingerprint's floor of information content. This is consistent with -- not contradictory to -- the trade-off theorem: it says the window sits at low granularity, and every increment away from that floor moves p upward without buying diversity back for these two generators. Whether an even coarser fingerprint (dropping composition or orbit information) would eventually cost diversity was out of scope for this ablation (the granularity levels specified for fingerprint_ablation only vary cell-shape binning)."
+  },
+  "seeds": {
+    "mattergen_subsample_seed": 60601,
+    "bootstrap_seed_base": 70701
+  },
+  "data_sources": {
+    "MatterGen_raw_file": "65498772",
+    "MatterGen_chgnet_file": "65498775",
+    "CrystalFormer_raw_file": "65498616",
+    "CrystalFormer_chgnet_file": "65498610",
+    "WyLLM_vanilla_raw_file": "65498649",
+    "file_map_artifact": "cdef6b41-432c-40f0-8414-d2bea1e1ec93 (v4770332f_file_map.json)"
+  },
+  "corrections": [
+    {
+      "date": "2026-08-13",
+      "field": "feasible_window_analysis/WyLLM-vanilla-DiffCSP++/note",
+      "issue": "quoted the first symprec row (179.4) as if it were the level-1 value while the companion summary table reported the four-row mean (179.6); level-5 likewise",
+      "resolution": "note now states the mean and the range explicitly; the ~43% conclusion is unchanged"
+    }
+  ],
+  "analysis": "fingerprint_ablation_ablation_stability_diversity_tradeoff"
+}

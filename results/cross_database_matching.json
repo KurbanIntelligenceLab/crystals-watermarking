@@ -1,0 +1,1257 @@
+{
+  "title": "Generality and cross-database transfer (auditor reference distribution independent of generator training distribution)",
+  "data_source_note": {
+    "manuscript_named_source": "Alexandria",
+    "alexandria_status": "DOWN at time of this run. /pbe/v1/info returned HTTP 200, but /pbe/v1/structures returned HTTP 500 ('current transaction is aborted') on the retry performed at the start of this run, consistent with the outage reported over more than an hour of prior attempts.",
+    "substitute_used": "OQMD (Open Quantum Materials Database)",
+    "substitute_justification": "OQMD is computed by an independent research group (University of Kentucky / Wolverton group) using different DFT settings (VASP, GGA-PBE with its own pseudopotential set and convergence criteria) and a different formation-energy reference scheme than Materials Project. It therefore satisfies the requirement of this experiment -- an independent reference distribution the generator was never trained on -- even though it is not the database named in the manuscript. All numbers below are reported as measured on OQMD, not Alexandria, and this substitution should be reflected in any manuscript text that cites this result.",
+    "oqmd_endpoint": "https://oqmd.org/oqmdapi/formationenergy",
+    "oqmd_total_entries_available": 1407395
+  },
+  "fetch_provenance": {
+    "method": "offset-strided sample: 30 pages of 1000 entries planned at pseudo-random offsets stratified across 30 equal-width bins spanning [0, 1407395); fetch cut short after 27 of 30 planned pages due to escalating per-request latency (31s -> up to ~700s) against OQMD's server, which was intermittently returning HTTP 502 under load during this session (confirmed transient: recovered after a ~3 minute cooldown, and is the reason a first fetch attempt using 5 concurrent workers was abandoned in favor of a serial, backed-off fetch).",
+    "seed": 20260813,
+    "planned_pages": 30,
+    "planned_n": 30000,
+    "pages_fetched": 27,
+    "n_fetched_raw": 27000,
+    "n_after_fingerprinting": 27000,
+    "parse_failures": 0,
+    "fingerprint_failures_UNRESOLVED_or_ERROR": 0,
+    "offsets_covered": [
+      23317,
+      49487,
+      105771,
+      185349,
+      210294,
+      235923,
+      321025,
+      356705,
+      418826,
+      447606,
+      481307,
+      527809,
+      594109,
+      630150,
+      675398,
+      707088,
+      775982,
+      838103,
+      863204,
+      921133,
+      978450,
+      1001564,
+      1069012,
+      1153532,
+      1214717,
+      1220951,
+      1268315
+    ],
+    "offsets_planned_but_not_fetched": [
+      1090382,
+      1318769,
+      1365777
+    ],
+    "duplicate_entry_ids_found": 0,
+    "note": "This is an offset-strided sample of 27,000 / 1,407,395 OQMD entries (1.9%), not an exhaustive draw and not the full 30,000-entry target. The shortfall (3 of 30 pages) is a deliberate stop for wall-clock reasons, not a data-quality failure -- every fetched record parsed and fingerprinted with zero failures. All counts below are over these 27,000 structures; report this n explicitly wherever this result is cited."
+  },
+  "environment": {
+    "conda_env": "basinmark",
+    "packages": {
+      "ase": "3.29.0",
+      "pymatgen": "2026.5.4",
+      "spglib": "2.7.0",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.9.0",
+      "torch": "2.13.0",
+      "chgnet": "0.4.2",
+      "numpy": "2.2.6",
+      "requests": "2.34.2"
+    },
+    "fingerprint_params": {
+      "symprec": 0.1,
+      "cell_bin": 0.05,
+      "use_cell": true
+    },
+    "marking_params": {
+      "m": 8,
+      "gamma": 0.5,
+      "alpha": 0.001
+    }
+  },
+  "M1_negative_control": {
+    "description": "Audit the unmarked, third-party OQMD reference population under many random keys. Must not fire above nominal alpha.",
+    "n_oqmd_structures": 27000,
+    "n_keys": 200,
+    "gamma": 0.5,
+    "alpha_nominal": 0.001,
+    "n_fired_deduplicated_valid_test": 0,
+    "firing_rate": 0.0,
+    "clopper_pearson_95ci": [
+      0.0,
+      0.01827534035513624
+    ],
+    "n_fired_naive_DO_NOT_USE": 0,
+    "oqmd_pool_effective_sample_size": {
+      "n": 27000,
+      "n_distinct": 26185,
+      "n_eff": 27000.0,
+      "n_eff_plugin": 24364.97326203209,
+      "H2_bits": 14.720671786825555,
+      "design_effect": 1.1081481481481479
+    },
+    "verdict": "PASS -- 0/200 random keys fired against the OQMD reference population (deduplicated audit). 95% Clopper-Pearson CI for the firing rate is [0, 0.0183], consistent with the nominal alpha=1e-3 (bounded above by binomial sampling noise at n_keys=200; a firing rate of exactly 0 cannot itself distinguish 1e-3 from e.g. 5e-3 at this n_keys, but detects no gross violation)."
+  },
+  "M2_fingerprint_distribution_transfer": {
+    "description": "Compare fingerprint collision structure of OQMD against MP20_train and MP_experimental: is collision behavior a property of the fingerprint or of MP's particular composition/symmetry distribution?",
+    "oqmd": {
+      "label": "OQMD",
+      "n": 27000,
+      "n_distinct": 26185,
+      "distinct_fraction": 0.9698148148148148,
+      "n_eff": 27000.0,
+      "n_eff_plugin": 24364.97326203209,
+      "design_effect": 1.1081481481481479,
+      "H2_bits": 14.720671786825555
+    },
+    "mp20_train": {
+      "label": "MP20_train",
+      "n": 27136,
+      "n_distinct": 27049,
+      "distinct_fraction": 0.9967939268867925,
+      "n_eff": 27136.0,
+      "n_eff_plugin": 26843.193934091574,
+      "design_effect": 1.0109080188679245,
+      "H2_bits": 14.727920454563199
+    },
+    "mp_experimental": {
+      "label": "MP_experimental",
+      "n": 5000,
+      "n_distinct": 5000,
+      "distinct_fraction": 1.0,
+      "n_eff": 5000.0,
+      "n_eff_plugin": 5000.0,
+      "design_effect": 0.9999999999999999,
+      "H2_bits": 12.287712379549449
+    },
+    "oqmd_distinct_fraction_80pct_subsample_95ci": [
+      0.9726388888888889,
+      0.975
+    ],
+    "oqmd_n_eff_80pct_subsample_95ci": [
+      21600.0,
+      21600.0
+    ],
+    "subsample_note": "CI computed via 2000 subsamples of 80% of the OQMD pool without replacement (seed=9002); resampling WITH replacement is invalid for n_eff/distinct-fraction because it manufactures artificial duplicate fingerprints and biases both statistics downward -- confirmed by a companion with-replacement bootstrap giving distinct_fraction ~0.618 vs the correct point estimate 0.970.",
+    "fingerprint_set_overlap": {
+      "oqmd_distinct_fps": 26185,
+      "mp20_train_distinct_fps": 27049,
+      "mp_experimental_distinct_fps": 5000,
+      "oqmd_and_mp20_train_shared_distinct_fps": 417,
+      "oqmd_and_mp20_train_shared_fraction_of_oqmd": 0.015925147985487876,
+      "oqmd_and_mp20_train_shared_fraction_of_mp20_train": 0.015416466412806388,
+      "oqmd_and_mp_experimental_shared_distinct_fps": 165,
+      "oqmd_and_mp_experimental_shared_fraction_of_oqmd": 0.006301317548214626,
+      "oqmd_and_mp_experimental_shared_fraction_of_mp_experimental": 0.033
+    },
+    "space_group_distribution": {
+      "note": "MP_experimental has no space-group field in this corpus and is excluded from this sub-analysis.",
+      "oqmd_n_distinct_sg_numbers": 142,
+      "mp20_train_n_distinct_sg_numbers": 169,
+      "total_variation_distance_sg_number_230_categories": 0.474511366614256,
+      "total_variation_distance_crystal_system_7_categories": 0.2822623383997205,
+      "crystal_system_fraction_oqmd": {
+        "cubic": 0.5108148148148148,
+        "tetragonal": 0.14414814814814814,
+        "hexagonal": 0.06833333333333333,
+        "monoclinic": 0.07637037037037037,
+        "orthorhombic": 0.12885185185185186,
+        "triclinic": 0.012925925925925926,
+        "trigonal": 0.058555555555555555
+      },
+      "crystal_system_fraction_mp20_train": {
+        "cubic": 0.22855247641509435,
+        "hexagonal": 0.10535819575471699,
+        "tetragonal": 0.1672317216981132,
+        "orthorhombic": 0.1942806603773585,
+        "monoclinic": 0.14950619103773585,
+        "trigonal": 0.11283903301886793,
+        "triclinic": 0.042231721698113206
+      },
+      "top10_sg_symbols_oqmd": [
+        [
+          "F-43m",
+          7471
+        ],
+        [
+          "Fm-3m",
+          5670
+        ],
+        [
+          "P-6m2",
+          1257
+        ],
+        [
+          "C2/m",
+          1048
+        ],
+        [
+          "P4mm",
+          837
+        ],
+        [
+          "P4/nmm",
+          826
+        ],
+        [
+          "Amm2",
+          693
+        ],
+        [
+          "P-4m2",
+          640
+        ],
+        [
+          "Cmcm",
+          595
+        ],
+        [
+          "I4/mmm",
+          519
+        ]
+      ],
+      "top10_sg_numbers_mp20_train": [
+        [
+          225,
+          3960
+        ],
+        [
+          12,
+          1273
+        ],
+        [
+          139,
+          1233
+        ],
+        [
+          62,
+          1188
+        ],
+        [
+          194,
+          1129
+        ],
+        [
+          166,
+          1076
+        ],
+        [
+          63,
+          880
+        ],
+        [
+          221,
+          820
+        ],
+        [
+          2,
+          676
+        ],
+        [
+          123,
+          626
+        ]
+      ]
+    },
+    "interpretation": "OQMD's fingerprint pool is nearly as diverse as MP20_train's by distinct-fraction and n_eff (0.970 vs 0.997 distinct-fraction; n_eff clamps to n in both, i.e. collision pressure is negligible in either single-database pool at this sample size). Cross-database fingerprint OVERLAP is small in absolute terms (1.59% of OQMD's distinct fps also appear in MP20_train's distinct fps; 0.63% of OQMD's distinct fps appear in MP_experimental's) but not zero, and the space-group/crystal-system distributions differ substantially between the two databases (TV distance 0.47 at the 230-space-group level, 0.28 at the 7-crystal-system level; OQMD over-represents cubic symmetry, 51.1% vs MP20_train's 22.9%, likely reflecting OQMD's historical emphasis on high-symmetry intermetallics/alloys). This indicates the fingerprint's collision structure is NOT purely an artifact of MP's particular composition/symmetry distribution -- OQMD, with its own very different symmetry profile, still produces a highly diverse fingerprint pool -- but the two databases are drawn from visibly different structural populations, which matters for M3 below."
+  },
+  "M3_cross_database_audit": {
+    "description": "Mark an MP-20 collection (m=8, gamma=0.5, ranked by e_above_hull) and audit it; then check whether OQMD structures collide with the marked collection's fingerprints, and what that implies for an auditor blind to provenance.",
+    "marking": {
+      "source_corpus": "MP20_train",
+      "energy_field_used_for_ranking": "e_above_hull",
+      "m": 8,
+      "gamma": 0.5,
+      "n_usable_input_structures": 27136,
+      "n_bad_fp_or_missing_energy": 0,
+      "n_slots": 3392,
+      "key_seed": 7,
+      "shuffle_seed": 11
+    },
+    "audit_marked": {
+      "n": 3392,
+      "n_distinct": 3390,
+      "n_eff": 3392.0,
+      "n_eff_plugin": 3388.0047114252075,
+      "H2_bits": 11.727920454563199,
+      "design_effect": 1.0011792452830186,
+      "green_distinct": 3375,
+      "green_fraction": 0.995575221238938,
+      "p_value": 0.0,
+      "reject": true,
+      "p_value_naive_DO_NOT_USE": 0.0,
+      "reject_naive_DO_NOT_USE": true,
+      "gamma": 0.5,
+      "alpha": 0.001
+    },
+    "audit_unmarked": {
+      "n": 3392,
+      "n_distinct": 3392,
+      "n_eff": 3392.0,
+      "n_eff_plugin": 3392.000000000001,
+      "H2_bits": 11.727920454563199,
+      "design_effect": 0.9999999999999998,
+      "green_distinct": 1683,
+      "green_fraction": 0.4961674528301887,
+      "p_value": 0.6785267163366042,
+      "reject": false,
+      "p_value_naive_DO_NOT_USE": 0.6785267163366042,
+      "reject_naive_DO_NOT_USE": false,
+      "gamma": 0.5,
+      "alpha": 0.001
+    },
+    "audit_shuffled_key": {
+      "n": 3392,
+      "n_distinct": 3390,
+      "n_eff": 3392.0,
+      "n_eff_plugin": 3388.0047114252075,
+      "H2_bits": 11.727920454563199,
+      "design_effect": 1.0011792452830186,
+      "green_distinct": 1688,
+      "green_fraction": 0.49793510324483775,
+      "p_value": 0.6016503298716169,
+      "reject": false,
+      "p_value_naive_DO_NOT_USE": 0.6148125842502805,
+      "reject_naive_DO_NOT_USE": false,
+      "gamma": 0.5,
+      "alpha": 0.001
+    },
+    "cross_database_collision": {
+      "n_oqmd_structures_checked": 27000,
+      "n_marked_mp20_distinct_fps": 3390,
+      "n_oqmd_distinct_fps_colliding_with_marked_set": 67,
+      "collision_rate_of_marked_set_distinct_fps": 0.01976401179941003,
+      "n_oqmd_raw_structures_whose_fp_is_in_marked_set": 72,
+      "collision_rate_of_oqmd_raw_structures": 0.0026666666666666666,
+      "green_fraction_among_colliding_oqmd_structures": 1.0,
+      "audit_of_full_oqmd_pool_under_mp20_marking_key": {
+        "n": 27000,
+        "n_distinct": 26185,
+        "n_eff": 27000.0,
+        "n_eff_plugin": 24364.97326203209,
+        "H2_bits": 14.720671786825555,
+        "design_effect": 1.1081481481481479,
+        "green_distinct": 13149,
+        "green_fraction": 0.502157723887722,
+        "p_value": 0.24442617565872884,
+        "reject": false,
+        "p_value_naive_DO_NOT_USE": 0.298241818583744,
+        "reject_naive_DO_NOT_USE": false,
+        "gamma": 0.5,
+        "alpha": 0.001
+      },
+      "audit_of_just_the_colliding_oqmd_subset_under_mp20_key": {
+        "n": 72,
+        "n_distinct": 67,
+        "n_eff": 72.0,
+        "n_eff_plugin": 61.714285714285715,
+        "H2_bits": 6.169925001442312,
+        "design_effect": 1.1666666666666665,
+        "green_distinct": 67,
+        "green_fraction": 1.0,
+        "p_value": 6.776263578034403e-21,
+        "reject": true,
+        "p_value_naive_DO_NOT_USE": 2.117582368135751e-22,
+        "reject_naive_DO_NOT_USE": true,
+        "gamma": 0.5,
+        "alpha": 0.001
+      },
+      "audit_of_marked_mp20_plus_equal_size_random_oqmd_mixture": {
+        "n": 6784,
+        "n_distinct": 6765,
+        "n_eff": 6784.0,
+        "n_eff_plugin": 6744.234466588512,
+        "H2_bits": 12.727920454563199,
+        "design_effect": 1.0058962264150941,
+        "green_distinct": 5032,
+        "green_fraction": 0.7438285291943828,
+        "p_value": 0.0,
+        "reject": true,
+        "p_value_naive_DO_NOT_USE": 0.0,
+        "reject_naive_DO_NOT_USE": true,
+        "gamma": 0.5,
+        "alpha": 0.001
+      }
+    },
+    "interpretation": "The operationally important number is the collision rate: 0.267% of the sampled OQMD structures (72/27000, 67 distinct fingerprints out of 27,000 checked) happen to carry a fingerprint identical to one in the marked MP-20 collection produced under the MP-20-specific key. This is expected and benign at the level of the FULL OQMD pool -- auditing the entire 27,000-structure OQMD sample under the MP-20 key does not fire (p=0.244, green_fraction=0.502, matching the null gamma=0.5 exactly) -- because the ~72 colliding structures are diluted by 26,928 non-colliding ones. But an auditor who mistakenly believed a SMALL, already-suspicious OQMD subset (e.g. one they pulled because it looked unusual, mirroring the ~72-structure collision set here) came from the marked generator would find that subset audits as 100% green and rejects at p=6.8e-21 -- a false implication driven entirely by coincidental fingerprint collision, not generation. The mixed-collection test (marked MP-20 diluted 1:1 with random OQMD) still rejects (green_fraction=0.744, p=0), showing the audit is robust to substantial contamination by an unrelated database as long as the true marked fraction is not diluted below the auditability frontier. The risk is asymmetric: a SMALL, cherry-picked cross-database subset can trigger a false positive at high confidence; a LARGE, representative cross-database sample will not."
+  },
+  "M4_generality_across_generators": {
+    "description": "generator_controls-style audit (marked, unmarked, shuffled key) repeated for every generator corpus with an available energy field for m=8 slot-ranking, Holm-Bonferroni corrected across the full family.",
+    "m": 8,
+    "gamma": 0.5,
+    "alpha": 0.001,
+    "n_generator_corpora_available_total": 20,
+    "n_runnable_with_energy_field": 12,
+    "corpora_not_runnable_no_energy_field": [
+      "CrystalFormer_raw",
+      "MatterGen_raw",
+      "WyFormer-DiffCSP++10k",
+      "WyFormer-harmonic_raw",
+      "WyFormer-letters_raw",
+      "WyLLM-naive_raw",
+      "WyLLM-site-symmetry-DiffCSP++",
+      "WyLLM-vanilla-DiffCSP++"
+    ],
+    "corpora_not_runnable_reason": "These corpora carry only a fingerprint/formula/space-group record with no chgnet- or DFT-derived energy field in this pickle, so basinmark_select (which ranks candidates by energy_per_atom within each m-slot) cannot be run on them. This is a data-availability gap, not a detector failure.",
+    "per_generator_results": {
+      "CrystalFormer": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 992,
+        "n_bad_fp_or_missing_energy": 3,
+        "n_usable": 989,
+        "n_slots": 123,
+        "marked": {
+          "n": 123,
+          "n_distinct": 123,
+          "n_eff": 122.99999999999999,
+          "n_eff_plugin": 122.99999999999993,
+          "H2_bits": 6.94251450533924,
+          "design_effect": 1.0000000000000004,
+          "green_distinct": 123,
+          "green_fraction": 1.0,
+          "p_value": 9.4039548065783e-38,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 9.4039548065783e-38,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 123,
+          "n_distinct": 123,
+          "n_eff": 122.99999999999999,
+          "n_eff_plugin": 122.99999999999993,
+          "H2_bits": 6.94251450533924,
+          "design_effect": 1.0000000000000004,
+          "green_distinct": 64,
+          "green_fraction": 0.5203252032520326,
+          "p_value": 0.35925441827748356,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.35925441827748356,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 123,
+          "n_distinct": 123,
+          "n_eff": 122.99999999999999,
+          "n_eff_plugin": 122.99999999999993,
+          "H2_bits": 6.94251450533924,
+          "design_effect": 1.0000000000000004,
+          "green_distinct": 62,
+          "green_fraction": 0.5040650406504065,
+          "p_value": 0.5000000000000001,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.5000000000000001,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "CrystalFormer_DFT": {
+        "energy_field": "dft_e_above_hull_corrected",
+        "n_total": 89,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 89,
+        "n_slots": 11,
+        "marked": {
+          "n": 11,
+          "n_distinct": 11,
+          "n_eff": 11.0,
+          "n_eff_plugin": 11.0,
+          "H2_bits": 3.4594316186372973,
+          "design_effect": 1.0,
+          "green_distinct": 11,
+          "green_fraction": 1.0,
+          "p_value": 0.00048828125,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 0.00048828125,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 11,
+          "n_distinct": 11,
+          "n_eff": 11.0,
+          "n_eff_plugin": 11.0,
+          "H2_bits": 3.4594316186372973,
+          "design_effect": 1.0,
+          "green_distinct": 7,
+          "green_fraction": 0.6363636363636364,
+          "p_value": 0.2744140625,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.2744140625,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 11,
+          "n_distinct": 11,
+          "n_eff": 11.0,
+          "n_eff_plugin": 11.0,
+          "H2_bits": 3.4594316186372973,
+          "design_effect": 1.0,
+          "green_distinct": 8,
+          "green_fraction": 0.7272727272727273,
+          "p_value": 0.11328125,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.11328125,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "MatterGen": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 10000,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 10000,
+        "n_slots": 1250,
+        "marked": {
+          "n": 1250,
+          "n_distinct": 1234,
+          "n_eff": 1250.0,
+          "n_eff_plugin": 1218.7987519500782,
+          "H2_bits": 10.287712379549449,
+          "design_effect": 1.0255999999999998,
+          "green_distinct": 1232,
+          "green_fraction": 0.9983792544570502,
+          "p_value": 0.0,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 0.0,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 1250,
+          "n_distinct": 1241,
+          "n_eff": 1250.0,
+          "n_eff_plugin": 1232.2555205047322,
+          "H2_bits": 10.287712379549449,
+          "design_effect": 1.0143999999999997,
+          "green_distinct": 643,
+          "green_fraction": 0.5181305398871877,
+          "p_value": 0.10582167232378605,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.11194247968524465,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 1250,
+          "n_distinct": 1234,
+          "n_eff": 1250.0,
+          "n_eff_plugin": 1218.7987519500782,
+          "H2_bits": 10.287712379549449,
+          "design_effect": 1.0255999999999998,
+          "green_distinct": 608,
+          "green_fraction": 0.49270664505672607,
+          "p_value": 0.7056938264525079,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.7423196021413819,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "MatterGen_DFT": {
+        "energy_field": "dft_e_above_hull_corrected",
+        "n_total": 9798,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 9798,
+        "n_slots": 1224,
+        "marked": {
+          "n": 1224,
+          "n_distinct": 1205,
+          "n_eff": 1224.0,
+          "n_eff_plugin": 1183.3933649289097,
+          "H2_bits": 10.257387842692651,
+          "design_effect": 1.0343137254901964,
+          "green_distinct": 1198,
+          "green_fraction": 0.9941908713692946,
+          "p_value": 0.0,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 0.0,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 1224,
+          "n_distinct": 1193,
+          "n_eff": 1224.0,
+          "n_eff_plugin": 1164.9891135303262,
+          "H2_bits": 10.257387842692651,
+          "design_effect": 1.050653594771242,
+          "green_distinct": 597,
+          "green_fraction": 0.5004191114836547,
+          "p_value": 0.5000000000000003,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.5792865308446845,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 1224,
+          "n_distinct": 1205,
+          "n_eff": 1224.0,
+          "n_eff_plugin": 1183.3933649289097,
+          "H2_bits": 10.257387842692651,
+          "design_effect": 1.0343137254901964,
+          "green_distinct": 598,
+          "green_fraction": 0.4962655601659751,
+          "p_value": 0.613348564374917,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.5792865308446845,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyCryst": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 994,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 994,
+        "n_slots": 124,
+        "marked": {
+          "n": 124,
+          "n_distinct": 124,
+          "n_eff": 124.0,
+          "n_eff_plugin": 124.0,
+          "H2_bits": 6.954196310386875,
+          "design_effect": 1.0,
+          "green_distinct": 123,
+          "green_fraction": 0.9919354838709677,
+          "p_value": 5.8774717541114375e-36,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 5.8774717541114375e-36,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 124,
+          "n_distinct": 124,
+          "n_eff": 124.0,
+          "n_eff_plugin": 124.0,
+          "H2_bits": 6.954196310386875,
+          "design_effect": 1.0,
+          "green_distinct": 65,
+          "green_fraction": 0.5241935483870968,
+          "p_value": 0.32679922491152946,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.32679922491152946,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 124,
+          "n_distinct": 124,
+          "n_eff": 124.0,
+          "n_eff_plugin": 124.0,
+          "H2_bits": 6.954196310386875,
+          "design_effect": 1.0,
+          "green_distinct": 50,
+          "green_fraction": 0.4032258064516129,
+          "p_value": 0.9878149149388002,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.9878149149388002,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyCryst_DFT": {
+        "energy_field": "dft_e_above_hull_corrected",
+        "n_total": 103,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 103,
+        "n_slots": 12,
+        "marked": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 12,
+          "green_fraction": 1.0,
+          "p_value": 0.000244140625,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 0.000244140625,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 4,
+          "green_fraction": 0.3333333333333333,
+          "p_value": 0.927001953125,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.927001953125,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 6,
+          "green_fraction": 0.5,
+          "p_value": 0.61279296875,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.61279296875,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyFormer-harmonic-DiffCSP++": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 983,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 983,
+        "n_slots": 122,
+        "marked": {
+          "n": 122,
+          "n_distinct": 122,
+          "n_eff": 122.0,
+          "n_eff_plugin": 122.00000000000004,
+          "H2_bits": 6.930737337562886,
+          "design_effect": 0.9999999999999997,
+          "green_distinct": 122,
+          "green_fraction": 1.0,
+          "p_value": 1.88079096131566e-37,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 1.88079096131566e-37,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 122,
+          "n_distinct": 122,
+          "n_eff": 122.0,
+          "n_eff_plugin": 122.00000000000004,
+          "H2_bits": 6.930737337562886,
+          "design_effect": 0.9999999999999997,
+          "green_distinct": 63,
+          "green_fraction": 0.5163934426229508,
+          "p_value": 0.3930289284469304,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.3930289284469304,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 122,
+          "n_distinct": 122,
+          "n_eff": 122.0,
+          "n_eff_plugin": 122.00000000000004,
+          "H2_bits": 6.930737337562886,
+          "design_effect": 0.9999999999999997,
+          "green_distinct": 61,
+          "green_fraction": 0.5,
+          "p_value": 0.5360446001972299,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.5360446001972299,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyFormer-harmonic_DFT": {
+        "energy_field": "dft_e_above_hull_corrected",
+        "n_total": 101,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 101,
+        "n_slots": 12,
+        "marked": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 12,
+          "green_fraction": 1.0,
+          "p_value": 0.000244140625,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 0.000244140625,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 5,
+          "green_fraction": 0.4166666666666667,
+          "p_value": 0.80615234375,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.80615234375,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 3,
+          "green_fraction": 0.25,
+          "p_value": 0.980712890625,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.980712890625,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyFormer-letters-DiffCSP++": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 959,
+        "n_bad_fp_or_missing_energy": 2,
+        "n_usable": 957,
+        "n_slots": 119,
+        "marked": {
+          "n": 119,
+          "n_distinct": 119,
+          "n_eff": 119.0,
+          "n_eff_plugin": 118.9999999999999,
+          "H2_bits": 6.894817763307944,
+          "design_effect": 1.0000000000000009,
+          "green_distinct": 119,
+          "green_fraction": 1.0,
+          "p_value": 1.504632769052528e-36,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 1.504632769052528e-36,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 119,
+          "n_distinct": 119,
+          "n_eff": 119.0,
+          "n_eff_plugin": 118.9999999999999,
+          "H2_bits": 6.894817763307944,
+          "design_effect": 1.0000000000000009,
+          "green_distinct": 58,
+          "green_fraction": 0.48739495798319327,
+          "p_value": 0.6429868437576068,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.6429868437576068,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 119,
+          "n_distinct": 119,
+          "n_eff": 119.0,
+          "n_eff_plugin": 118.9999999999999,
+          "H2_bits": 6.894817763307944,
+          "design_effect": 1.0000000000000009,
+          "green_distinct": 67,
+          "green_fraction": 0.5630252100840336,
+          "p_value": 0.09957919909282255,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.09957919909282255,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyFormer-letters_DFT": {
+        "energy_field": "dft_e_above_hull_corrected",
+        "n_total": 104,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 104,
+        "n_slots": 13,
+        "marked": {
+          "n": 13,
+          "n_distinct": 13,
+          "n_eff": 13.0,
+          "n_eff_plugin": 12.999999999999996,
+          "H2_bits": 3.700439718141092,
+          "design_effect": 1.0000000000000002,
+          "green_distinct": 13,
+          "green_fraction": 1.0,
+          "p_value": 0.0001220703125,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 0.0001220703125,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 13,
+          "n_distinct": 13,
+          "n_eff": 13.0,
+          "n_eff_plugin": 12.999999999999996,
+          "H2_bits": 3.700439718141092,
+          "design_effect": 1.0000000000000002,
+          "green_distinct": 8,
+          "green_fraction": 0.6153846153846154,
+          "p_value": 0.29052734375,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.29052734375,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 13,
+          "n_distinct": 13,
+          "n_eff": 13.0,
+          "n_eff_plugin": 12.999999999999996,
+          "H2_bits": 3.700439718141092,
+          "design_effect": 1.0000000000000002,
+          "green_distinct": 9,
+          "green_fraction": 0.6923076923076923,
+          "p_value": 0.1334228515625,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.1334228515625,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyLLM-naive-DiffCSP++": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 981,
+        "n_bad_fp_or_missing_energy": 1,
+        "n_usable": 980,
+        "n_slots": 122,
+        "marked": {
+          "n": 122,
+          "n_distinct": 122,
+          "n_eff": 122.0,
+          "n_eff_plugin": 122.00000000000004,
+          "H2_bits": 6.930737337562886,
+          "design_effect": 0.9999999999999997,
+          "green_distinct": 120,
+          "green_fraction": 0.9836065573770492,
+          "p_value": 1.4113455373712713e-33,
+          "reject": true,
+          "p_value_naive_DO_NOT_USE": 1.4113455373712713e-33,
+          "reject_naive_DO_NOT_USE": true,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 122,
+          "n_distinct": 122,
+          "n_eff": 122.0,
+          "n_eff_plugin": 122.00000000000004,
+          "H2_bits": 6.930737337562886,
+          "design_effect": 0.9999999999999997,
+          "green_distinct": 56,
+          "green_fraction": 0.45901639344262296,
+          "p_value": 0.8403458512623777,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.8403458512623777,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 122,
+          "n_distinct": 122,
+          "n_eff": 122.0,
+          "n_eff_plugin": 122.00000000000004,
+          "H2_bits": 6.930737337562886,
+          "design_effect": 0.9999999999999997,
+          "green_distinct": 60,
+          "green_fraction": 0.4918032786885246,
+          "p_value": 0.6069710715530696,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.6069710715530696,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      },
+      "WyLLM-naive_DFT": {
+        "energy_field": "dft_e_above_hull_corrected",
+        "n_total": 102,
+        "n_bad_fp_or_missing_energy": 0,
+        "n_usable": 102,
+        "n_slots": 12,
+        "marked": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 11,
+          "green_fraction": 0.9166666666666666,
+          "p_value": 0.003173828125,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.003173828125,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "unmarked": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 3,
+          "green_fraction": 0.25,
+          "p_value": 0.980712890625,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.980712890625,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        },
+        "shuffled_key": {
+          "n": 12,
+          "n_distinct": 12,
+          "n_eff": 12.0,
+          "n_eff_plugin": 11.999999999999998,
+          "H2_bits": 3.584962500721156,
+          "design_effect": 1.0,
+          "green_distinct": 6,
+          "green_fraction": 0.5,
+          "p_value": 0.61279296875,
+          "reject": false,
+          "p_value_naive_DO_NOT_USE": 0.61279296875,
+          "reject_naive_DO_NOT_USE": false,
+          "gamma": 0.5,
+          "alpha": 0.001
+        }
+      }
+    },
+    "holm_bonferroni_table": [
+      {
+        "test": "CrystalFormer::marked",
+        "p_value": 9.4039548065783e-38,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "CrystalFormer::unmarked",
+        "p_value": 0.35925441827748356,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "CrystalFormer::shuffled_key",
+        "p_value": 0.5000000000000001,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "CrystalFormer_DFT::marked",
+        "p_value": 0.00048828125,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "CrystalFormer_DFT::unmarked",
+        "p_value": 0.2744140625,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "CrystalFormer_DFT::shuffled_key",
+        "p_value": 0.11328125,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "MatterGen::marked",
+        "p_value": 0.0,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "MatterGen::unmarked",
+        "p_value": 0.10582167232378605,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "MatterGen::shuffled_key",
+        "p_value": 0.7056938264525079,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "MatterGen_DFT::marked",
+        "p_value": 0.0,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "MatterGen_DFT::unmarked",
+        "p_value": 0.5000000000000003,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "MatterGen_DFT::shuffled_key",
+        "p_value": 0.613348564374917,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyCryst::marked",
+        "p_value": 5.8774717541114375e-36,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyCryst::unmarked",
+        "p_value": 0.32679922491152946,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyCryst::shuffled_key",
+        "p_value": 0.9878149149388002,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyCryst_DFT::marked",
+        "p_value": 0.000244140625,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyCryst_DFT::unmarked",
+        "p_value": 0.927001953125,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyCryst_DFT::shuffled_key",
+        "p_value": 0.61279296875,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-harmonic-DiffCSP++::marked",
+        "p_value": 1.88079096131566e-37,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyFormer-harmonic-DiffCSP++::unmarked",
+        "p_value": 0.3930289284469304,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-harmonic-DiffCSP++::shuffled_key",
+        "p_value": 0.5360446001972299,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-harmonic_DFT::marked",
+        "p_value": 0.000244140625,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyFormer-harmonic_DFT::unmarked",
+        "p_value": 0.80615234375,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-harmonic_DFT::shuffled_key",
+        "p_value": 0.980712890625,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-letters-DiffCSP++::marked",
+        "p_value": 1.504632769052528e-36,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyFormer-letters-DiffCSP++::unmarked",
+        "p_value": 0.6429868437576068,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-letters-DiffCSP++::shuffled_key",
+        "p_value": 0.09957919909282255,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-letters_DFT::marked",
+        "p_value": 0.0001220703125,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyFormer-letters_DFT::unmarked",
+        "p_value": 0.29052734375,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyFormer-letters_DFT::shuffled_key",
+        "p_value": 0.1334228515625,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyLLM-naive-DiffCSP++::marked",
+        "p_value": 1.4113455373712713e-33,
+        "holm_reject_at_0.05": true
+      },
+      {
+        "test": "WyLLM-naive-DiffCSP++::unmarked",
+        "p_value": 0.8403458512623777,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyLLM-naive-DiffCSP++::shuffled_key",
+        "p_value": 0.6069710715530696,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyLLM-naive_DFT::marked",
+        "p_value": 0.003173828125,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyLLM-naive_DFT::unmarked",
+        "p_value": 0.980712890625,
+        "holm_reject_at_0.05": false
+      },
+      {
+        "test": "WyLLM-naive_DFT::shuffled_key",
+        "p_value": 0.61279296875,
+        "holm_reject_at_0.05": false
+      }
+    ],
+    "n_marked_arms_significant_after_holm": 11,
+    "n_marked_arms_total": 12,
+    "n_negative_control_arms_significant_after_holm": 0,
+    "n_negative_control_arms_total": 24,
+    "verdict": "11/12 marked arms reject after Holm-Bonferroni correction across all 36 tests (12 generators x 3 conditions); 0/24 negative-control arms (unmarked, shuffled-key) reject. The one marked arm that does NOT reject is WyLLM-naive_DFT (n_slots=12, p=0.00317) -- this arm already fails to reject at the raw, uncorrected nominal alpha=1e-3 (0.00317 > 0.001), before any multiplicity correction is applied; Holm correction is therefore not why it fails, it simply never passed. This is the weakest result in the family and is consistent with its very small slot count (n_slots=12) rather than with a failure of marking or of the correction procedure. This reproduces the generator_controls pattern (marked structures are detected, unmarked and shuffled-key controls are not) across every generator corpus for which marking is measurable except this one small, underpowered DFT-relaxed arm, including on both CHGNet-relaxed and DFT-relaxed variants of each generator. This is a null confirmation of generality, not a new phenomenon: the detector's marked/unmarked separation established in generator_controls on the generators tested there holds up when extended to CrystalFormer, WyCryst, WyFormer-harmonic, and WyFormer-letters (both CHGNet and DFT variants) and to MatterGen's DFT-relaxed set, none of which were part of the original generator_controls sample."
+  },
+  "analysis": "cross_database_matching"
+}

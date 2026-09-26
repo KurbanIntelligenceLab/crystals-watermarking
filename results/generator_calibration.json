@@ -1,0 +1,1155 @@
+{
+  "description": "Diversity and calibration on released deep generators: fingerprint distribution, bias-corrected n_eff, auditability frontier position, and naive vs deduplicated FPR calibration.",
+  "seed": 20260812,
+  "gamma": 0.5,
+  "m_values": [
+    4,
+    6,
+    8,
+    16
+  ],
+  "alpha_frontier": 0.001,
+  "alpha_fpr_test": 0.001,
+  "n_keys_fpr_test": 1000,
+  "canonical_key_hex_for_holm": "d1d3a670edb6570c5c9d62e433670cf0",
+  "auditability_frontier_Nstar": {
+    "4": 18,
+    "6": 14,
+    "8": 10,
+    "16": 10
+  },
+  "q_by_m": {
+    "4": 0.9375,
+    "6": 0.984375,
+    "8": 0.99609375,
+    "16": 0.9999847412109375
+  },
+  "generators": [
+    "MatterGen",
+    "WyFormer-DiffCSP++10k",
+    "CrystalFormer",
+    "WyFormer-letters-DiffCSP++",
+    "WyFormer-harmonic-DiffCSP++",
+    "WyLLM-naive-DiffCSP++",
+    "WyLLM-site-symmetry-DiffCSP++",
+    "WyLLM-vanilla-DiffCSP++",
+    "WyCryst"
+  ],
+  "references": [
+    "MP20_train",
+    "MP20_test",
+    "MP_experimental"
+  ],
+  "per_corpus": {
+    "MatterGen": {
+      "n_total_records": 10000,
+      "n_bad_fingerprint": 0,
+      "n_valid": 10000,
+      "n_distinct": 9876,
+      "distinct_fraction": 0.9876,
+      "largest_collision_class_size": 5,
+      "largest_collision_class_fraction": 0.0005,
+      "top5_fingerprints": [
+        {
+          "fp": "cc234bdddd2540dd...",
+          "count": 5,
+          "fraction": 0.0005
+        },
+        {
+          "fp": "c650851e7c475c53...",
+          "count": 4,
+          "fraction": 0.0004
+        },
+        {
+          "fp": "97328c598dd407a8...",
+          "count": 4,
+          "fraction": 0.0004
+        },
+        {
+          "fp": "c888addd92f8770c...",
+          "count": 3,
+          "fraction": 0.0003
+        },
+        {
+          "fp": "fde9d96fdf5ff0a2...",
+          "count": 3,
+          "fraction": 0.0003
+        }
+      ],
+      "effective_sample_size": {
+        "n": 10000,
+        "n_distinct": 9876,
+        "n_eff": 10000.0,
+        "n_eff_plugin": 9716.284492809948,
+        "H2_bits": 13.287712379549449,
+        "design_effect": 1.0292000000000003
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 10000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 10000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 10000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 10000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.001,
+        "fpr_naive": 0.001,
+        "reject_dedup_count": 1,
+        "reject_naive_count": 1,
+        "median_p_dedup": 0.5080277633066287,
+        "median_p_naive": 0.5119663737989266,
+        "fpr_dedup_ci95": [
+          2.531748749129404e-05,
+          0.005558924279826672
+        ],
+        "fpr_naive_ci95": [
+          2.531748749129404e-05,
+          0.005558924279826672
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.22521721751059715,
+        "reject_after_holm": false
+      }
+    },
+    "WyFormer-DiffCSP++10k": {
+      "n_total_records": 9999,
+      "n_bad_fingerprint": 4,
+      "n_valid": 9995,
+      "n_distinct": 9912,
+      "distinct_fraction": 0.9916958479239619,
+      "largest_collision_class_size": 3,
+      "largest_collision_class_fraction": 0.00030015007503751874,
+      "top5_fingerprints": [
+        {
+          "fp": "851dcaf3220e1bd3...",
+          "count": 3,
+          "fraction": 0.00030015007503751874
+        },
+        {
+          "fp": "437d1c4ca660a0ad...",
+          "count": 3,
+          "fraction": 0.00030015007503751874
+        },
+        {
+          "fp": "7f5de5fe6ca9f7fd...",
+          "count": 3,
+          "fraction": 0.00030015007503751874
+        },
+        {
+          "fp": "4ff54cb7328cdf13...",
+          "count": 3,
+          "fraction": 0.00030015007503751874
+        },
+        {
+          "fp": "47e56553fec56d96...",
+          "count": 2,
+          "fraction": 0.00020010005002501252
+        }
+      ],
+      "effective_sample_size": {
+        "n": 9995,
+        "n_distinct": 9912,
+        "n_eff": 9995.0,
+        "n_eff_plugin": 9823.977283902053,
+        "H2_bits": 13.28699085163199,
+        "design_effect": 1.0174087043521762
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 9995.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 9995.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 9995.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 9995.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.001,
+        "fpr_naive": 0.001,
+        "reject_dedup_count": 1,
+        "reject_naive_count": 1,
+        "median_p_dedup": 0.4959930080920649,
+        "median_p_naive": 0.5000000000000001,
+        "fpr_dedup_ci95": [
+          2.531748749129404e-05,
+          0.005558924279826672
+        ],
+        "fpr_naive_ci95": [
+          2.531748749129404e-05,
+          0.005558924279826672
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.8542076780096062,
+        "reject_after_holm": false
+      }
+    },
+    "CrystalFormer": {
+      "n_total_records": 992,
+      "n_bad_fingerprint": 3,
+      "n_valid": 989,
+      "n_distinct": 985,
+      "distinct_fraction": 0.9959555106167847,
+      "largest_collision_class_size": 2,
+      "largest_collision_class_fraction": 0.0020222446916076846,
+      "top5_fingerprints": [
+        {
+          "fp": "92efbe79771e53ee...",
+          "count": 2,
+          "fraction": 0.0020222446916076846
+        },
+        {
+          "fp": "4571015bfd0bfdeb...",
+          "count": 2,
+          "fraction": 0.0020222446916076846
+        },
+        {
+          "fp": "340e32b22ce5b731...",
+          "count": 2,
+          "fraction": 0.0020222446916076846
+        },
+        {
+          "fp": "c240709ba235b5a7...",
+          "count": 2,
+          "fraction": 0.0020222446916076846
+        },
+        {
+          "fp": "542c4f19a8b0ebf4...",
+          "count": 1,
+          "fraction": 0.0010111223458038423
+        }
+      ],
+      "effective_sample_size": {
+        "n": 989,
+        "n_distinct": 985,
+        "n_eff": 989.0,
+        "n_eff_plugin": 981.0641925777333,
+        "H2_bits": 9.94982671075911,
+        "design_effect": 1.0080889787664307
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 989.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 989.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 989.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 989.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.002,
+        "fpr_naive": 0.002,
+        "reject_dedup_count": 2,
+        "reject_naive_count": 2,
+        "median_p_dedup": 0.5000000000000004,
+        "median_p_naive": 0.47464796686048083,
+        "fpr_dedup_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ],
+        "fpr_naive_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.7777679364039061,
+        "reject_after_holm": false
+      }
+    },
+    "WyFormer-letters-DiffCSP++": {
+      "n_total_records": 959,
+      "n_bad_fingerprint": 2,
+      "n_valid": 957,
+      "n_distinct": 956,
+      "distinct_fraction": 0.9989550679205852,
+      "largest_collision_class_size": 2,
+      "largest_collision_class_fraction": 0.0020898641588296763,
+      "top5_fingerprints": [
+        {
+          "fp": "5deca8dce6b1ff23...",
+          "count": 2,
+          "fraction": 0.0020898641588296763
+        },
+        {
+          "fp": "8a374ccbb04ba079...",
+          "count": 1,
+          "fraction": 0.0010449320794148381
+        },
+        {
+          "fp": "e1267fa88edf4be2...",
+          "count": 1,
+          "fraction": 0.0010449320794148381
+        },
+        {
+          "fp": "71b39d9c4b258218...",
+          "count": 1,
+          "fraction": 0.0010449320794148381
+        },
+        {
+          "fp": "135f93b2aa89f424...",
+          "count": 1,
+          "fraction": 0.0010449320794148381
+        }
+      ],
+      "effective_sample_size": {
+        "n": 957,
+        "n_distinct": 956,
+        "n_eff": 956.9999999999999,
+        "n_eff_plugin": 955.0041710114701,
+        "H2_bits": 9.902375114486025,
+        "design_effect": 1.0020898641588298
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 956.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 956.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 956.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 956.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.0,
+        "fpr_naive": 0.0,
+        "reject_dedup_count": 0,
+        "reject_naive_count": 0,
+        "median_p_dedup": 0.512899341751153,
+        "median_p_naive": 0.5257717537700484,
+        "fpr_dedup_ci95": [
+          0.0,
+          0.0036820838968656708
+        ],
+        "fpr_naive_ci95": [
+          0.0,
+          0.0036820838968656708
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.9076004107395645,
+        "reject_after_holm": false
+      }
+    },
+    "WyFormer-harmonic-DiffCSP++": {
+      "n_total_records": 983,
+      "n_bad_fingerprint": 0,
+      "n_valid": 983,
+      "n_distinct": 983,
+      "distinct_fraction": 1.0,
+      "largest_collision_class_size": 1,
+      "largest_collision_class_fraction": 0.001017293997965412,
+      "top5_fingerprints": [
+        {
+          "fp": "a7bf70ade6b61666...",
+          "count": 1,
+          "fraction": 0.001017293997965412
+        },
+        {
+          "fp": "73aba03e44296ee9...",
+          "count": 1,
+          "fraction": 0.001017293997965412
+        },
+        {
+          "fp": "36754f8f21b68536...",
+          "count": 1,
+          "fraction": 0.001017293997965412
+        },
+        {
+          "fp": "1d61f736b1eb2a72...",
+          "count": 1,
+          "fraction": 0.001017293997965412
+        },
+        {
+          "fp": "415cfb6cd258f692...",
+          "count": 1,
+          "fraction": 0.001017293997965412
+        }
+      ],
+      "effective_sample_size": {
+        "n": 983,
+        "n_distinct": 983,
+        "n_eff": 983.0,
+        "n_eff_plugin": 983.0,
+        "H2_bits": 9.94104760634058,
+        "design_effect": 1.0
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 983.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 983.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 983.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 983.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.0,
+        "fpr_naive": 0.0,
+        "reject_dedup_count": 0,
+        "reject_naive_count": 0,
+        "median_p_dedup": 0.5254291693014304,
+        "median_p_naive": 0.5254291693014304,
+        "fpr_dedup_ci95": [
+          0.0,
+          0.0036820838968656708
+        ],
+        "fpr_naive_ci95": [
+          0.0,
+          0.0036820838968656708
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.24144538093015022,
+        "reject_after_holm": false
+      }
+    },
+    "WyLLM-naive-DiffCSP++": {
+      "n_total_records": 981,
+      "n_bad_fingerprint": 1,
+      "n_valid": 980,
+      "n_distinct": 979,
+      "distinct_fraction": 0.9989795918367347,
+      "largest_collision_class_size": 2,
+      "largest_collision_class_fraction": 0.0020408163265306124,
+      "top5_fingerprints": [
+        {
+          "fp": "0e3c3315f7f073e8...",
+          "count": 2,
+          "fraction": 0.0020408163265306124
+        },
+        {
+          "fp": "12fd7b482b8218cb...",
+          "count": 1,
+          "fraction": 0.0010204081632653062
+        },
+        {
+          "fp": "e721309af5d3a2ba...",
+          "count": 1,
+          "fraction": 0.0010204081632653062
+        },
+        {
+          "fp": "8bb5d3bec0cc9462...",
+          "count": 1,
+          "fraction": 0.0010204081632653062
+        },
+        {
+          "fp": "2e0f2974d7a648d9...",
+          "count": 1,
+          "fraction": 0.0010204081632653062
+        }
+      ],
+      "effective_sample_size": {
+        "n": 980,
+        "n_distinct": 979,
+        "n_eff": 979.9999999999999,
+        "n_eff_plugin": 978.0040733197554,
+        "H2_bits": 9.936637939002571,
+        "design_effect": 1.0020408163265309
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 979.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 979.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 979.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 979.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.0,
+        "fpr_naive": 0.0,
+        "reject_dedup_count": 0,
+        "reject_naive_count": 0,
+        "median_p_dedup": 0.5254809862939496,
+        "median_p_naive": 0.5127404931469752,
+        "fpr_dedup_ci95": [
+          0.0,
+          0.0036820838968656708
+        ],
+        "fpr_naive_ci95": [
+          0.0,
+          0.0036820838968656708
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.2409989908948828,
+        "reject_after_holm": false
+      }
+    },
+    "WyLLM-site-symmetry-DiffCSP++": {
+      "n_total_records": 999,
+      "n_bad_fingerprint": 0,
+      "n_valid": 999,
+      "n_distinct": 998,
+      "distinct_fraction": 0.998998998998999,
+      "largest_collision_class_size": 2,
+      "largest_collision_class_fraction": 0.002002002002002002,
+      "top5_fingerprints": [
+        {
+          "fp": "0044c7fffc6e38d1...",
+          "count": 2,
+          "fraction": 0.002002002002002002
+        },
+        {
+          "fp": "14f423a46f6ff1a5...",
+          "count": 1,
+          "fraction": 0.001001001001001001
+        },
+        {
+          "fp": "d11cbca9463c31bf...",
+          "count": 1,
+          "fraction": 0.001001001001001001
+        },
+        {
+          "fp": "f7886a7aaf1ddb42...",
+          "count": 1,
+          "fraction": 0.001001001001001001
+        },
+        {
+          "fp": "df7b3f5e6d0bea56...",
+          "count": 1,
+          "fraction": 0.001001001001001001
+        }
+      ],
+      "effective_sample_size": {
+        "n": 999,
+        "n_distinct": 998,
+        "n_eff": 999.0,
+        "n_eff_plugin": 997.0039960039962,
+        "H2_bits": 9.964340867792417,
+        "design_effect": 1.0020020020020017
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 999.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 999.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 999.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 999.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.001,
+        "fpr_naive": 0.003,
+        "reject_dedup_count": 1,
+        "reject_naive_count": 3,
+        "median_p_dedup": 0.5378249021333174,
+        "median_p_naive": 0.5252250181783605,
+        "fpr_dedup_ci95": [
+          2.531748749129404e-05,
+          0.005558924279826672
+        ],
+        "fpr_naive_ci95": [
+          0.0006190999316495711,
+          0.008742023238478303
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.05319939167106819,
+        "reject_after_holm": false
+      }
+    },
+    "WyLLM-vanilla-DiffCSP++": {
+      "n_total_records": 1000,
+      "n_bad_fingerprint": 1,
+      "n_valid": 999,
+      "n_distinct": 649,
+      "distinct_fraction": 0.6496496496496497,
+      "largest_collision_class_size": 28,
+      "largest_collision_class_fraction": 0.028028028028028028,
+      "top5_fingerprints": [
+        {
+          "fp": "6ec9567320b5cc2c...",
+          "count": 28,
+          "fraction": 0.028028028028028028
+        },
+        {
+          "fp": "250823355aad5726...",
+          "count": 19,
+          "fraction": 0.01901901901901902
+        },
+        {
+          "fp": "11cc49a40926d1e2...",
+          "count": 16,
+          "fraction": 0.016016016016016016
+        },
+        {
+          "fp": "5315a4c2f5602e86...",
+          "count": 14,
+          "fraction": 0.014014014014014014
+        },
+        {
+          "fp": "7912767cc4a4b036...",
+          "count": 13,
+          "fraction": 0.013013013013013013
+        }
+      ],
+      "effective_sample_size": {
+        "n": 999,
+        "n_distinct": 649,
+        "n_eff": 300.3018072289157,
+        "n_eff_plugin": 231.07223894420005,
+        "H2_bits": 8.230269346895392,
+        "design_effect": 4.323323323323323
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 300.3018072289157,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 300.3018072289157,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 300.3018072289157,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 300.3018072289157,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.0,
+        "fpr_naive": 0.064,
+        "reject_dedup_count": 0,
+        "reject_naive_count": 64,
+        "median_p_dedup": 0.49999999999999895,
+        "median_p_naive": 0.5503493376813589,
+        "fpr_dedup_ci95": [
+          0.0,
+          0.0036820838968656708
+        ],
+        "fpr_naive_ci95": [
+          0.049633089291849015,
+          0.08099507436705107
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.4376247781248092,
+        "reject_after_holm": false
+      }
+    },
+    "WyCryst": {
+      "n_total_records": 994,
+      "n_bad_fingerprint": 0,
+      "n_valid": 994,
+      "n_distinct": 994,
+      "distinct_fraction": 1.0,
+      "largest_collision_class_size": 1,
+      "largest_collision_class_fraction": 0.001006036217303823,
+      "top5_fingerprints": [
+        {
+          "fp": "ef50f0181b732c79...",
+          "count": 1,
+          "fraction": 0.001006036217303823
+        },
+        {
+          "fp": "0b84c585edea7dad...",
+          "count": 1,
+          "fraction": 0.001006036217303823
+        },
+        {
+          "fp": "d6657b499fc17501...",
+          "count": 1,
+          "fraction": 0.001006036217303823
+        },
+        {
+          "fp": "7608607b24bb1dbb...",
+          "count": 1,
+          "fraction": 0.001006036217303823
+        },
+        {
+          "fp": "d3ff1b0922650370...",
+          "count": 1,
+          "fraction": 0.001006036217303823
+        }
+      ],
+      "effective_sample_size": {
+        "n": 994,
+        "n_distinct": 994,
+        "n_eff": 993.9999999999999,
+        "n_eff_plugin": 993.9999999999999,
+        "H2_bits": 9.957102041562287,
+        "design_effect": 1.0
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 993.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 993.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 993.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 993.9999999999999,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.002,
+        "fpr_naive": 0.002,
+        "reject_dedup_count": 2,
+        "reject_naive_count": 2,
+        "median_p_dedup": 0.512650498650865,
+        "median_p_naive": 0.512650498650865,
+        "fpr_dedup_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ],
+        "fpr_naive_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ]
+      },
+      "holm_bonferroni": {
+        "p_value_dedup": 0.12027648853713445,
+        "reject_after_holm": false
+      }
+    },
+    "MP20_train": {
+      "n_total_records": 27136,
+      "n_bad_fingerprint": 0,
+      "n_valid": 27136,
+      "n_distinct": 27049,
+      "distinct_fraction": 0.9967939268867925,
+      "largest_collision_class_size": 6,
+      "largest_collision_class_fraction": 0.00022110849056603774,
+      "top5_fingerprints": [
+        {
+          "fp": "48442ef3dbbfd52b...",
+          "count": 6,
+          "fraction": 0.00022110849056603774
+        },
+        {
+          "fp": "e6ded147f1111f9e...",
+          "count": 6,
+          "fraction": 0.00022110849056603774
+        },
+        {
+          "fp": "13863e56054598f3...",
+          "count": 6,
+          "fraction": 0.00022110849056603774
+        },
+        {
+          "fp": "1a643c493d28910c...",
+          "count": 5,
+          "fraction": 0.00018425707547169813
+        },
+        {
+          "fp": "8f274439b238165f...",
+          "count": 5,
+          "fraction": 0.00018425707547169813
+        }
+      ],
+      "effective_sample_size": {
+        "n": 27136,
+        "n_distinct": 27049,
+        "n_eff": 27136.0,
+        "n_eff_plugin": 26843.193934091574,
+        "H2_bits": 14.727920454563199,
+        "design_effect": 1.0109080188679245
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 27136.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 27136.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 27136.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 27136.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.002,
+        "fpr_naive": 0.001,
+        "reject_dedup_count": 2,
+        "reject_naive_count": 1,
+        "median_p_dedup": 0.492723504483874,
+        "median_p_naive": 0.4878929275307701,
+        "fpr_dedup_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ],
+        "fpr_naive_ci95": [
+          2.531748749129404e-05,
+          0.005558924279826672
+        ]
+      }
+    },
+    "MP20_test": {
+      "n_total_records": 9046,
+      "n_bad_fingerprint": 0,
+      "n_valid": 9046,
+      "n_distinct": 9031,
+      "distinct_fraction": 0.9983418085341588,
+      "largest_collision_class_size": 3,
+      "largest_collision_class_fraction": 0.00033163829316825116,
+      "top5_fingerprints": [
+        {
+          "fp": "48442ef3dbbfd52b...",
+          "count": 3,
+          "fraction": 0.00033163829316825116
+        },
+        {
+          "fp": "bd88733e4d012ae6...",
+          "count": 3,
+          "fraction": 0.00033163829316825116
+        },
+        {
+          "fp": "ad20e3abe0b7b032...",
+          "count": 3,
+          "fraction": 0.00033163829316825116
+        },
+        {
+          "fp": "04de6e0bcf3e2c44...",
+          "count": 3,
+          "fraction": 0.00033163829316825116
+        },
+        {
+          "fp": "13863e56054598f3...",
+          "count": 3,
+          "fraction": 0.00033163829316825116
+        }
+      ],
+      "effective_sample_size": {
+        "n": 9046,
+        "n_distinct": 9031,
+        "n_eff": 9046.0,
+        "n_eff_plugin": 9006.176095091345,
+        "H2_bits": 13.14306428063141,
+        "design_effect": 1.0044218439089105
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 9046.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 9046.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 9046.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 9046.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.0,
+        "fpr_naive": 0.0,
+        "reject_dedup_count": 0,
+        "reject_naive_count": 0,
+        "median_p_dedup": 0.49160470278209745,
+        "median_p_naive": 0.49580560070483565,
+        "fpr_dedup_ci95": [
+          0.0,
+          0.0036820838968656708
+        ],
+        "fpr_naive_ci95": [
+          0.0,
+          0.0036820838968656708
+        ]
+      }
+    },
+    "MP_experimental": {
+      "n_total_records": 5000,
+      "n_bad_fingerprint": 0,
+      "n_valid": 5000,
+      "n_distinct": 5000,
+      "distinct_fraction": 1.0,
+      "largest_collision_class_size": 1,
+      "largest_collision_class_fraction": 0.0002,
+      "top5_fingerprints": [
+        {
+          "fp": "6316f0e4677fda90...",
+          "count": 1,
+          "fraction": 0.0002
+        },
+        {
+          "fp": "97328c598dd407a8...",
+          "count": 1,
+          "fraction": 0.0002
+        },
+        {
+          "fp": "9a5f9e872677f704...",
+          "count": 1,
+          "fraction": 0.0002
+        },
+        {
+          "fp": "3d5b929d6763a851...",
+          "count": 1,
+          "fraction": 0.0002
+        },
+        {
+          "fp": "1f7b49fcc9caf315...",
+          "count": 1,
+          "fraction": 0.0002
+        }
+      ],
+      "effective_sample_size": {
+        "n": 5000,
+        "n_distinct": 5000,
+        "n_eff": 5000.0,
+        "n_eff_plugin": 5000.0,
+        "H2_bits": 12.287712379549449,
+        "design_effect": 0.9999999999999999
+      },
+      "frontier_position": {
+        "4": {
+          "N_star": 18,
+          "n_eff": 5000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "6": {
+          "N_star": 14,
+          "n_eff": 5000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "8": {
+          "N_star": 10,
+          "n_eff": 5000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        },
+        "16": {
+          "N_star": 10,
+          "n_eff": 5000.0,
+          "above_frontier": true,
+          "audit_feasible": true
+        }
+      },
+      "fpr_unmarked_1000_keys": {
+        "n_keys": 1000,
+        "fpr_dedup": 0.002,
+        "fpr_naive": 0.002,
+        "reject_dedup_count": 2,
+        "reject_naive_count": 2,
+        "median_p_dedup": 0.4605717888863102,
+        "median_p_naive": 0.4605717888863102,
+        "fpr_dedup_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ],
+        "fpr_naive_ci95": [
+          0.00024230111687723182,
+          0.007205838911457497
+        ]
+      }
+    }
+  },
+  "holm_bonferroni_note": "Holm-Bonferroni (alpha=0.05 family-wise) applied across the 9 generator dedup p-values from a single canonical random key (audit of the UNMARKED corpora); none reject, as expected for unmarked output.",
+  "verdict": {
+    "bottleneck_binds_for": [
+      "WyLLM-vanilla-DiffCSP++"
+    ],
+    "criterion": "naive FPR on unmarked corpus exceeds 5x nominal alpha (1e-3), driven by design_effect > 1 (collision classes inflating the effective sample size below n)",
+    "frontier_crossings": "none of the 9 generators or 3 reference populations fall below the auditability frontier N* at gamma=0.5 for any m in {4,6,8,16}: even the most repetitive generator, WyLLM-vanilla-DiffCSP++ (n_eff=300.3), is far above the largest frontier N*=18 (m=4). The bottleneck therefore does not manifest as an outright audit infeasibility for these released generators -- it manifests as false-positive-rate miscalibration of the naive (non-deduplicated) test, which BasinMark's deduplicated audit corrects.",
+    "wyllm_vanilla_vs_mp20train": {
+      "WyLLM-vanilla-DiffCSP++": {
+        "n_valid": 999,
+        "n_distinct": 649,
+        "distinct_fraction": 0.6496496496496497,
+        "n_eff": 300.3018072289157,
+        "design_effect": 4.323323323323323,
+        "fpr_naive": 0.064,
+        "fpr_dedup": 0.0
+      },
+      "MP20_train": {
+        "n_valid": 27136,
+        "n_distinct": 27049,
+        "distinct_fraction": 0.9967939268867925,
+        "n_eff": 27136.0,
+        "design_effect": 1.0109080188679245,
+        "fpr_naive": 0.001,
+        "fpr_dedup": 0.002
+      },
+      "interpretation": "WyLLM-vanilla-DiffCSP++ collapses to 649/999 (64.96%) distinct fingerprints, the most repetitive generator in the corpus, versus MP20_train's 27049/27136 (99.68%). This drives WyLLM-vanilla's design effect to 4.32 (vs 1.01 for MP20_train) and its naive FPR to 0.064 at nominal alpha=1e-3 -- a 64x inflation -- while the deduplicated test stays at 0.0000, i.e. calibrated at or below nominal. This is the cleanest empirical demonstration in the corpus that deduplication, not raw structure count, is what calibration depends on."
+    }
+  },
+  "analysis": "generator_calibration_diversity_and_calibration"
+}

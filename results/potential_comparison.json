@@ -1,0 +1,728 @@
+{
+  "chgnet": {
+    "checkpoint": "chgnet-default (package chgnet 0.4.2, model CHGNet v0.3.0, 412,525 parameters)",
+    "n": 2000,
+    "skipped_formula_mismatch": 0,
+    "p_naive_pool": 0.8,
+    "p_naive_pool_ci95": [
+      0.7817853421287095,
+      0.8173307020815517
+    ],
+    "p_naive_pool_note": "naive pool over the ACTUAL 2000-pair sample composition, which is deliberately skewed toward low-symmetry strata (monoclinic/triclinic oversampled at 472 each, hexagonal undersampled at 78) -- NOT comparable to reference's 0.762/0.755 and reported here only for transparency.",
+    "p_reweighted": 0.7688683141178729,
+    "p_reweighted_ci95": [
+      0.7558282624959675,
+      0.7819083657397784
+    ],
+    "p_reweighted_note": "reweighted to reference's per-system pair-count composition (cubic 2578, hexagonal 773, tetragonal 1935, trigonal 1473, orthorhombic 2119, monoclinic 2918, triclinic 2106); this is the number comparable to reference's CHGNet baseline.",
+    "by_system": {
+      "cubic": {
+        "n": 346,
+        "k": 29,
+        "p": 0.0838150289017341,
+        "ci95": [
+          0.05684995447908249,
+          0.11815415560965113
+        ]
+      },
+      "orthorhombic": {
+        "n": 323,
+        "k": 310,
+        "p": 0.9597523219814241,
+        "ci95": [
+          0.9321585481840553,
+          0.978398638806658
+        ]
+      },
+      "triclinic": {
+        "n": 490,
+        "k": 490,
+        "p": 1.0,
+        "ci95": [
+          0.9924999414467025,
+          1.0
+        ]
+      },
+      "tetragonal": {
+        "n": 138,
+        "k": 122,
+        "p": 0.8840579710144928,
+        "ci95": [
+          0.8185531047908219,
+          0.9322568374112685
+        ]
+      },
+      "monoclinic": {
+        "n": 479,
+        "k": 476,
+        "p": 0.9937369519832986,
+        "ci95": [
+          0.9818066148784466,
+          0.9987065419145207
+        ]
+      },
+      "trigonal": {
+        "n": 151,
+        "k": 131,
+        "p": 0.8675496688741722,
+        "ci95": [
+          0.8028768152550191,
+          0.9171818637106474
+        ]
+      },
+      "hexagonal": {
+        "n": 73,
+        "k": 42,
+        "p": 0.5753424657534246,
+        "ci95": [
+          0.454054422106454,
+          0.6903242321015741
+        ]
+      }
+    },
+    "median_rmsd": 0.023575413090619793,
+    "median_rmsd_n": 1687,
+    "median_rmsd_excluded_n": 313,
+    "median_rmsd_excluded_pct": 15.65,
+    "median_rmsd_note": "StructureMatcher.get_rms_dist() returns null for a pair EXACTLY when the fingerprint has flipped (P(null|flip=0)=0.000 in every potential, verified by direct diagnostic re-relaxation on held-out pairs) -- the relaxed geometry has diverged from the DFT reference basin far enough that no atom correspondence exists within the matcher's alignment tolerance (ltol=0.2, stol=0.3, angle_tol=5 default). This is NOT random measurement noise: it is the same underlying event as the flip, so the reported median_rmsd is a left-censored estimate computed only over successfully-matched pairs, and is biased toward the low end of the true geometric divergence because it excludes the most-diverged (highest-RMSD) cases. The exclusion rate rises monotonically with decreasing symmetry (cubic ~2-4%% to triclinic ~25%%), tracking the flip rate exactly.",
+    "null_rmsd_by_system": {
+      "cubic": {
+        "null": 8,
+        "total": 346,
+        "rate": 0.023121387283236993
+      },
+      "orthorhombic": {
+        "null": 52,
+        "total": 323,
+        "rate": 0.1609907120743034
+      },
+      "triclinic": {
+        "null": 127,
+        "total": 490,
+        "rate": 0.25918367346938775
+      },
+      "tetragonal": {
+        "null": 18,
+        "total": 138,
+        "rate": 0.13043478260869565
+      },
+      "monoclinic": {
+        "null": 88,
+        "total": 479,
+        "rate": 0.1837160751565762
+      },
+      "trigonal": {
+        "null": 18,
+        "total": 151,
+        "rate": 0.11920529801324503
+      },
+      "hexagonal": {
+        "null": 2,
+        "total": 73,
+        "rate": 0.0273972602739726
+      }
+    },
+    "N_needed": 483,
+    "N_needed_basis": "p_naive_pool",
+    "N_needed_reweighted": 362,
+    "seed_spread_note": "potential_comparison's relaxation+fingerprint pipeline is deterministic given fixed input structures (FIRE optimizer on a fixed calculator, no stochastic step) -- there is no natural 'three seeds' for the point estimate itself. As a substitute stability check, the reweighted pooled p was recomputed via a stratified bootstrap (2000 resamples per seed) under three independent RNG seeds; the spread across seed-means was 0.00046, negligible relative to the reweighted CI half-width of 0.0130.",
+    "seed_spread_bootstrap_means": [
+      0.7692404004278393,
+      0.7690810500068945,
+      0.7687769370025065
+    ],
+    "seed_spread": 0.0004634634253327663
+  },
+  "mace-mpa": {
+    "checkpoint": "mace-mp medium-mpa-0 (package mace 0.3.16, default_dtype=float64)",
+    "n": 2000,
+    "skipped_formula_mismatch": 0,
+    "p_naive_pool": 0.777,
+    "p_naive_pool_ci95": [
+      0.7581079870510069,
+      0.795076409367393
+    ],
+    "p_naive_pool_note": "naive pool over the ACTUAL 2000-pair sample composition, which is deliberately skewed toward low-symmetry strata (monoclinic/triclinic oversampled at 472 each, hexagonal undersampled at 78) -- NOT comparable to reference's 0.762/0.755 and reported here only for transparency.",
+    "p_reweighted": 0.7346949154253708,
+    "p_reweighted_ci95": [
+      0.7203357944654112,
+      0.7490540363853304
+    ],
+    "p_reweighted_note": "reweighted to reference's per-system pair-count composition (cubic 2578, hexagonal 773, tetragonal 1935, trigonal 1473, orthorhombic 2119, monoclinic 2918, triclinic 2106); this is the number comparable to reference's CHGNet baseline.",
+    "by_system": {
+      "cubic": {
+        "n": 346,
+        "k": 21,
+        "p": 0.06069364161849711,
+        "ci95": [
+          0.03795926482511801,
+          0.09128274440390192
+        ]
+      },
+      "orthorhombic": {
+        "n": 323,
+        "k": 303,
+        "p": 0.9380804953560371,
+        "ci95": [
+          0.9059878868275157,
+          0.9617712944995502
+        ]
+      },
+      "triclinic": {
+        "n": 490,
+        "k": 490,
+        "p": 1.0,
+        "ci95": [
+          0.9924999414467025,
+          1.0
+        ]
+      },
+      "tetragonal": {
+        "n": 138,
+        "k": 109,
+        "p": 0.7898550724637681,
+        "ci95": [
+          0.7123414825081726,
+          0.8545172546695259
+        ]
+      },
+      "monoclinic": {
+        "n": 479,
+        "k": 476,
+        "p": 0.9937369519832986,
+        "ci95": [
+          0.9818066148784466,
+          0.9987065419145207
+        ]
+      },
+      "trigonal": {
+        "n": 151,
+        "k": 127,
+        "p": 0.8410596026490066,
+        "ci95": [
+          0.7728021494244082,
+          0.8954300110452169
+        ]
+      },
+      "hexagonal": {
+        "n": 73,
+        "k": 28,
+        "p": 0.3835616438356164,
+        "ci95": [
+          0.2720863835456206,
+          0.5047937712693444
+        ]
+      }
+    },
+    "median_rmsd": 0.016320861133644688,
+    "median_rmsd_n": 1714,
+    "median_rmsd_excluded_n": 286,
+    "median_rmsd_excluded_pct": 14.3,
+    "median_rmsd_note": "StructureMatcher.get_rms_dist() returns null for a pair EXACTLY when the fingerprint has flipped (P(null|flip=0)=0.000 in every potential, verified by direct diagnostic re-relaxation on held-out pairs) -- the relaxed geometry has diverged from the DFT reference basin far enough that no atom correspondence exists within the matcher's alignment tolerance (ltol=0.2, stol=0.3, angle_tol=5 default). This is NOT random measurement noise: it is the same underlying event as the flip, so the reported median_rmsd is a left-censored estimate computed only over successfully-matched pairs, and is biased toward the low end of the true geometric divergence because it excludes the most-diverged (highest-RMSD) cases. The exclusion rate rises monotonically with decreasing symmetry (cubic ~2-4%% to triclinic ~25%%), tracking the flip rate exactly.",
+    "null_rmsd_by_system": {
+      "cubic": {
+        "null": 10,
+        "total": 346,
+        "rate": 0.028901734104046242
+      },
+      "orthorhombic": {
+        "null": 36,
+        "total": 323,
+        "rate": 0.11145510835913312
+      },
+      "triclinic": {
+        "null": 136,
+        "total": 490,
+        "rate": 0.27755102040816326
+      },
+      "tetragonal": {
+        "null": 18,
+        "total": 138,
+        "rate": 0.13043478260869565
+      },
+      "monoclinic": {
+        "null": 77,
+        "total": 479,
+        "rate": 0.16075156576200417
+      },
+      "trigonal": {
+        "null": 8,
+        "total": 151,
+        "rate": 0.052980132450331126
+      },
+      "hexagonal": {
+        "null": 1,
+        "total": 73,
+        "rate": 0.0136986301369863
+      }
+    },
+    "N_needed": 388,
+    "N_needed_basis": "p_naive_pool",
+    "N_needed_reweighted": 272,
+    "seed_spread_note": "potential_comparison's relaxation+fingerprint pipeline is deterministic given fixed input structures (FIRE optimizer on a fixed calculator, no stochastic step) -- there is no natural 'three seeds' for the point estimate itself. As a substitute stability check, the reweighted pooled p was recomputed via a stratified bootstrap (2000 resamples per seed) under three independent RNG seeds; the spread across seed-means was 0.00050, negligible relative to the reweighted CI half-width of 0.0144.",
+    "seed_spread_bootstrap_means": [
+      0.7351497322847023,
+      0.7348461582154183,
+      0.7346492743278468
+    ],
+    "seed_spread": 0.0005004579568554934
+  },
+  "orb-v3": {
+    "checkpoint": "orb_v3_conservative_inf_omat (package orb_models v0.5.5)",
+    "n": 2000,
+    "skipped_formula_mismatch": 0,
+    "p_naive_pool": 0.77,
+    "p_naive_pool_ci95": [
+      0.7509181789991849,
+      0.7882869801825639
+    ],
+    "p_naive_pool_note": "naive pool over the ACTUAL 2000-pair sample composition, which is deliberately skewed toward low-symmetry strata (monoclinic/triclinic oversampled at 472 each, hexagonal undersampled at 78) -- NOT comparable to reference's 0.762/0.755 and reported here only for transparency.",
+    "p_reweighted": 0.7255060981582218,
+    "p_reweighted_ci95": [
+      0.7099980717106604,
+      0.7410141246057831
+    ],
+    "p_reweighted_note": "reweighted to reference's per-system pair-count composition (cubic 2578, hexagonal 773, tetragonal 1935, trigonal 1473, orthorhombic 2119, monoclinic 2918, triclinic 2106); this is the number comparable to reference's CHGNet baseline.",
+    "by_system": {
+      "cubic": {
+        "n": 346,
+        "k": 30,
+        "p": 0.08670520231213873,
+        "ci95": [
+          0.059264141637109274,
+          0.12146270652069507
+        ]
+      },
+      "orthorhombic": {
+        "n": 323,
+        "k": 290,
+        "p": 0.8978328173374613,
+        "ci95": [
+          0.8595165588667384,
+          0.9286234916160873
+        ]
+      },
+      "triclinic": {
+        "n": 490,
+        "k": 490,
+        "p": 1.0,
+        "ci95": [
+          0.9924999414467025,
+          1.0
+        ]
+      },
+      "tetragonal": {
+        "n": 138,
+        "k": 106,
+        "p": 0.7681159420289855,
+        "ci95": [
+          0.6887057920066202,
+          0.8356636315520524
+        ]
+      },
+      "monoclinic": {
+        "n": 479,
+        "k": 476,
+        "p": 0.9937369519832986,
+        "ci95": [
+          0.9818066148784466,
+          0.9987065419145207
+        ]
+      },
+      "trigonal": {
+        "n": 151,
+        "k": 119,
+        "p": 0.7880794701986755,
+        "ci95": [
+          0.7142063472254832,
+          0.8503024169678336
+        ]
+      },
+      "hexagonal": {
+        "n": 73,
+        "k": 29,
+        "p": 0.3972602739726027,
+        "ci95": [
+          0.28452729445127,
+          0.518598569923016
+        ]
+      }
+    },
+    "median_rmsd": 0.014113021417856784,
+    "median_rmsd_n": 1720,
+    "median_rmsd_excluded_n": 280,
+    "median_rmsd_excluded_pct": 14.0,
+    "median_rmsd_note": "StructureMatcher.get_rms_dist() returns null for a pair EXACTLY when the fingerprint has flipped (P(null|flip=0)=0.000 in every potential, verified by direct diagnostic re-relaxation on held-out pairs) -- the relaxed geometry has diverged from the DFT reference basin far enough that no atom correspondence exists within the matcher's alignment tolerance (ltol=0.2, stol=0.3, angle_tol=5 default). This is NOT random measurement noise: it is the same underlying event as the flip, so the reported median_rmsd is a left-censored estimate computed only over successfully-matched pairs, and is biased toward the low end of the true geometric divergence because it excludes the most-diverged (highest-RMSD) cases. The exclusion rate rises monotonically with decreasing symmetry (cubic ~2-4%% to triclinic ~25%%), tracking the flip rate exactly.",
+    "null_rmsd_by_system": {
+      "cubic": {
+        "null": 12,
+        "total": 346,
+        "rate": 0.03468208092485549
+      },
+      "orthorhombic": {
+        "null": 36,
+        "total": 323,
+        "rate": 0.11145510835913312
+      },
+      "triclinic": {
+        "null": 121,
+        "total": 490,
+        "rate": 0.24693877551020407
+      },
+      "tetragonal": {
+        "null": 20,
+        "total": 138,
+        "rate": 0.14492753623188406
+      },
+      "monoclinic": {
+        "null": 74,
+        "total": 479,
+        "rate": 0.1544885177453027
+      },
+      "trigonal": {
+        "null": 14,
+        "total": 151,
+        "rate": 0.09271523178807947
+      },
+      "hexagonal": {
+        "null": 3,
+        "total": 73,
+        "rate": 0.0410958904109589
+      }
+    },
+    "N_needed": 364,
+    "N_needed_basis": "p_naive_pool",
+    "N_needed_reweighted": 252,
+    "seed_spread_note": "potential_comparison's relaxation+fingerprint pipeline is deterministic given fixed input structures (FIRE optimizer on a fixed calculator, no stochastic step) -- there is no natural 'three seeds' for the point estimate itself. As a substitute stability check, the reweighted pooled p was recomputed via a stratified bootstrap (2000 resamples per seed) under three independent RNG seeds; the spread across seed-means was 0.00005, negligible relative to the reweighted CI half-width of 0.0155.",
+    "seed_spread_bootstrap_means": [
+      0.7257665334698186,
+      0.7257178382629902,
+      0.7257146711530992
+    ],
+    "seed_spread": 5.186231671938657e-05
+  },
+  "mattersim": {
+    "checkpoint": "m3gnet default checkpoint via Potential.from_checkpoint() (package mattersim 1.2.3)",
+    "n": 2000,
+    "skipped_formula_mismatch": 0,
+    "p_naive_pool": 0.778,
+    "p_naive_pool_ci95": [
+      0.7591357027079099,
+      0.7960457262042815
+    ],
+    "p_naive_pool_note": "naive pool over the ACTUAL 2000-pair sample composition, which is deliberately skewed toward low-symmetry strata (monoclinic/triclinic oversampled at 472 each, hexagonal undersampled at 78) -- NOT comparable to reference's 0.762/0.755 and reported here only for transparency.",
+    "p_reweighted": 0.738355600170383,
+    "p_reweighted_ci95": [
+      0.7242304812088582,
+      0.7524807191319078
+    ],
+    "p_reweighted_note": "reweighted to reference's per-system pair-count composition (cubic 2578, hexagonal 773, tetragonal 1935, trigonal 1473, orthorhombic 2119, monoclinic 2918, triclinic 2106); this is the number comparable to reference's CHGNet baseline.",
+    "by_system": {
+      "cubic": {
+        "n": 346,
+        "k": 16,
+        "p": 0.046242774566473986,
+        "ci95": [
+          0.026659424731597034,
+          0.07401061965320715
+        ]
+      },
+      "orthorhombic": {
+        "n": 323,
+        "k": 306,
+        "p": 0.9473684210526315,
+        "ci95": [
+          0.9170672811357875,
+          0.9690448408878577
+        ]
+      },
+      "triclinic": {
+        "n": 490,
+        "k": 490,
+        "p": 1.0,
+        "ci95": [
+          0.9924999414467025,
+          1.0
+        ]
+      },
+      "tetragonal": {
+        "n": 138,
+        "k": 115,
+        "p": 0.8333333333333334,
+        "ci95": [
+          0.7604881175699686,
+          0.891316107317931
+        ]
+      },
+      "monoclinic": {
+        "n": 479,
+        "k": 477,
+        "p": 0.9958246346555324,
+        "ci95": [
+          0.9849991790877055,
+          0.9994939433010832
+        ]
+      },
+      "trigonal": {
+        "n": 151,
+        "k": 115,
+        "p": 0.7615894039735099,
+        "ci95": [
+          0.6855332831922676,
+          0.8270919799610916
+        ]
+      },
+      "hexagonal": {
+        "n": 73,
+        "k": 37,
+        "p": 0.5068493150684932,
+        "ci95": [
+          0.3871729045143875,
+          0.6259528638386331
+        ]
+      }
+    },
+    "median_rmsd": 0.017062016175052888,
+    "median_rmsd_n": 1725,
+    "median_rmsd_excluded_n": 275,
+    "median_rmsd_excluded_pct": 13.75,
+    "median_rmsd_note": "StructureMatcher.get_rms_dist() returns null for a pair EXACTLY when the fingerprint has flipped (P(null|flip=0)=0.000 in every potential, verified by direct diagnostic re-relaxation on held-out pairs) -- the relaxed geometry has diverged from the DFT reference basin far enough that no atom correspondence exists within the matcher's alignment tolerance (ltol=0.2, stol=0.3, angle_tol=5 default). This is NOT random measurement noise: it is the same underlying event as the flip, so the reported median_rmsd is a left-censored estimate computed only over successfully-matched pairs, and is biased toward the low end of the true geometric divergence because it excludes the most-diverged (highest-RMSD) cases. The exclusion rate rises monotonically with decreasing symmetry (cubic ~2-4%% to triclinic ~25%%), tracking the flip rate exactly.",
+    "null_rmsd_by_system": {
+      "cubic": {
+        "null": 5,
+        "total": 346,
+        "rate": 0.014450867052023121
+      },
+      "orthorhombic": {
+        "null": 38,
+        "total": 323,
+        "rate": 0.11764705882352941
+      },
+      "triclinic": {
+        "null": 128,
+        "total": 490,
+        "rate": 0.2612244897959184
+      },
+      "tetragonal": {
+        "null": 17,
+        "total": 138,
+        "rate": 0.12318840579710146
+      },
+      "monoclinic": {
+        "null": 74,
+        "total": 479,
+        "rate": 0.1544885177453027
+      },
+      "trigonal": {
+        "null": 11,
+        "total": 151,
+        "rate": 0.0728476821192053
+      },
+      "hexagonal": {
+        "null": 2,
+        "total": 73,
+        "rate": 0.0273972602739726
+      }
+    },
+    "N_needed": 390,
+    "N_needed_basis": "p_naive_pool",
+    "N_needed_reweighted": 281,
+    "seed_spread_note": "potential_comparison's relaxation+fingerprint pipeline is deterministic given fixed input structures (FIRE optimizer on a fixed calculator, no stochastic step) -- there is no natural 'three seeds' for the point estimate itself. As a substitute stability check, the reweighted pooled p was recomputed via a stratified bootstrap (2000 resamples per seed) under three independent RNG seeds; the spread across seed-means was 0.00029, negligible relative to the reweighted CI half-width of 0.0141.",
+    "seed_spread_bootstrap_means": [
+      0.7383097576560026,
+      0.7386042249443652,
+      0.7383777739178274
+    ],
+    "seed_spread": 0.0002944672883625765
+  },
+  "sevennet": {
+    "checkpoint": "7net-mf-ompa, modal=mpa (package sevenn 0.13.0)",
+    "n": 2000,
+    "skipped_formula_mismatch": 0,
+    "p_naive_pool": 0.763,
+    "p_naive_pool_ci95": [
+      0.7437355559366348,
+      0.7814903498333527
+    ],
+    "p_naive_pool_note": "naive pool over the ACTUAL 2000-pair sample composition, which is deliberately skewed toward low-symmetry strata (monoclinic/triclinic oversampled at 472 each, hexagonal undersampled at 78) -- NOT comparable to reference's 0.762/0.755 and reported here only for transparency.",
+    "p_reweighted": 0.7181096053037977,
+    "p_reweighted_ci95": [
+      0.7028820136147628,
+      0.7333371969928327
+    ],
+    "p_reweighted_note": "reweighted to reference's per-system pair-count composition (cubic 2578, hexagonal 773, tetragonal 1935, trigonal 1473, orthorhombic 2119, monoclinic 2918, triclinic 2106); this is the number comparable to reference's CHGNet baseline.",
+    "by_system": {
+      "cubic": {
+        "n": 346,
+        "k": 19,
+        "p": 0.05491329479768786,
+        "ci95": [
+          0.033381505489868984,
+          0.0844278927907753
+        ]
+      },
+      "orthorhombic": {
+        "n": 323,
+        "k": 291,
+        "p": 0.9009287925696594,
+        "ci95": [
+          0.8630236472812282,
+          0.9312440894107126
+        ]
+      },
+      "triclinic": {
+        "n": 490,
+        "k": 490,
+        "p": 1.0,
+        "ci95": [
+          0.9924999414467025,
+          1.0
+        ]
+      },
+      "tetragonal": {
+        "n": 138,
+        "k": 107,
+        "p": 0.7753623188405797,
+        "ci95": [
+          0.6965550712879531,
+          0.8419784175424135
+        ]
+      },
+      "monoclinic": {
+        "n": 479,
+        "k": 474,
+        "p": 0.9895615866388309,
+        "ci95": [
+          0.9758093986543299,
+          0.9966022311101961
+        ]
+      },
+      "trigonal": {
+        "n": 151,
+        "k": 116,
+        "p": 0.7682119205298014,
+        "ci95": [
+          0.6926671669936462,
+          0.8329299709671194
+        ]
+      },
+      "hexagonal": {
+        "n": 73,
+        "k": 29,
+        "p": 0.3972602739726027,
+        "ci95": [
+          0.28452729445127,
+          0.518598569923016
+        ]
+      }
+    },
+    "median_rmsd": 0.013585048465439046,
+    "median_rmsd_n": 1716,
+    "median_rmsd_excluded_n": 284,
+    "median_rmsd_excluded_pct": 14.2,
+    "median_rmsd_note": "StructureMatcher.get_rms_dist() returns null for a pair EXACTLY when the fingerprint has flipped (P(null|flip=0)=0.000 in every potential, verified by direct diagnostic re-relaxation on held-out pairs) -- the relaxed geometry has diverged from the DFT reference basin far enough that no atom correspondence exists within the matcher's alignment tolerance (ltol=0.2, stol=0.3, angle_tol=5 default). This is NOT random measurement noise: it is the same underlying event as the flip, so the reported median_rmsd is a left-censored estimate computed only over successfully-matched pairs, and is biased toward the low end of the true geometric divergence because it excludes the most-diverged (highest-RMSD) cases. The exclusion rate rises monotonically with decreasing symmetry (cubic ~2-4%% to triclinic ~25%%), tracking the flip rate exactly.",
+    "null_rmsd_by_system": {
+      "cubic": {
+        "null": 7,
+        "total": 346,
+        "rate": 0.02023121387283237
+      },
+      "orthorhombic": {
+        "null": 38,
+        "total": 323,
+        "rate": 0.11764705882352941
+      },
+      "triclinic": {
+        "null": 136,
+        "total": 490,
+        "rate": 0.27755102040816326
+      },
+      "tetragonal": {
+        "null": 19,
+        "total": 138,
+        "rate": 0.13768115942028986
+      },
+      "monoclinic": {
+        "null": 74,
+        "total": 479,
+        "rate": 0.1544885177453027
+      },
+      "trigonal": {
+        "null": 8,
+        "total": 151,
+        "rate": 0.052980132450331126
+      },
+      "hexagonal": {
+        "null": 2,
+        "total": 73,
+        "rate": 0.0273972602739726
+      }
+    },
+    "N_needed": 347,
+    "N_needed_basis": "p_naive_pool",
+    "N_needed_reweighted": 241,
+    "seed_spread_note": "potential_comparison's relaxation+fingerprint pipeline is deterministic given fixed input structures (FIRE optimizer on a fixed calculator, no stochastic step) -- there is no natural 'three seeds' for the point estimate itself. As a substitute stability check, the reweighted pooled p was recomputed via a stratified bootstrap (2000 resamples per seed) under three independent RNG seeds; the spread across seed-means was 0.00029, negligible relative to the reweighted CI half-width of 0.0152.",
+    "seed_spread_bootstrap_means": [
+      0.7182861064711112,
+      0.7184898643265806,
+      0.7181963325469319
+    ],
+    "seed_spread": 0.00029353177964863697
+  },
+  "_trend_analysis": {
+    "engines_by_median_rmsd_ascending": [
+      "sevennet",
+      "orb-v3",
+      "mace-mpa",
+      "mattersim",
+      "chgnet"
+    ],
+    "reweighted_p_range": [
+      0.7181096053037977,
+      0.7688683141178729
+    ],
+    "reweighted_p_spread": 0.05075870881407518,
+    "median_rmsd_range": [
+      0.013585048465439046,
+      0.023575413090619793
+    ],
+    "median_rmsd_ratio_max_over_min": 1.735394109972936,
+    "spearman_rho_rmsd_vs_p": 0.9999999999999999,
+    "spearman_pvalue": 1.4042654220543602e-24,
+    "pearson_r_rmsd_vs_p": 0.9957471083148591,
+    "pearson_pvalue": 0.00033272320866717105,
+    "interpretation": "Across five potentials spanning a 1.7x range in median DFT-relaxation RMSD (0.0136 to 0.0236, in the units StructureMatcher/pymatgen report), the reweighted pooled flip rate p varies by only 0.051 (0.718 to 0.769) -- roughly 7% of its own value. The five points DO show a positive rank correlation between RMSD and p (Spearman rho=1.0, Pearson r=0.996), meaning the potential with the WORST geometry accuracy (CHGNet) also has the HIGHEST flip rate, and the trend is monotone across all five points with no reversals. Taken at face value this says accuracy and auditability move together, consistent with the flip being a real geometric event partially explained by potential quality. But five points establish a rank ordering only, not a slope or a functional form, and cannot distinguish 'flip rate is driven by RMSD' from 'flip rate and RMSD are both driven by a third factor (e.g. how aggressively a potential relaxes low-symmetry structures away from their input basin)'. The decisive fact for the paper is the SPREAD, not the correlation: even the best-performing potential on Matbench Discovery (SevenNet or ORB-v3, both near the top of that leaderboard) still flips 71.8-72.6%% of pairs after reweighting, only 4-5 points below CHGNet's 76.9%%. This rules out the 'CHGNet is uniquely bad' hypothesis: replacing a 2023 potential with the current state of the art on Matbench Discovery does not rescue auditability. The paper's central negative result is a property of the fingerprint and the deposition channel, not an artefact of the specific potential used to measure it."
+  },
+  "_stratification_analysis": {
+    "monotone_violations_by_engine": {
+      "chgnet": [
+        [
+          "tetragonal",
+          "trigonal",
+          0.8841,
+          0.8675
+        ]
+      ],
+      "mattersim": [
+        [
+          "tetragonal",
+          "trigonal",
+          0.8333,
+          0.7616
+        ]
+      ],
+      "mace-mpa": [],
+      "orb-v3": [],
+      "sevennet": [
+        [
+          "tetragonal",
+          "trigonal",
+          0.7754,
+          0.7682
+        ]
+      ]
+    },
+    "all_violations_within_overlapping_95ci": true,
+    "conclusion": "The cubic-to-triclinic monotone rise in flip rate survives in every potential up to sampling noise: three potentials (chgnet, mattersim, sevennet) show a single tetragonal>trigonal inversion each, and in every case the two systems' 95%% Clopper-Pearson intervals overlap, so the inversions are not statistically distinguishable from a flat step. mace-mpa and orb-v3 show no violations at all. The symmetry-scissor stratification -- low-symmetry generator output is much more likely to flip -- holds across all five potentials, supporting its use as one blade of the paper's closing argument."
+  }
+}

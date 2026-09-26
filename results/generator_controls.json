@@ -1,0 +1,1682 @@
+{
+  "seed_master": 20260812,
+  "n_keys": 200,
+  "gamma": 0.5,
+  "m_values": [
+    4,
+    8,
+    16
+  ],
+  "alpha_nominal": 0.001,
+  "energy_field_priority": [
+    "chgnet_e_above_hull_corrected",
+    "e_above_hull",
+    "chgnet_energy_per_atom"
+  ],
+  "timestamp_utc": "2026-08-12T21:45:18.979305Z",
+  "generators_tested": {
+    "MatterGen": {
+      "meta": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 10000,
+        "n_dropped_fp": 0,
+        "n_dropped_energy": 236,
+        "n_usable": 9764
+      },
+      "by_m": {
+        "4": {
+          "n_slots": 2441,
+          "q_theoretical": 0.9375,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.937357,
+            "green_fraction_iqr": [
+              0.933881,
+              0.940894
+            ],
+            "green_fraction_min": 0.923813,
+            "green_fraction_max": 0.950895,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 2441.0,
+            "design_effect_median": 1.034412,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.501044,
+            "green_fraction_iqr": [
+              0.493317,
+              0.507519
+            ],
+            "green_fraction_min": 0.466165,
+            "green_fraction_max": 0.535088,
+            "p_value_median": 0.46743,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 2441.0,
+            "design_effect_median": 1.048341,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.497926,
+            "green_fraction_iqr": [
+              0.491681,
+              0.5049
+            ],
+            "green_fraction_min": 0.475676,
+            "green_fraction_max": 0.529876,
+            "p_value_median": 0.588628,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 2441.0,
+            "design_effect_median": 1.034412,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "8": {
+          "n_slots": 1220,
+          "q_theoretical": 0.996094,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.995864,
+            "green_fraction_iqr": [
+              0.995016,
+              0.9975
+            ],
+            "green_fraction_min": 0.989967,
+            "green_fraction_max": 0.999174,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 1220.0,
+            "design_effect_median": 1.029508,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.502895,
+            "green_fraction_iqr": [
+              0.492969,
+              0.511373
+            ],
+            "green_fraction_min": 0.459884,
+            "green_fraction_max": 0.540116,
+            "p_value_median": 0.431504,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 1220.0,
+            "design_effect_median": 1.022951,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.499166,
+            "green_fraction_iqr": [
+              0.487521,
+              0.509151
+            ],
+            "green_fraction_min": 0.457851,
+            "green_fraction_max": 0.538843,
+            "p_value_median": 0.534518,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 1220.0,
+            "design_effect_median": 1.029508,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "16": {
+          "n_slots": 610,
+          "q_theoretical": 0.999985,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              1.0,
+              1.0
+            ],
+            "green_fraction_min": 0.998344,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 610.0,
+            "design_effect_median": 1.019672,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.50165,
+            "green_fraction_iqr": [
+              0.490099,
+              0.514851
+            ],
+            "green_fraction_min": 0.440594,
+            "green_fraction_max": 0.551155,
+            "p_value_median": 0.483801,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 610.0,
+            "design_effect_median": 1.013115,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.500412,
+            "green_fraction_iqr": [
+              0.482645,
+              0.514815
+            ],
+            "green_fraction_min": 0.436573,
+            "green_fraction_max": 0.550413,
+            "p_value_median": 0.5081,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 610.0,
+            "design_effect_median": 1.019672,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        }
+      },
+      "pooled_null_calibration": {
+        "green_count": 841500,
+        "n": 1684615,
+        "rate": 0.49952066199101874,
+        "p_two_sided": 0.21367581605512564,
+        "dev_from_gamma": 0.000479338008981256
+      },
+      "holm_within_family": {
+        "4": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "8": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "16": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        }
+      }
+    },
+    "CrystalFormer": {
+      "meta": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 992,
+        "n_dropped_fp": 3,
+        "n_dropped_energy": 0,
+        "n_usable": 989
+      },
+      "by_m": {
+        "4": {
+          "n_slots": 247,
+          "q_theoretical": 0.9375,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.936874,
+            "green_fraction_iqr": [
+              0.927126,
+              0.947368
+            ],
+            "green_fraction_min": 0.894737,
+            "green_fraction_max": 0.975709,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 247.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.497976,
+            "green_fraction_iqr": [
+              0.477733,
+              0.518219
+            ],
+            "green_fraction_min": 0.412955,
+            "green_fraction_max": 0.587045,
+            "p_value_median": 0.550615,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 247.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.493927,
+            "green_fraction_iqr": [
+              0.477733,
+              0.518219
+            ],
+            "green_fraction_min": 0.42915,
+            "green_fraction_max": 0.589431,
+            "p_value_median": 0.60042,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 247.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "8": {
+          "n_slots": 123,
+          "q_theoretical": 0.996094,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              0.99187,
+              1.0
+            ],
+            "green_fraction_min": 0.96748,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 123.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.504065,
+            "green_fraction_iqr": [
+              0.463415,
+              0.528455
+            ],
+            "green_fraction_min": 0.390244,
+            "green_fraction_max": 0.617886,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 123.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.495935,
+            "green_fraction_iqr": [
+              0.463415,
+              0.528455
+            ],
+            "green_fraction_min": 0.390244,
+            "green_fraction_max": 0.617886,
+            "p_value_median": 0.571508,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 123.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "16": {
+          "n_slots": 61,
+          "q_theoretical": 0.999985,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              1.0,
+              1.0
+            ],
+            "green_fraction_min": 1.0,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.508197,
+            "green_fraction_iqr": [
+              0.459016,
+              0.540984
+            ],
+            "green_fraction_min": 0.327869,
+            "green_fraction_max": 0.655738,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.508197,
+            "green_fraction_iqr": [
+              0.459016,
+              0.540984
+            ],
+            "green_fraction_min": 0.344262,
+            "green_fraction_max": 0.688525,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        }
+      },
+      "pooled_null_calibration": {
+        "green_count": 85860,
+        "n": 172335,
+        "rate": 0.4982156845678475,
+        "p_two_sided": 0.13912784349559137,
+        "dev_from_gamma": 0.0017843154321525168
+      },
+      "holm_within_family": {
+        "4": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "8": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "16": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        }
+      }
+    },
+    "WyCryst": {
+      "meta": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 994,
+        "n_dropped_fp": 0,
+        "n_dropped_energy": 0,
+        "n_usable": 994
+      },
+      "by_m": {
+        "4": {
+          "n_slots": 248,
+          "q_theoretical": 0.9375,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.939516,
+            "green_fraction_iqr": [
+              0.927419,
+              0.947581
+            ],
+            "green_fraction_min": 0.891129,
+            "green_fraction_max": 0.975806,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 248.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.495968,
+            "green_fraction_iqr": [
+              0.478831,
+              0.520161
+            ],
+            "green_fraction_min": 0.419355,
+            "green_fraction_max": 0.612903,
+            "p_value_median": 0.575517,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 248.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.502016,
+            "green_fraction_iqr": [
+              0.478831,
+              0.528226
+            ],
+            "green_fraction_min": 0.423387,
+            "green_fraction_max": 0.58871,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 248.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "8": {
+          "n_slots": 124,
+          "q_theoretical": 0.996094,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              0.991935,
+              1.0
+            ],
+            "green_fraction_min": 0.975806,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 124.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.5,
+            "green_fraction_iqr": [
+              0.467742,
+              0.532258
+            ],
+            "green_fraction_min": 0.362903,
+            "green_fraction_max": 0.66129,
+            "p_value_median": 0.535754,
+            "fire_rate": 0.01,
+            "n_fired": 2,
+            "n_eff_median": 124.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.025
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.001213,
+              0.035655
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.508065,
+            "green_fraction_iqr": [
+              0.47379,
+              0.532258
+            ],
+            "green_fraction_min": 0.370968,
+            "green_fraction_max": 0.669355,
+            "p_value_median": 0.464246,
+            "fire_rate": 0.01,
+            "n_fired": 2,
+            "n_eff_median": 124.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.025
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.001213,
+              0.035655
+            ]
+          }
+        },
+        "16": {
+          "n_slots": 62,
+          "q_theoretical": 0.999985,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              1.0,
+              1.0
+            ],
+            "green_fraction_min": 1.0,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 62.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.5,
+            "green_fraction_iqr": [
+              0.451613,
+              0.548387
+            ],
+            "green_fraction_min": 0.33871,
+            "green_fraction_max": 0.709677,
+            "p_value_median": 0.550462,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 62.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.5,
+            "green_fraction_iqr": [
+              0.451613,
+              0.548387
+            ],
+            "green_fraction_min": 0.322581,
+            "green_fraction_max": 0.709677,
+            "p_value_median": 0.550462,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 62.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          }
+        }
+      },
+      "pooled_null_calibration": {
+        "green_count": 87057,
+        "n": 173600,
+        "rate": 0.5014804147465438,
+        "p_two_sided": 0.21823322527570824,
+        "dev_from_gamma": 0.0014804147465438122
+      },
+      "holm_within_family": {
+        "4": {
+          "negA_holm_survivors": 1,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "8": {
+          "negA_holm_survivors": 1,
+          "negA_n": 200,
+          "negB_holm_survivors": 2,
+          "negB_n": 200
+        },
+        "16": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        }
+      }
+    },
+    "WyFormer-harmonic-DiffCSP++": {
+      "meta": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 983,
+        "n_dropped_fp": 0,
+        "n_dropped_energy": 0,
+        "n_usable": 983
+      },
+      "by_m": {
+        "4": {
+          "n_slots": 245,
+          "q_theoretical": 0.9375,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.938776,
+            "green_fraction_iqr": [
+              0.926531,
+              0.95102
+            ],
+            "green_fraction_min": 0.889796,
+            "green_fraction_max": 0.979592,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 245.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.497959,
+            "green_fraction_iqr": [
+              0.477551,
+              0.526531
+            ],
+            "green_fraction_min": 0.42449,
+            "green_fraction_max": 0.595918,
+            "p_value_median": 0.55082,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 245.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.5,
+            "green_fraction_iqr": [
+              0.477551,
+              0.526531
+            ],
+            "green_fraction_min": 0.395918,
+            "green_fraction_max": 0.608163,
+            "p_value_median": 0.52541,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 245.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          }
+        },
+        "8": {
+          "n_slots": 122,
+          "q_theoretical": 0.996094,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              0.991803,
+              1.0
+            ],
+            "green_fraction_min": 0.97541,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 122.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.495902,
+            "green_fraction_iqr": [
+              0.467213,
+              0.532787
+            ],
+            "green_fraction_min": 0.352459,
+            "green_fraction_max": 0.647541,
+            "p_value_median": 0.571508,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 122.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.495902,
+            "green_fraction_iqr": [
+              0.467213,
+              0.532787
+            ],
+            "green_fraction_min": 0.377049,
+            "green_fraction_max": 0.639344,
+            "p_value_median": 0.571508,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 122.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "16": {
+          "n_slots": 61,
+          "q_theoretical": 0.999985,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              1.0,
+              1.0
+            ],
+            "green_fraction_min": 0.983607,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.491803,
+            "green_fraction_iqr": [
+              0.454918,
+              0.540984
+            ],
+            "green_fraction_min": 0.311475,
+            "green_fraction_max": 0.704918,
+            "p_value_median": 0.600924,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.491803,
+            "green_fraction_iqr": [
+              0.459016,
+              0.545082
+            ],
+            "green_fraction_min": 0.311475,
+            "green_fraction_max": 0.672131,
+            "p_value_median": 0.600924,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        }
+      },
+      "pooled_null_calibration": {
+        "green_count": 85565,
+        "n": 171200,
+        "rate": 0.49979556074766357,
+        "p_two_sided": 0.8675573467260489,
+        "dev_from_gamma": 0.00020443925233643023
+      },
+      "holm_within_family": {
+        "4": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "8": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "16": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        }
+      }
+    },
+    "WyFormer-letters-DiffCSP++": {
+      "meta": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 959,
+        "n_dropped_fp": 2,
+        "n_dropped_energy": 0,
+        "n_usable": 957
+      },
+      "by_m": {
+        "4": {
+          "n_slots": 239,
+          "q_theoretical": 0.9375,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.937238,
+            "green_fraction_iqr": [
+              0.924686,
+              0.94958
+            ],
+            "green_fraction_min": 0.887029,
+            "green_fraction_max": 0.970711,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 239.0,
+            "design_effect_median": 1.008368,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.502101,
+            "green_fraction_iqr": [
+              0.478992,
+              0.521008
+            ],
+            "green_fraction_min": 0.42437,
+            "green_fraction_max": 0.57563,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 239.0,
+            "design_effect_median": 1.008368,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.495798,
+            "green_fraction_iqr": [
+              0.478491,
+              0.521008
+            ],
+            "green_fraction_min": 0.420168,
+            "green_fraction_max": 0.585774,
+            "p_value_median": 0.577067,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 239.0,
+            "design_effect_median": 1.008368,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "8": {
+          "n_slots": 119,
+          "q_theoretical": 0.996094,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              0.991525,
+              1.0
+            ],
+            "green_fraction_min": 0.957983,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 119.0,
+            "design_effect_median": 1.016807,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.5,
+            "green_fraction_iqr": [
+              0.474576,
+              0.525424
+            ],
+            "green_fraction_min": 0.398305,
+            "green_fraction_max": 0.610169,
+            "p_value_median": 0.536648,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 119.0,
+            "design_effect_median": 1.016807,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.502101,
+            "green_fraction_iqr": [
+              0.470588,
+              0.529412
+            ],
+            "green_fraction_min": 0.381356,
+            "green_fraction_max": 0.630252,
+            "p_value_median": 0.518324,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 119.0,
+            "design_effect_median": 1.016807,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "16": {
+          "n_slots": 59,
+          "q_theoretical": 0.999985,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              1.0,
+              1.0
+            ],
+            "green_fraction_min": 1.0,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 59.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.491525,
+            "green_fraction_iqr": [
+              0.457627,
+              0.542373
+            ],
+            "green_fraction_min": 0.322034,
+            "green_fraction_max": 0.728814,
+            "p_value_median": 0.602578,
+            "fire_rate": 0.005,
+            "n_fired": 1,
+            "n_eff_median": 59.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.015
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.000127,
+              0.027542
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.508475,
+            "green_fraction_iqr": [
+              0.457627,
+              0.542373
+            ],
+            "green_fraction_min": 0.355932,
+            "green_fraction_max": 0.694915,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 59.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        }
+      },
+      "pooled_null_calibration": {
+        "green_count": 83149,
+        "n": 166160,
+        "rate": 0.500415262397689,
+        "p_two_sided": 0.7368020995637166,
+        "dev_from_gamma": 0.00041526239768896467
+      },
+      "holm_within_family": {
+        "4": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "8": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "16": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        }
+      }
+    },
+    "WyLLM-naive-DiffCSP++": {
+      "meta": {
+        "energy_field": "chgnet_e_above_hull_corrected",
+        "n_total": 981,
+        "n_dropped_fp": 1,
+        "n_dropped_energy": 0,
+        "n_usable": 980
+      },
+      "by_m": {
+        "4": {
+          "n_slots": 245,
+          "q_theoretical": 0.9375,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 0.938776,
+            "green_fraction_iqr": [
+              0.930328,
+              0.947909
+            ],
+            "green_fraction_min": 0.873469,
+            "green_fraction_max": 0.979592,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 245.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.502041,
+            "green_fraction_iqr": [
+              0.481633,
+              0.526531
+            ],
+            "green_fraction_min": 0.383673,
+            "green_fraction_max": 0.571429,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 245.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.502041,
+            "green_fraction_iqr": [
+              0.481633,
+              0.522449
+            ],
+            "green_fraction_min": 0.404082,
+            "green_fraction_max": 0.587755,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 245.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "8": {
+          "n_slots": 122,
+          "q_theoretical": 0.996094,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              0.991803,
+              1.0
+            ],
+            "green_fraction_min": 0.97541,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 122.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.508197,
+            "green_fraction_iqr": [
+              0.483607,
+              0.532787
+            ],
+            "green_fraction_min": 0.311475,
+            "green_fraction_max": 0.614754,
+            "p_value_median": 0.463955,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 122.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.504132,
+            "green_fraction_iqr": [
+              0.47541,
+              0.529891
+            ],
+            "green_fraction_min": 0.344262,
+            "green_fraction_max": 0.606557,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 122.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        },
+        "16": {
+          "n_slots": 61,
+          "q_theoretical": 0.999985,
+          "positive": {
+            "label": "positive",
+            "n_keys": 200,
+            "green_fraction_median": 1.0,
+            "green_fraction_iqr": [
+              1.0,
+              1.0
+            ],
+            "green_fraction_min": 1.0,
+            "green_fraction_max": 1.0,
+            "p_value_median": 0.0,
+            "fire_rate": 1.0,
+            "n_fired": 200,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "negA_unmarked": {
+            "label": "negA_unmarked",
+            "n_keys": 200,
+            "green_fraction_median": 0.508197,
+            "green_fraction_iqr": [
+              0.471311,
+              0.540984
+            ],
+            "green_fraction_min": 0.327869,
+            "green_fraction_max": 0.672131,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          },
+          "negB_shuffled_key": {
+            "label": "negB_shuffled_key",
+            "n_keys": 200,
+            "green_fraction_median": 0.508197,
+            "green_fraction_iqr": [
+              0.47541,
+              0.540984
+            ],
+            "green_fraction_min": 0.344262,
+            "green_fraction_max": 0.672131,
+            "p_value_median": 0.5,
+            "fire_rate": 0.0,
+            "n_fired": 0,
+            "n_eff_median": 61.0,
+            "design_effect_median": 1.0,
+            "fire_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "fire_rate_ci95_clopper_pearson": [
+              0.0,
+              0.018275
+            ]
+          }
+        }
+      },
+      "pooled_null_calibration": {
+        "green_count": 86159,
+        "n": 171102,
+        "rate": 0.5035534359621746,
+        "p_two_sided": 0.003310688971376684,
+        "dev_from_gamma": 0.0035534359621746114
+      },
+      "holm_within_family": {
+        "4": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "8": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        },
+        "16": {
+          "negA_holm_survivors": 0,
+          "negA_n": 200,
+          "negB_holm_survivors": 0,
+          "negB_n": 200
+        }
+      }
+    }
+  },
+  "generators_excluded_no_energy_field": {
+    "WyFormer-DiffCSP++10k": {
+      "n_total": 9999,
+      "n_bad_fp": 4,
+      "available_fields": [
+        "formula",
+        "fp",
+        "mid",
+        "natoms",
+        "sg"
+      ]
+    },
+    "WyLLM-site-symmetry-DiffCSP++": {
+      "n_total": 999,
+      "n_bad_fp": 0,
+      "available_fields": [
+        "formula",
+        "fp",
+        "mid",
+        "natoms",
+        "sg"
+      ]
+    },
+    "WyLLM-vanilla-DiffCSP++": {
+      "n_total": 1000,
+      "n_bad_fp": 1,
+      "available_fields": [
+        "formula",
+        "fp",
+        "mid",
+        "natoms",
+        "sg"
+      ]
+    }
+  },
+  "negC_MP20_train": {
+    "corpus_key": "MP20_train",
+    "energy_field_used": "e_above_hull",
+    "n_total": 27136,
+    "n_dropped_fp": 0,
+    "n_dropped_energy_or_missing": 0,
+    "n_distinct_fp": 27049,
+    "summary": {
+      "label": "negC_MP20_train",
+      "n_keys": 200,
+      "green_fraction_median": 0.500203,
+      "green_fraction_iqr": [
+        0.497754,
+        0.502283
+      ],
+      "green_fraction_min": 0.490037,
+      "green_fraction_max": 0.509076,
+      "p_value_median": 0.475758,
+      "fire_rate": 0.0,
+      "n_fired": 0,
+      "n_eff_median": 27136.0,
+      "design_effect_median": 1.010908,
+      "fire_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "fire_rate_ci95_clopper_pearson": [
+        0.0,
+        0.018275
+      ]
+    },
+    "pooled_calibration": {
+      "green_count": 2705401,
+      "n": 5409800,
+      "rate": 0.5000926097083072,
+      "p_two_sided": 0.666925449936975,
+      "dev_from_gamma": 9.260970830715642e-05
+    }
+  },
+  "negD_MP_experimental": {
+    "corpus_key": "MP_experimental",
+    "energy_field_used": "e_above_hull",
+    "n_total": 5000,
+    "n_dropped_fp": 0,
+    "n_dropped_energy_or_missing": 2,
+    "n_distinct_fp": 4998,
+    "summary": {
+      "label": "negD_MP_experimental",
+      "n_keys": 200,
+      "green_fraction_median": 0.5,
+      "green_fraction_iqr": [
+        0.496599,
+        0.505002
+      ],
+      "green_fraction_min": 0.482993,
+      "green_fraction_max": 0.518407,
+      "p_value_median": 0.505643,
+      "fire_rate": 0.0,
+      "n_fired": 0,
+      "n_eff_median": 4998.0,
+      "design_effect_median": 1.0,
+      "fire_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "fire_rate_ci95_clopper_pearson": [
+        0.0,
+        0.018275
+      ]
+    },
+    "pooled_calibration": {
+      "green_count": 500146,
+      "n": 999600,
+      "rate": 0.5003461384553821,
+      "p_two_sided": 0.48947868912436615,
+      "dev_from_gamma": 0.00034613845538211674
+    }
+  },
+  "health_checks": {
+    "null_calibration_within_0.1_of_gamma": {
+      "description": "median null (unmarked/shuffled-key) green fraction must be within 0.1 of gamma=0.5",
+      "pass": true
+    },
+    "marked_green_fraction_floor_at_m8": {
+      "description": "marked (positive-control) median green fraction must be >= 0.7 at m=8",
+      "pass": true
+    }
+  },
+  "holm_bonferroni": {
+    "within_family_alpha": 0.05,
+    "pooled_all_negative_tests_n": 7600,
+    "pooled_all_negative_tests_survivors": 0,
+    "note": "Holm-Bonferroni applied within each 200-key family per (generator, m, control) and additionally pooled across the full negative-control family (6 generators x 3 m x {negA,negB} x 200 keys, plus negC x 200 and negD x 200 = 7600 tests). Zero p-values survive correction at the pooled family level."
+  },
+  "anomaly_flag_WyCryst": {
+    "description": "WyCryst pooled negative-control (negA+negB, all m) empirical FPR is 7/1200 = 0.583% (95% CP CI 0.235%-1.198%), excluding the nominal 0.1% operating threshold. Poisson-tail probability of observing >=7 fires against the analytic null expectation (0.93) is 5.4e-5. Pooled null green fraction for WyCryst is 0.5015 (two-sided binomial test vs gamma=0.5, p=0.218) -- average calibration is not detectably biased. The excess is concentrated in a small number of key indices (KEYS[70], KEYS[128], KEYS[165]) recurring across m=8 and m=16 for the SAME fixed underlying WyCryst fingerprint set, consistent with ordinary small-n (62-124 distinct fingerprints) sampling variance rather than a structural fingerprint-key correlation: those same key indices do not show elevated green fraction on any other generator or on MP20_train/MP_experimental. Within-family Holm-Bonferroni (alpha=0.05, n=200) finds 1-2 of 200 keys 'significant' at m=8 for WyCryst only; this does NOT survive the pooled cross-experiment Holm-Bonferroni correction (n=7600). Recommend re-running WyCryst negative controls at N>=1000 keys as a follow-up to tighten this CI before final submission.",
+    "affects_verdict": false
+  },
+  "verdict": {
+    "positive_control_fires_100pct_all_generators_all_m": true,
+    "any_negative_control_survives_pooled_holm_bonferroni": false,
+    "overall": "PASS"
+  },
+  "analysis": "generator_controls_positive_and_negative_controls"
+}

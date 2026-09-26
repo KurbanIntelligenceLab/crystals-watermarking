@@ -1,0 +1,52 @@
+{
+  "supercell 2x1x1": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "supercell 3x1x1": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "supercell 2x2x1": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "supercell 2x2x2": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "origin shift": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "atom relabelling": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "unimodular basis": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "rigid rotation": {
+    "kept": 71,
+    "n": 71,
+    "rate": 1.0
+  },
+  "strain 1% (NOT in G)": {
+    "kept": 6,
+    "n": 71,
+    "rate": 0.08450704225352113
+  },
+  "strain 5% (NOT in G)": {
+    "kept": 0,
+    "n": 71,
+    "rate": 0.0
+  }
+}

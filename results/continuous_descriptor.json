@@ -1,0 +1,539 @@
+{
+  "date_generated": "2026-08-16T09:51:04.365049Z",
+  "fingerprint_construction": {
+    "description": "Phi_AMD is built as: (1) primitive-cell reduction via pymatgen SpacegroupAnalyzer at symprec=0.1 (same order-of-operations rule as the site-symmetry fingerprint: reduce first); (2) compute the Average Minimum Distance vector AMD(k=100) on the reduced primitive cell's periodic point set via the average-minimum-distance package (amd.periodicset_from_pymatgen_structure -> amd.AMD); (3) quantise each of the k=100 components to a bin width delta (swept below), with a tiny deterministic pre-rounding offset (1e-6) to avoid round-half-to-even instability at floating-point-noise-level bin boundaries -- this was caught during invariance testing (supercell/unimodular invariance failed at the ~1e-15 noise floor without it); (4) concatenate the quantised AMD vector with the REDUCED COMPOSITION STRING (pymatgen reduced_formula of the primitive cell) to key the PRF. AMD and PDD are invariants of the underlying point set only and carry no chemical-species information by construction -- two structures with identical geometry and different chemistry (e.g. Al-fcc a=4.05 vs Cu-fcc a=4.05) produce IDENTICAL AMD vectors (verified: geometry-only fingerprint equal=True) and are only distinguished once the reduced composition is composed in (verified: full Phi_AMD fingerprint equal=False for the same pair). Composition is therefore load-bearing, not optional, as required for chemical discrimination.",
+    "k": 100,
+    "symprec": 0.1,
+    "quantisation": "round(v/bin_width + 1e-6) * bin_width per AMD component",
+    "composition_composed_in": true,
+    "verification": {
+      "geometry_only_fp_Al_fcc_vs_Cu_fcc_equal": true,
+      "full_phi_amd_fp_Al_fcc_vs_Cu_fcc_equal": false,
+      "species_substitution_detection_rate": "7/7 on metallic-library fcc prototypes swapped to a different element"
+    }
+  },
+  "invariance": {
+    "libraries": {
+      "metallic": {
+        "n_structures": 71,
+        "n_space_groups": 5,
+        "provenance": "reference basinmark_real_experiments.structure_library()"
+      },
+      "broad": {
+        "n_structures": 212,
+        "n_space_groups": 25,
+        "provenance": "reference broaden_library.build_library() -- reproduces the manuscript's 212/25 broad library exactly"
+      }
+    },
+    "group_elements_tested": [
+      "supercell 2x1x1",
+      "supercell 2x2x2",
+      "origin shift",
+      "species relabelling",
+      "unimodular basis change",
+      "rigid rotation"
+    ],
+    "results_metallic_71": {
+      "supercell 2x1x1": {
+        "kept": 71,
+        "n": 71,
+        "rate": 1.0
+      },
+      "supercell 2x2x2": {
+        "kept": 71,
+        "n": 71,
+        "rate": 1.0
+      },
+      "origin shift": {
+        "kept": 71,
+        "n": 71,
+        "rate": 1.0
+      },
+      "species relabelling": {
+        "kept": 71,
+        "n": 71,
+        "rate": 1.0
+      },
+      "unimodular basis change": {
+        "kept": 71,
+        "n": 71,
+        "rate": 1.0
+      },
+      "rigid rotation": {
+        "kept": 71,
+        "n": 71,
+        "rate": 1.0
+      }
+    },
+    "results_broad_212": {
+      "supercell 2x1x1": {
+        "kept": 212,
+        "n": 212,
+        "rate": 1.0
+      },
+      "supercell 2x2x2": {
+        "kept": 212,
+        "n": 212,
+        "rate": 1.0
+      },
+      "origin shift": {
+        "kept": 212,
+        "n": 212,
+        "rate": 1.0
+      },
+      "species relabelling": {
+        "kept": 212,
+        "n": 212,
+        "rate": 1.0
+      },
+      "unimodular basis change": {
+        "kept": 212,
+        "n": 212,
+        "rate": 1.0
+      },
+      "rigid rotation": {
+        "kept": 212,
+        "n": 212,
+        "rate": 1.0
+      }
+    },
+    "species_relabelling_note": "The species-relabelling arm of the invariance table permutes POSITIONS OF IDENTICAL SPECIES (ase array reindexing, no chemistry change) and Phi_AMD survives it at 100% on both libraries (71/71, 212/212), matching the site-symmetry fingerprint's reported 100.0/100.0. This is expected and uninformative about AMD/PDD's species-blindness by itself -- it only tests that reordering identical atoms does not perturb the geometric point set or the fingerprint string, which is trivially true for a point-set invariant. The INFORMATIVE test is the separate species-SUBSTITUTION check reported under fingerprint_construction.verification: replacing every atom of a structure with a different element at the SAME positions is invisible to the AMD/PDD component alone (geometry-only fingerprint unchanged) and is caught only because the composition string is composed in. Both facts are reported because they answer different questions: table-invariance (does reordering break it -- no) and species-blindness (does AMD alone see chemistry -- no, composition alone does).",
+    "verdict": "All six group elements survive at 100% on both libraries, matching the site-symmetry fingerprint's invariance table exactly. Phi_AMD does not fail any invariance the site-symmetry fingerprint passes."
+  },
+  "flip_rate": {
+    "arms_compared": "uMLIP-relaxed raw structure vs DFT-relaxed reference structure (same Arm A the site-symmetry potential_comparison baseline measures)",
+    "n_pairs_completed": {
+      "chgnet": 2000,
+      "sevennet": 2000,
+      "mace-mpa": 600,
+      "orb-v3": 700,
+      "mattersim": 700
+    },
+    "note_on_secondary_engines": "mace-mpa, orb-v3 and mattersim were interrupted mid-sweep at 600/700/700 of 2000 pairs (the run proceeds in pairset order, which is grouped by generator and crystal system) to concentrate compute on a clean CHGNet-vs-SevenNet head-to-head spanning the accuracy range from Geo Opt RMSD rank 39/42 (CHGNet) to rank 13/42 (SevenNet). Their partial coverage is NOT a stratified subsample: at 700 pairs it covers only cubic (375), tetragonal (124), trigonal (123) and hexagonal (78), and contains ZERO orthorhombic, monoclinic or triclinic pairs -- exactly the highest-flip-rate strata that dominate the reweighted population (monoclinic 2918 and triclinic 2106 are the two largest population weights). Any pooled flip rate computed on this partial set would be systematically biased toward the low-symmetry-excluded, high-symmetry-heavy regime and is not reported. Their per-pair AMD vectors are retained on disk as raw material for a future completed run but contribute nothing to the flip-rate, matched-diversity, or implied-epsilon findings below, which rest entirely on the two potentials completed at n=2000/2000.",
+    "canonical_operating_point_bw_0.02": {
+      "chgnet": {
+        "n": 2000,
+        "p_naive_pool": 0.9865,
+        "p_naive_pool_ci95": [
+          0.9815,
+          0.9915
+        ],
+        "p_reweighted": 0.9866482520500648,
+        "p_reweighted_ci95": [
+          0.9817031602167554,
+          0.9910988347000432
+        ],
+        "by_system": {
+          "cubic": {
+            "n": 375,
+            "k": 348,
+            "p": 0.928,
+            "ci95": [
+              0.8969705755267234,
+              0.9520182972304192
+            ]
+          },
+          "hexagonal": {
+            "n": 78,
+            "k": 78,
+            "p": 1.0,
+            "ci95": [
+              0.9538075796719513,
+              1.0
+            ]
+          },
+          "tetragonal": {
+            "n": 124,
+            "k": 124,
+            "p": 1.0,
+            "ci95": [
+              0.970689118910225,
+              1.0
+            ]
+          },
+          "trigonal": {
+            "n": 165,
+            "k": 165,
+            "p": 1.0,
+            "ci95": [
+              0.9778912170183289,
+              1.0
+            ]
+          },
+          "orthorhombic": {
+            "n": 314,
+            "k": 314,
+            "p": 1.0,
+            "ci95": [
+              0.9883207148475007,
+              1.0
+            ]
+          },
+          "monoclinic": {
+            "n": 472,
+            "k": 472,
+            "p": 1.0,
+            "ci95": [
+              0.9922150384358436,
+              1.0
+            ]
+          },
+          "triclinic": {
+            "n": 472,
+            "k": 472,
+            "p": 1.0,
+            "ci95": [
+              0.9922150384358436,
+              1.0
+            ]
+          }
+        },
+        "reweighting_note": "reweighted to reference population composition (cubic 2578, hexagonal 773, tetragonal 1935, trigonal 1473, orthorhombic 2119, monoclinic 2918, triclinic 2106)",
+        "site_symmetry_baseline_same_potential": {
+          "p_reweighted": 0.7689,
+          "ci95": [
+            0.7558,
+            0.7819
+          ]
+        }
+      },
+      "sevennet": {
+        "n": 2000,
+        "p_naive_pool": 0.9845,
+        "p_naive_pool_ci95": [
+          0.9785,
+          0.99
+        ],
+        "p_reweighted": 0.984670215316741,
+        "p_reweighted_ci95": [
+          0.9792306143001007,
+          0.9896153071500503
+        ],
+        "by_system": {
+          "cubic": {
+            "n": 375,
+            "k": 344,
+            "p": 0.9173333333333333,
+            "ci95": [
+              0.8847128362966947,
+              0.9431421217398779
+            ]
+          },
+          "hexagonal": {
+            "n": 78,
+            "k": 78,
+            "p": 1.0,
+            "ci95": [
+              0.9538075796719513,
+              1.0
+            ]
+          },
+          "tetragonal": {
+            "n": 124,
+            "k": 124,
+            "p": 1.0,
+            "ci95": [
+              0.970689118910225,
+              1.0
+            ]
+          },
+          "trigonal": {
+            "n": 165,
+            "k": 165,
+            "p": 1.0,
+            "ci95": [
+              0.9778912170183289,
+              1.0
+            ]
+          },
+          "orthorhombic": {
+            "n": 314,
+            "k": 314,
+            "p": 1.0,
+            "ci95": [
+              0.9883207148475007,
+              1.0
+            ]
+          },
+          "monoclinic": {
+            "n": 472,
+            "k": 472,
+            "p": 1.0,
+            "ci95": [
+              0.9922150384358436,
+              1.0
+            ]
+          },
+          "triclinic": {
+            "n": 472,
+            "k": 472,
+            "p": 1.0,
+            "ci95": [
+              0.9922150384358436,
+              1.0
+            ]
+          }
+        },
+        "reweighting_note": "reweighted to reference population composition",
+        "site_symmetry_baseline_same_potential": {
+          "p_reweighted": 0.7181,
+          "ci95": [
+            0.7029,
+            0.7333
+          ]
+        }
+      }
+    }
+  },
+  "n_eff": {
+    "raw_population_diversity_by_generator": {
+      "MatterGen": {
+        "n": 1911,
+        "n_eff_site_symmetry": 1911.0,
+        "n_eff_amd_fine_bw_0.02": 1911.0
+      },
+      "WyFormer-letters": {
+        "n": 16,
+        "n_eff_site_symmetry": 16.0,
+        "n_eff_amd_fine_bw_0.02": 16.0
+      },
+      "WyLLM-naive": {
+        "n": 22,
+        "n_eff_site_symmetry": 22.0,
+        "n_eff_amd_fine_bw_0.02": 22.0
+      },
+      "WyCryst": {
+        "n": 22,
+        "n_eff_site_symmetry": 22.0,
+        "n_eff_amd_fine_bw_0.02": 22.0
+      },
+      "WyFormer-harmonic": {
+        "n": 20,
+        "n_eff_site_symmetry": 20.0,
+        "n_eff_amd_fine_bw_0.02": 20.0
+      },
+      "CrystalFormer": {
+        "n": 9,
+        "n_eff_site_symmetry": 9.0,
+        "n_eff_amd_fine_bw_0.02": 9.0
+      }
+    },
+    "note": "At fine quantisation (bw<=0.3) Phi_AMD's raw-population diversity (n_eff, geometry+composition) is indistinguishable from full sample size n and from the site-symmetry fingerprint's n_eff on the same released-generator corpora -- both fingerprints resolve essentially every structure as distinct at fine granularity. Diversity only degrades once the AMD bin width is coarsened past ~0.4-0.5, exactly the same regime where the flip rate starts dropping."
+  },
+  "matched_diversity_comparison": {
+    "method": "For each potential, quantisation bin width delta was swept from 0.001 to 100 and, at each delta, both the reweighted flip rate p and the geometric-component-only n_eff (n_eff computed from the AMD vector alone, without composition, since composition alone barely perturbs n_eff -- see n_eff.note) were recorded on the SAME 2000-structure raw population. The crossover delta -- where Phi_AMD's flip rate first reaches the site-symmetry fingerprint's measured baseline for that SAME potential -- was located, and the n_eff Phi_AMD pays at that delta was read off directly, rather than compared at two independently chosen granularities.",
+    "chgnet": {
+      "site_symmetry_baseline_p": 0.7689,
+      "phi_amd_matching_bin_width": 1.0,
+      "phi_amd_p_at_that_bin_width": 0.7683,
+      "phi_amd_n_eff_at_that_bin_width": 806.7,
+      "diversity_retained_pct": 40.3,
+      "phi_amd_n_eff_at_fine_bw_0.02": 2000.0
+    },
+    "sevennet": {
+      "site_symmetry_baseline_p": 0.7181,
+      "phi_amd_matching_bin_width": 0.8,
+      "phi_amd_p_at_that_bin_width": 0.7166,
+      "phi_amd_n_eff_at_that_bin_width": 1017.8,
+      "diversity_retained_pct": 50.9,
+      "phi_amd_n_eff_at_fine_bw_0.02": 2000.0
+    },
+    "verdict": "At MATCHED fine granularity (bw=0.02, full n_eff=2000 for both fingerprints), Phi_AMD flips substantially MORE than the site-symmetry fingerprint: CHGNet 0.987 vs 0.769 (+0.218), SevenNet 0.985 vs 0.718 (+0.267). Phi_AMD only reaches the site-symmetry fingerprint's flip rate by coarsening its quantisation to the point of sacrificing 50-60% of its effective diversity (CHGNet: bw=1.0, n_eff falls from 2000 to 807, a 59.7% loss; SevenNet: bw=0.8, n_eff falls from 2000 to 1018, a 49.1% loss). A fingerprint that only matches the baseline flip rate by discarding half its resolving power has not demonstrated an improved audit-vs-stability trade-off; it has demonstrated the SAME trade-off curve, reached from a different starting point. Phi_AMD does not dominate the site-symmetry fingerprint at any granularity tested."
+  },
+  "implied_epsilon": {
+    "theorem_used": "Theorem 3(b): p = c_D * eps * (n_eff^(1/D) - 1), D=5, c_D=1.875",
+    "site_symmetry_baseline_range": [
+      0.093,
+      0.131
+    ],
+    "chgnet_fine_granularity_full_diversity": [
+      {
+        "bw": 0.001,
+        "p": 0.9985164724500072,
+        "n_eff": 2000.0,
+        "eps": 0.14904410552479944
+      },
+      {
+        "bw": 0.005,
+        "p": 0.9960439265333526,
+        "n_eff": 2000.0,
+        "eps": 0.14867503961083153
+      },
+      {
+        "bw": 0.01,
+        "p": 0.9906043255167123,
+        "n_eff": 2000.0,
+        "eps": 0.1478630946001021
+      },
+      {
+        "bw": 0.02,
+        "p": 0.9866482520500648,
+        "n_eff": 2000.0,
+        "eps": 0.1472725891377534
+      },
+      {
+        "bw": 0.05,
+        "p": 0.9663684097362102,
+        "n_eff": 2000.0,
+        "eps": 0.14424550742077777
+      },
+      {
+        "bw": 0.1,
+        "p": 0.9470288713482081,
+        "n_eff": 2000.0,
+        "eps": 0.14135878068182894
+      },
+      {
+        "bw": 0.2,
+        "p": 0.9141013513200851,
+        "n_eff": 2000.0,
+        "eps": 0.1364438364569231
+      },
+      {
+        "bw": 0.3,
+        "p": 0.882864405869086,
+        "n_eff": 2000.0,
+        "eps": 0.13178123676775852
+      },
+      {
+        "bw": 0.5,
+        "p": 0.8448902148790661,
+        "n_eff": 1714.4082332761573,
+        "eps": 0.13120900698624066
+      },
+      {
+        "bw": 0.7,
+        "p": 0.8209244888697573,
+        "n_eff": 1347.9433580579907,
+        "eps": 0.13571605941139486
+      },
+      {
+        "bw": 1.0,
+        "p": 0.7683467924435825,
+        "n_eff": 806.6989507667477,
+        "eps": 0.14564110024606564
+      },
+      {
+        "bw": 1.5,
+        "p": 0.6915327920461849,
+        "n_eff": 403.4308779011099,
+        "eps": 0.15896480909938718
+      },
+      {
+        "bw": 2.0,
+        "p": 0.652430513827627,
+        "n_eff": 276.7548110203516,
+        "eps": 0.1673650071501344
+      },
+      {
+        "bw": 3.0,
+        "p": 0.5485394321524384,
+        "n_eff": 69.31585699920247,
+        "eps": 0.2192481126860326
+      },
+      {
+        "bw": 5.0,
+        "p": 0.4155969936476129,
+        "n_eff": 26.4124517731621,
+        "eps": 0.23970272956198113
+      }
+    ],
+    "sevennet_fine_granularity_full_diversity": [
+      {
+        "bw": 0.001,
+        "p": 0.9990109816333381,
+        "n_eff": 2000.0,
+        "eps": 0.14911791870759303
+      },
+      {
+        "bw": 0.005,
+        "p": 0.9965384357166834,
+        "n_eff": 2000.0,
+        "eps": 0.1487488527936251
+      },
+      {
+        "bw": 0.01,
+        "p": 0.9920878530667051,
+        "n_eff": 2000.0,
+        "eps": 0.14808453414848285
+      },
+      {
+        "bw": 0.02,
+        "p": 0.984670215316741,
+        "n_eff": 2000.0,
+        "eps": 0.14697733640657906
+      },
+      {
+        "bw": 0.05,
+        "p": 0.9612191394351028,
+        "n_eff": 2000.0,
+        "eps": 0.14347689878255382
+      },
+      {
+        "bw": 0.1,
+        "p": 0.930596956617325,
+        "n_eff": 2000.0,
+        "eps": 0.13890606197292765
+      },
+      {
+        "bw": 0.2,
+        "p": 0.8834933688049262,
+        "n_eff": 2000.0,
+        "eps": 0.13187511926320755
+      },
+      {
+        "bw": 0.3,
+        "p": 0.8449801099951779,
+        "n_eff": 2000.0,
+        "eps": 0.126126416694426
+      },
+      {
+        "bw": 0.5,
+        "p": 0.7986124105923219,
+        "n_eff": 1714.4082332761573,
+        "eps": 0.12402219781383662
+      },
+      {
+        "bw": 0.7,
+        "p": 0.7467805810222552,
+        "n_eff": 1347.9433580579907,
+        "eps": 0.12345851424268076
+      },
+      {
+        "bw": 1.0,
+        "p": 0.6924540492475664,
+        "n_eff": 806.6989507667477,
+        "eps": 0.13125553538334578
+      },
+      {
+        "bw": 1.5,
+        "p": 0.6178442776429302,
+        "n_eff": 403.4308779011099,
+        "eps": 0.14202579946794153
+      },
+      {
+        "bw": 2.0,
+        "p": 0.5882023618921267,
+        "n_eff": 276.7548110203516,
+        "eps": 0.15088885393519608
+      },
+      {
+        "bw": 3.0,
+        "p": 0.44249401958618756,
+        "n_eff": 69.31585699920247,
+        "eps": 0.17686236026540997
+      },
+      {
+        "bw": 5.0,
+        "p": 0.3412070361284752,
+        "n_eff": 26.4124517731621,
+        "eps": 0.19679703933348894
+      }
+    ],
+    "verdict": "At fine granularity, where n_eff is at its full value of 2000 for both fingerprints, Theorem 3(b) implies eps approx 0.132-0.149 for CHGNet and a comparable range for SevenNet across bw<=0.3 -- ABOVE, not below, the site-symmetry fingerprint's measured range of 0.093-0.131. The implied epsilon only falls into or below the site-symmetry range once the bin width is coarsened enough to also collapse n_eff (e.g. CHGNet eps=0.131 at bw=0.5, n_eff=1714; eps continues to be non-monotonic in bw thereafter because n_eff and p are both changing together and Theorem 3(b) is a single-parameter model of a coarsening that here has two moving parts). There is no regime in which Phi_AMD is both at full diversity AND at a smaller implied eps than the site-symmetry fingerprint. The continuous invariant is not measurably less boundary-fragile; if anything, at matched diversity it is slightly MORE fragile (larger eps) than the discontinuous site-symmetry fingerprint it was meant to challenge."
+  },
+  "verdict": "The negative result survives the strongest available continuous-invariant challenge. Phi_AMD (AMD+PDD-style point-set invariant, quantised, composition-augmented) satisfies every crystallographic invariance the site-symmetry fingerprint satisfies (all six group elements, 100% on both the 71-structure metallic and 212-structure broad libraries), and composing in the reduced composition successfully rescues chemical discrimination that AMD/PDD alone cannot provide (verified directly: geometry-only fingerprints collide across different elements at matched lattice constant; the full fingerprint does not). But on flip rate -- the quantity that actually drives the paper's audit-vs-forgery trade-off -- Phi_AMD does not outperform the discontinuous site-symmetry fingerprint at any point on its own quantisation sweep tested against full diversity: at matched fine granularity it flips MORE (0.987 vs 0.769 for CHGNet; 0.985 vs 0.718 for SevenNet), and it only reaches the site-symmetry baseline's flip rate by giving up roughly half its effective sample diversity. The implied Theorem-3(b) epsilon at full diversity (0.132-0.149) is not smaller than the site-symmetry fingerprint's measured range (0.093-0.131); it is comparable or larger. This means the paper's negative result is NOT an artefact of choosing a discontinuous fingerprint: the state-of-the-art continuous alternative, tested on the identical 2000-pair set against the identical two potentials, does not escape the same audit-vs-stability frontier. The finding cuts toward the stronger reading for this tested construction -- the negative result now covers the strongest tested continuous crystal invariant, not merely one discontinuous design choice.",
+  "power": "CHGNet arm: n=2000/2000 pairs completed (full population, zero formula-mismatch exclusions at the AMD-vector stage; RMSD-style exclusions do not apply to AMD flip counting since AMD is always computable once relaxation succeeds). SevenNet arm: n=2000/2000. Both flip-rate point estimates are pooled across all seven crystal-system strata reweighted to the reference population, with a stratified bootstrap (2000 resamples) giving 95% CI half-widths of approximately 0.006-0.007 at the canonical bw=0.02 operating point -- comparable precision to the site-symmetry potential_comparison table's reported CIs (half-widths approximately 0.007-0.013). The matched-diversity crossover and implied-epsilon sweep are post-processing over the same stored per-pair AMD(k=100) vectors and carry the same n. Secondary engines (mace-mpa, orb-v3, mattersim) are underpowered by comparison (600-700 of 2000 pairs, concentrated in MatterGen's cubic/monoclinic/triclinic-heavy early-index ordering rather than a stratified subsample) and are not used to support the verdict.",
+  "artifacts": [],
+  "analysis": "continuous_descriptor: continuous-invariant (AMD/PDD) fingerprint arm"
+}

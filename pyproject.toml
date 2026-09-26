@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "watermarking-crystals"
+version = "0.2.0"
+readme = "README.md"
+description = "Fingerprint audits and relaxation analyses for crystal watermarking"
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy"]
+
+[project.optional-dependencies]
+structures = ["pymatgen", "ase"]
+test = ["pytest>=8"]
+
+[project.scripts]
+basinmark = "basinmark.analyses:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pyright]
+pythonVersion = "3.10"
+extraPaths = ["src"]
+reportMissingImports = false
+reportMissingTypeStubs = false

@@ -1,0 +1,16 @@
+include README.md
+include scripts/build_release.py
+include LICENSE
+include formal/lean-toolchain
+include formal/.gitignore
+recursive-include results *.json *.csv
+recursive-include formal *.lean *.toml *.json *.py *.md
+include formal/BasinMark/External/LICENSE
+prune formal/.lake
+prune data
+prune development
+prune final_manuscript
+prune final_template
+prune manuscript
+prune manuscripts
+global-exclude .DS_Store *.py[cod]
