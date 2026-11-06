@@ -162,7 +162,8 @@ def main():
     parser.add_argument("--dataset", choices=SOURCES, required=True)
     parser.add_argument("--directory", type=Path, required=True)
     parser.add_argument("--limit", type=int)
-    parser.add_argument("--exclude-cohort", type=Path, help="reserve every ID sampled previously")
+    parser.add_argument("--exclude-cohort", type=Path, action="append", default=[],
+                        help="reserve previously sampled IDs; repeat for multiple cohorts")
     parser.add_argument("--seed", type=int, default=1729)
     parser.add_argument("--digits", type=int, default=5)
     parser.add_argument("--workers", type=int, default=1)
@@ -192,14 +193,14 @@ def main():
     ]
     finite_energies = len(items)
     excluded = set()
-    if args.exclude_cohort:
-        previous = JsonStore(args.exclude_cohort).read_object()
+    for excluded_file in args.exclude_cohort:
+        previous = JsonStore(excluded_file).read_object()
         if previous["metadata"]["sha256"] != digest:
             parser.error("excluded cohort belongs to another source")
-        excluded = {r["id"] for r in previous["rows"]}
+        excluded.update(r["id"] for r in previous["rows"])
         if not excluded <= ids:
             parser.error("excluded cohort contains unknown IDs")
-        items = [row for row in items if row[0] not in excluded]
+    items = [row for row in items if row[0] not in excluded]
     usable = len(items)
     if args.limit is not None:
         if not 0 < args.limit <= usable:

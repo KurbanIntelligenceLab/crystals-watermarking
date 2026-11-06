@@ -5,7 +5,9 @@ include LICENSE
 include formal/lean-toolchain
 include formal/.gitignore
 recursive-include results *.json *.json.gz *.csv *.md
-include results/v0.3/SHA256SUMS
+include scripts/benchmark_allocation.py scripts/benchmark_reference.py scripts/prepare_phononbench.py
+include scripts/calibrate_allocation.py scripts/profile_allocation.py scripts/replay_allocation.py scripts/benchmark_frontier.py
+include results/v0.3/SHA256SUMS results/v0.4/SHA256SUMS
 recursive-include formal *.lean *.toml *.json *.py *.md
 include formal/BasinMark/External/LICENSE
 prune formal/.lake

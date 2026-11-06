@@ -11,7 +11,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import __version__
+from . import __version__, select_collection
 from .classification import ClassificationConfig, FlipClassifier
 from .collections import collection_benchmark, key_controls, reuse
 from .core import (
@@ -435,6 +435,30 @@ def run_self_test(_):
         raise RuntimeError("self-test failed")
 
 
+def emit_collection(a):
+    records = JsonStore(a.candidates).read_object().get("candidates")
+    if not isinstance(records, list) or not records or any(
+        not isinstance(r, dict) or not isinstance(r.get("id"), str)
+        or not isinstance(r.get("fingerprint"), str)
+        or not isinstance(r.get("energy"), (float, int)) for r in records
+    ):
+        raise ValueError("expected candidates with string ID, fingerprint and numeric energy")
+    if len({r["id"] for r in records}) != len(records):
+        raise ValueError("duplicate candidate ID")
+    key = a.key_file.read_bytes()
+    if not key:
+        raise ValueError("empty key file")
+    selection = select_collection(
+        [r["fingerprint"] for r in records], [r["energy"] for r in records], key,
+        m=a.m, energy_window=a.energy_window, gamma=a.gamma, policy=a.policy,
+    )
+    output = [{"id": records[i]["id"], "energy": records[i]["energy"],
+               "reference_energy": float(ref)}
+              for i, ref in zip(selection.indices, selection.reference_energies, strict=True)]
+    save({"policy": a.policy, "m": a.m, "gamma": a.gamma, "energy_window": a.energy_window,
+          "selected": output}, a.out)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(
         prog="basinmark", description="Analyses supporting the manuscript and supplement."
@@ -450,6 +474,16 @@ def main(argv=None):
         )
         parser.add_argument("--gamma", type=float, default=GAMMA)
         parser.add_argument("--alpha", type=float, default=ALPHA)
+
+    p = sub.add_parser("select-collection", help="select interchangeable outputs from candidates")
+    p.add_argument("--candidates", type=Path, required=True)
+    p.add_argument("--key-file", type=Path, required=True, help="file containing raw key bytes")
+    p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--policy", choices=["fixed", "reserve", "pool", "budget"], default="budget")
+    p.add_argument("--m", type=int, default=M)
+    p.add_argument("--gamma", type=float, help="defaults to 0.625 for budget and 0.5 otherwise")
+    p.add_argument("--energy-window", type=float, default=0.1)
+    p.set_defaults(func=emit_collection)
 
     p = sub.add_parser("generator-controls", help="run marked and unmarked generator controls")
     common(p)
@@ -568,6 +602,8 @@ def main(argv=None):
     p.set_defaults(func=run_self_test)
 
     args = ap.parse_args(argv)
+    if args.analysis == "select-collection" and args.gamma is None:
+        args.gamma = 0.625 if args.policy == "budget" else 0.5
     if hasattr(args, "gamma") and not 0 < args.gamma < 1:
         ap.error("--gamma must be strictly between 0 and 1")
     if hasattr(args, "alpha") and not 0 < args.alpha < 1:

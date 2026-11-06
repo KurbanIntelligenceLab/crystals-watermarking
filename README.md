@@ -9,6 +9,10 @@
 
 **Corresponding authors:** Mustafa Kurban ([kurbanm@ankara.edu.tr](mailto:kurbanm@ankara.edu.tr)) and Hasan Kurban ([hkurban@hbku.edu.qa](mailto:hkurban@hbku.edu.qa)). Names link to ORCID profiles.
 
+## BasinMark 0.4
+
+Version 0.4 adds fixed-budget selection across interchangeable output slots. It includes paired baselines, downstream treatment of selected structures, independent material-quality labels, wrong-key controls and an optional reference-geometry comparison. [Results, energy guarantees and replay instructions](results/v0.4/README.md)
+
 ## BasinMark 0.3
 
 Version 0.3 adds an optional energy ceiling to keyed selection, collection audits after independent re-relaxation, and trial-level calibration and class-reuse benchmarks. The public measurement files support offline replay of the statistical results. See the [evaluation, results and reproduction instructions](results/v0.3/README.md).

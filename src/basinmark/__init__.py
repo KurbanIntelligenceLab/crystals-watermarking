@@ -1,5 +1,6 @@
 """Reusable tools for crystal watermark construction and auditing."""
 
+from .allocation import select_collection
 from .core import (
     AuditResult,
     audit,
@@ -27,7 +28,8 @@ __all__ = [
     "prf_uniform",
     "q_flipped",
     "q_green",
+    "select_collection",
     "select_green",
 ]
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
