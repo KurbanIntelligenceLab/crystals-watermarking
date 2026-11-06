@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 
+from basinmark import __version__
 from basinmark.analyses import main
 from basinmark.classification import ClassificationConfig, FlipComparison
 
@@ -36,4 +37,4 @@ def test_cli_reports_version(capsys):
     with pytest.raises(SystemExit) as raised:
         main(["--version"])
     assert raised.value.code == 0
-    assert capsys.readouterr().out.strip() == "basinmark 0.2.0"
+    assert capsys.readouterr().out.strip() == f"basinmark {__version__}"

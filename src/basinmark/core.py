@@ -90,7 +90,7 @@ def n_eff_plugin(counts) -> float:
     if c.size == 0 or np.any(c < 0) or c.sum() <= 0:
         return 0.0
     w = c / c.sum()
-    return float(1.0 / np.sum(w**2))
+    return min(float(np.count_nonzero(c)), float(1.0 / np.sum(w**2)))
 
 
 def n_eff_debiased(counts) -> float:
@@ -128,19 +128,26 @@ def is_green(fingerprint: str, key: bytes, gamma: float = 0.5) -> bool:
     return prf_uniform(fingerprint, key) < gamma
 
 
-def select_green(fingerprints, energies, key: bytes, gamma: float = 0.5):
-    """Emit the lowest-energy green candidate; the lowest-energy one if none is
-    green.  Returns (index, was_green)."""
+def select_green(fingerprints, energies, key: bytes, gamma: float = 0.5, *, energy_window=None):
+    """Select the lowest-energy eligible green, falling back to the batch minimum.
+
+    energy_window limits excess energy over the minimum in the supplied energy units.
+    Equal energies use input order. Return (index, was_green).
+    """
     fps = list(fingerprints)
     e = np.asarray(energies, dtype=float)
     if not fps or e.ndim != 1 or len(fps) != e.size:
         raise ValueError("fingerprints and energies must be nonempty and have equal length")
     if not np.isfinite(e).all():
         raise ValueError("energies must be finite")
-    green = [i for i, f in enumerate(fps) if is_green(f, key, gamma)]
+    if energy_window is not None and (not math.isfinite(energy_window) or energy_window < 0):
+        raise ValueError("energy_window must be finite and nonnegative")
+    best = int(np.argmin(e))
+    ceiling = math.inf if energy_window is None else e[best] + energy_window
+    green = [i for i, f in enumerate(fps) if e[i] <= ceiling and is_green(f, key, gamma)]
     if green:
         return int(min(green, key=lambda i: e[i])), True
-    return int(np.argmin(e)), False
+    return best, False
 
 
 @dataclass
@@ -156,6 +163,7 @@ class AuditResult:
     green_fraction: float
     deduplicated: bool
     ci95: tuple = field(default=(float("nan"), float("nan")))
+    n_eff_population_estimate: float = float("nan")
 
 
 def audit(
@@ -173,12 +181,13 @@ def audit(
     return AuditResult(
         n_structures=len(fps),
         n_distinct=len(counts),
-        n_eff=n_eff_debiased(list(counts.values())),
+        n_eff=n_eff_plugin(list(counts.values())),
+        n_eff_population_estimate=n_eff_debiased(list(counts.values())),
         design_effect=design_effect(list(counts.values())),
         green_count=g,
         n_units=n,
         p_value=pval,
-        fires=bool(n and g >= critical_value(n, gamma, alpha)),
+        fires=bool(n and pval <= alpha),
         green_fraction=(g / n if n else float("nan")),
         deduplicated=deduplicate,
         ci95=(lo, hi),

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "watermarking-crystals"
-version = "0.2.0"
+version = "0.3.0"
 readme = "README.md"
 description = "Fingerprint audits and relaxation analyses for crystal watermarking"
 requires-python = ">=3.10"
@@ -13,6 +13,7 @@ dependencies = ["numpy", "scipy"]
 [project.optional-dependencies]
 structures = ["pymatgen", "ase"]
 test = ["pytest>=8"]
+benchmark = ["pymatgen", "ase", "ijson", "chgnet==0.4.2"]
 
 [project.scripts]
 basinmark = "basinmark.analyses:main"

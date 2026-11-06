@@ -58,7 +58,7 @@ Input structures and manifests are not shipped. Do not fabricate missing inputs,
 - `fingerprint-ablation` needs `raw` and `relaxed` paths; `dft` is accepted as the relaxed reference when `relaxed` is absent.
 - Relative structure paths resolve from the working directory first, then relative to the manifest. Use an unambiguous layout and check path resolution before expensive runs.
 - Fingerprint corpora are nonempty text files with one fingerprint per line and no blank lines. Preserve repeated records when measuring duplicate effects.
-- `class-reuse` samples without replacement from the input corpus before filtering green classes. It needs at least four times the largest requested observation count in input records.
+- `class-reuse` emits one selection from each batch and keeps all fallback outputs. Supply at least `m × max(observations)` usable input records. Prepared collections carry ranking energies. Fingerprint-only inputs use equal energies and input-order tie breaking within randomized batches.
 - `cross-database-matching` needs the actual marking key to evaluate an independently marked collection. Its default key is a demonstration value.
 - `classify-flips` needs per-pair potential output, pair metadata, and the matching CIF files. Aggregate summaries alone are insufficient. Classification reruns relaxation for flipped pairs.
 

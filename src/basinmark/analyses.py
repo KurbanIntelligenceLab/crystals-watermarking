@@ -13,6 +13,7 @@ import numpy as np
 
 from . import __version__
 from .classification import ClassificationConfig, FlipClassifier
+from .collections import collection_benchmark, key_controls, reuse
 from .core import (
     audit,
     audit_size,
@@ -20,9 +21,8 @@ from .core import (
     design_effect,
     fingerprint_structure,
     holm_bonferroni,
-    is_green,
     n_eff_debiased,
-    n_forge,
+    n_eff_plugin,
     q_green,
     select_green,
     self_test,
@@ -92,19 +92,22 @@ def generator_controls(a):
         rows, energies = [], []
         for _, s in structs:
             rs, e, _ = relax(s, a.engine, fmax=a.fmax)
-            rows.append(fp(rs, symprec=a.symprec, cell_bin=a.cell_bin))
+            rows.append(fp(rs, symprec=a.symprec, cell_bin=a.cell_bin,
+                           use_cell_shape=not a.no_cell_shape))
             energies.append(e)
         slots = [list(range(i, min(i + a.m, len(rows)))) for i in range(0, len(rows), a.m)]
         slots = [s for s in slots if len(s) == a.m]
 
         if not slots:
             raise ValueError(f"{gen_dir}: fewer than {a.m} usable structures")
-        marked, unmarked, shuffled = [], [], []
+        marked, unmarked, shuffled, minimum = [], [], [], []
         green_fractions, unmarked_pvalues = [], []
+        minimum_fps = [rows[min(slot, key=energies.__getitem__)] for slot in slots]
         for _ in range(a.keys):
             key = rng.bytes(16)
             selected = [
-                select_green([rows[i] for i in slot], [energies[i] for i in slot], key, a.gamma)
+                select_green([rows[i] for i in slot], [energies[i] for i in slot], key, a.gamma,
+                             energy_window=a.energy_window)
                 for slot in slots
             ]
             emitted = [rows[slot[index]] for slot, (index, _) in zip(slots, selected, strict=True)]
@@ -112,17 +115,20 @@ def generator_controls(a):
             marked.append(audit(emitted, key, a.gamma, a.alpha).fires)
             control = audit([rows[slot[0]] for slot in slots], key, a.gamma, a.alpha)
             unmarked.append(control.fires)
+            minimum.append(audit(minimum_fps, key, a.gamma, a.alpha).fires)
             unmarked_pvalues.append(control.p_value)
             shuffled.append(audit(emitted, rng.bytes(16), a.gamma, a.alpha).fires)
 
         gf = float(np.mean(green_fractions))
         out[name] = dict(
             slots=len(slots),
+            energy_window=a.energy_window, use_cell_shape=not a.no_cell_shape,
+            detect_minimum_energy=float(np.mean(minimum)),
             green_fraction_marked=gf,
             detect_marked=float(np.mean(marked)),
             detect_unmarked=float(np.mean(unmarked)),
             detect_shuffled=float(np.mean(shuffled)),
-            q_predicted=q_green(a.gamma, a.m),
+            q_predicted=q_green(a.gamma, a.m) if a.energy_window is None else None,
             holm_survives_unmarked=bool(holm_bonferroni(unmarked_pvalues, 0.05).any()),
         )
         print(
@@ -311,30 +317,6 @@ def potential_comparison(a):
     save(out, out_path)
 
 
-def class_reuse(a):
-    """Simulate reuse of observed green fingerprint classes."""
-    pool = FingerprintCorpus(Path(a.fingerprints)).load()
-    rng = np.random.default_rng(a.seed)
-    out = {"N_forge_predicted": n_forge(a.gamma, a.alpha), "rows": {}}
-    for N in a.observations:
-        hits = []
-        for _ in range(a.trials):
-            key = rng.bytes(16)
-            observed = [
-                f for f in rng.choice(pool, N * 4, replace=False) if is_green(f, key, a.gamma)
-            ][:N]
-            if len(observed) < N:
-                hits.append(False)
-                continue
-            forged = list(rng.choice(observed, a.collection, replace=True))
-            hits.append(audit(forged, key, a.gamma, a.alpha).fires)
-        k = int(np.sum(hits))
-        lo, hi = clopper_pearson(k, len(hits))
-        out["rows"][N] = dict(detected=k / len(hits), ci95=[lo, hi], trials=len(hits))
-        print(f"  N={N:6d}  forged detected {k / len(hits):.3f}  [{lo:.3f}, {hi:.3f}]")
-    save(out, a.out or "results/class_reuse.json")
-
-
 def generator_calibration(a):
     rng = np.random.default_rng(a.seed)
     out = {}
@@ -350,7 +332,8 @@ def generator_calibration(a):
         out[name] = dict(
             n=len(fps),
             distinct=len(counts),
-            n_eff=n_eff_debiased(counts),
+            n_eff=n_eff_plugin(counts),
+            n_eff_population_estimate=n_eff_debiased(counts),
             design_effect=design_effect(counts),
             fpr_uncorrected=naive / a.keys,
             fpr_deduplicated=dedup / a.keys,
@@ -384,7 +367,8 @@ def fingerprint_ablation(a):
         p = float(np.mean(flips))
         out[label] = dict(
             p=p,
-            n_eff=n_eff_debiased(counts),
+            n_eff=n_eff_plugin(counts),
+            n_eff_population_estimate=n_eff_debiased(counts),
             distinct=len(counts),
             N_needed=audit_size(a.gamma, a.m, p, alpha=a.alpha),
         )
@@ -423,10 +407,9 @@ def cross_database_matching(a):
                 n=len(colliding), green=r_coll.green_fraction, p=r_coll.p_value, fires=r_coll.fires
             ),
             _warning=(
-                "The colliding subset is green by construction and fires "
-                "against a provider that generated none of it.  An audit "
-                "must be run on a sample the auditor did not select on "
-                "fingerprint."
+                "Matching may enrich a subset for green classes. Interpret its score "
+                "as an adaptive selection result. Per-audit null calibration requires "
+                "a key-independent collection."
             ),
         ),
         a.out or "results/cross_database_matching.json",
@@ -477,6 +460,8 @@ def main(argv=None):
     p.add_argument("--engine", default="chgnet")
     p.add_argument("--fmax", type=float, default=0.02)
     p.add_argument("--gen-dirs", nargs="+", required=True)
+    p.add_argument("--no-cell-shape", action="store_true")
+    p.add_argument("--energy-window", type=float, help="maximum excess eV/atom")
     p.add_argument("--keys", type=int, default=200)
     p.set_defaults(func=generator_controls)
 
@@ -509,11 +494,35 @@ def main(argv=None):
     p = sub.add_parser("class-reuse", help="simulate observed-class reuse")
     common(p)
     p.add_argument("--seed", type=int, default=0)
-    p.add_argument("--fingerprints", required=True)
+    source = p.add_mutually_exclusive_group(required=True)
+    source.add_argument("--fingerprints", help="one class per line; ties follow batch order")
+    source.add_argument("--corpus", help="prepared candidate collection with measured energies")
+    p.add_argument("--representation", choices=["full", "no_cell"], default="full")
+    p.add_argument("--m", type=int, default=M)
     p.add_argument("--observations", type=int, nargs="+", default=[5, 7, 9, 10, 11, 15, 100])
     p.add_argument("--trials", type=int, default=200)
     p.add_argument("--collection", type=int, default=200)
-    p.set_defaults(func=class_reuse)
+    p.set_defaults(func=reuse)
+
+    p = sub.add_parser("collection-benchmark", help="evaluate selection after deposition")
+    common(p)
+    p.add_argument("--corpus", required=True)
+    p.add_argument("--m", type=int, default=M)
+    p.add_argument("--seed", type=int, default=2718)
+    p.add_argument("--trials", type=int, default=200)
+    p.add_argument("--sizes", nargs="+", type=int, default=[16, 32])
+    p.add_argument("--energy-window", type=float, default=0.10, help="eV/atom above batch minimum")
+    p.add_argument("--stability-threshold", type=float, default=0.1, help="reference eV/atom")
+    p.set_defaults(func=collection_benchmark)
+
+    p = sub.add_parser("key-controls", help="measure per-audit false-positive rates")
+    common(p)
+    p.add_argument("--corpus", required=True)
+    p.add_argument("--representation", choices=["full", "no_cell"], default="full")
+    p.add_argument("--m", type=int, default=M)
+    p.add_argument("--keys", type=int, default=10000)
+    p.add_argument("--seed", type=int, default=901)
+    p.set_defaults(func=key_controls)
 
     p = sub.add_parser("generator-calibration", help="measure naive and deduplicated calibration")
     common(p)
@@ -571,6 +580,10 @@ def main(argv=None):
             value = getattr(args, name)
             if not math.isfinite(value) or value <= 0:
                 ap.error(f"--{name.replace('_', '-')} must be finite and positive")
+    if getattr(args, "energy_window", None) is not None and (
+        not math.isfinite(args.energy_window) or args.energy_window < 0
+    ):
+        ap.error("--energy-window must be finite and nonnegative")
     if hasattr(args, "cell_bins") and any(
         not math.isfinite(value) or value <= 0 for value in args.cell_bins
     ):
