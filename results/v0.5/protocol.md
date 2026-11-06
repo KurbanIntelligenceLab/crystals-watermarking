@@ -17,3 +17,9 @@ Deduplicate each view and count shared classes once in the joint null. Preserve 
 ## Additional physical challenge
 
 Apply a previously unevaluated simple shear to the same fresh PhononBench structures using the identity matrix with entry (1, 2) set to 0.015 (one-based indices), left-multiplied into the source lattice at fixed fractional coordinates. Accept only valid proposals with absolute change in MACE-OMAT energy at most 10 meV/atom. Relax from the accepted geometry, otherwise from the original, and deposit using the existing procedure. Run the same frozen decisions, keys and energy-matched selections. This is an additional channel; keep the axial strain test as the primary endpoint.
+
+## Follow-up on energy rank
+
+On the first fresh cohort the frozen recovery audit improved strained detection from 299/500 to 414/500, below the target. Even before treatment the original decision fired on 453/500 releases. The selector includes globally cheap fallback candidates when constrained by its mean energy budget. Check whether rank computed independently from deposited coordinates can identify structures carrying more signal. Development may now include the first confirmation cohort. Never substitute the unreleased producer energies for deposited scores in a reported deployment test. Retain all preceding results.
+
+Reserve two further PhononBench groups in the next draw (source seed 201773), excluding every older external ID and producer class including the first confirmation cohort. Take 768 source structures, allocate the first and last 384 to separate evaluation cohorts, and check cross-cohort overlap. Use 500 independent trials per cohort with seeds 931153 and 957203, paired across policies. Keep the original 32/256 design and all previous energy and audit settings. Finalize the new recovery decision before inspecting any detection result for either group. Report every cohort separately.
