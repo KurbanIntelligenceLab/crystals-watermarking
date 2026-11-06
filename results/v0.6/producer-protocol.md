@@ -1,0 +1,5 @@
+# Prospective producer comparison
+
+The 0.6 deposited audit detected 385 of 500 strain-treated releases in confirmation cohort C. On these releases 496 of 500 were detectable before downstream processing. Retain both of the original confirmation cohorts and their results. A separate producer development comparison may use prior physical records and C and D. Historical mode remains independently available.
+
+Reserve a second disjoint draw for evaluating a producer intervention, using source seed 589231 and all historical exclusion cohorts including the complete C/D draw. The fixed split gives groups E and F of 384. Set audit and control seeds to 368219 and 537619 for E, and 653291 and 938261 for F. Compare 500 paired trials per cohort with 20 wrong keys per release, 32 emissions, 256 candidates, and the existing energy constraints. Report all cohorts and paired gains and losses. Assess source, ordinary relaxation, and independent strain plus relaxation using deposit-only evidence. Before opening E/F detections freeze any producer intervention on previously available data. Keep the historical protocol as the reference if no intervention passes development checks.
