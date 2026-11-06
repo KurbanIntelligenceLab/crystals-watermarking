@@ -99,3 +99,33 @@ python scripts/replot_reuse.py --out "$out/class-reuse.svg" --observations-out "
 ~~~
 
 At ten observations, each generator contributed 2,000 emissions in 200 trials. MatterGen had six fallbacks and CrystalFormer had three. Each occurred in a different trial within its generator. Copying an exposed record was allowed in the arm that detected 194/200 MatterGen and 197/200 CrystalFormer collections. Excluding exposed IDs gave 0/200 for each. For a concrete example, in MatterGen trial `1251385316631358` the fourth emitted record was ID `578`. It was a fallback. The observer saw this record along with the other nine. [MatterGen trial outcomes](../v0.3/trials/MatterGen-reuse.json.gz) · [CrystalFormer trial outcomes](../v0.3/trials/CrystalFormer-reuse.json.gz)
+
+## Original and current methods on the same candidates
+
+Run from the repository root. The base installation replays the fixed-batch full and no-cell methods, the energy-budgeted producer and its optional stress preview. Each draw uses the same 256 input records, marking key and downstream treatments in every arm. The replay checks the selected IDs and decisions of the current producers against their earlier trial archives. It also applies both auditors to the same original no-cell deposits at the original green probability. [Results and timing definitions](method-comparison.md)
+
+~~~bash
+for cohort in E F; do
+  python scripts/compare_method_versions.py --case "$cohort"
+done
+~~~
+
+To regenerate the additional MACE-MPA-0 physics, use the architecture, package versions, model files and PhononBench archive specified above. The all-candidate mode records both fingerprint representations after the strained treatment for every eligible source structure. The original fixed-batch producers can emit structures outside the current producers’ released set. Each cohort uses one resumable measurement file.
+
+~~~bash
+for cohort in E F; do
+  python scripts/measure_cross_model.py --case "$cohort" --all-strained \
+    --archive "$src/phonon.zip" --relax-weights "$src/mpa.model" \
+    --rank-weights "$src/omat.model" --workers 2 --out "$out/$cohort-strain-pool.json.gz"
+  python scripts/compare_method_versions.py --case "$cohort" \
+    --alternate "$out/$cohort-strain-pool.json.gz" --out "$out/$cohort-method-comparison.json.gz"
+done
+~~~
+
+The CPU profile reconstructs the first registered 256-candidate draw in each cohort and the strained CHGNet deposits for all its selected structures. It times each reader on its own emissions and on identical older no-cell emissions. Use a new output path. The reported local CPU and worker times were obtained with uncontrolled laptop load. Compare the operation counts directly. Use an otherwise idle machine with pinned thread and hardware settings for latency benchmarks.
+
+~~~bash
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
+  python scripts/profile_method_versions.py --archive "$src/phonon.zip" \
+  --rank-weights "$src/omat.model" --hull "$src/hull.parquet" --out "$out/method-profile.json.gz"
+~~~

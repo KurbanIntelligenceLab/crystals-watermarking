@@ -89,3 +89,28 @@ def test_cross_model_preserves_failed_endpoints_and_release_denominators(tmp_pat
     JsonStore(physics).write(measured)
     with pytest.raises(ValueError, match="coverage"):
         benchmark("E", tmp_path, physics)
+
+
+def test_method_comparison_aligns_original_fingerprints_and_keeps_missing_deposits(monkeypatch):
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
+    from compare_method_versions import endpoint_tables
+
+    first = {"full": "with-cell", "no_cell": "SG15|x"}
+    rows = [
+        {"id": "a", "stages": {"strain_rerelaxed": first}},
+        {"id": "b", "stages": {}},
+    ]
+    scores = {
+        "tolerances": [0.3],
+        "rows": [
+            {"id": "a", "stages": {"strain_rerelaxed": ["SG2|x"]},
+             "scores": {"strain_rerelaxed": 0.20}},
+            {"id": "b", "stages": {}, "scores": {}},
+        ],
+    }
+    tables = endpoint_tables(None, "E", rows, scores, None)
+    assert tables["CHGNet_rerelaxed"] == [None, None]
+    assert tables["CHGNet_strain_rerelaxed"] == [("with-cell", "SG15|x", None, 0.20), None]
+    scores["rows"].reverse()
+    with pytest.raises(ValueError, match="identities differ"):
+        endpoint_tables(None, "E", rows, scores, None)

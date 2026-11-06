@@ -37,7 +37,7 @@ class ModelFileRegistry:
 def measure(job):
     import torch
 
-    index, row, cif, relaxation_weights, ranking_weights = job
+    index, row, cif, relaxation_weights, ranking_weights, all_strained = job
     torch.set_num_threads(1)
     source = Structure.from_str(cif, fmt="cif")
     if fingerprint_structure(source, use_cell_shape=False) != row["producer"]["no_cell"]:
@@ -52,6 +52,8 @@ def measure(job):
         "rerelaxed": source,
         "strain_rerelaxed": strained if row["strain_accepted"] else source,
     }
+    if all_strained:
+        del starts["rerelaxed"]
     stages = {}
     for stage, start in starts.items():
         result = engine.run(start)
@@ -72,6 +74,8 @@ def measure(job):
                 energy=score,
                 valid=bool(endpoint.is_valid()),
             )
+            if all_strained:
+                state["full"] = fingerprint_structure(endpoint, use_cell_shape=True)
         stages[stage] = state
     return {
         "index": index,
@@ -88,6 +92,10 @@ def main():
     for flag in ("archive", "relax-weights", "rank-weights", "out"):
         parser.add_argument("--" + flag, type=Path, required=True)
     parser.add_argument("--workers", type=int, default=2)
+    parser.add_argument(
+        "--all-strained", action="store_true",
+        help="measure the strained endpoint and both fingerprint variants on all candidates",
+    )
     args = parser.parse_args()
     if args.workers < 1:
         parser.error("supply a positive number of workers")
@@ -101,6 +109,8 @@ def main():
     if trials["source_sha256"] != sha(source):
         raise ValueError("release file and source differ")
     ids = sorted({i for t in trials["records"] for arm in t["selected"] for i in arm})
+    if args.all_strained:
+        ids = list(range(len(rows)))
     metadata = {
         "case": args.case,
         "archive_sha256": ARCHIVE,
@@ -115,6 +125,8 @@ def main():
         "steps": 150,
         "indices": ids,
     }
+    if args.all_strained:
+        metadata["coverage"] = "all eligible candidates, strain only, full and no-cell views"
     store = JsonStore(args.out)
     data = store.read_object() if args.out.exists() else {"metadata": metadata, "records": []}
     if data["metadata"] != metadata:
@@ -132,6 +144,7 @@ def main():
                 z.read(PREFIX + rows[i]["id"]).decode(),
                 args.relax_weights,
                 args.rank_weights,
+                args.all_strained,
             )
             for i in ids[len(done) :]
         ]

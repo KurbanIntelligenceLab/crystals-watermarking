@@ -25,3 +25,4 @@ include scripts/fit_survival.py scripts/benchmark_reliability.py scripts/measure
 include scripts/measure_removal_phonons.py scripts/benchmark_bounded_removal.py scripts/replot_reuse.py scripts/check_preview_controls.py results/v0.6/SHA256SUMS
 include results/v0.6/class-reuse.svg
 include scripts/measure_cross_model.py scripts/benchmark_cross_model.py
+include scripts/compare_method_versions.py scripts/profile_method_versions.py
