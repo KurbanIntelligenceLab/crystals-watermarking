@@ -502,9 +502,11 @@ def main(argv=None):
     p.add_argument("--candidates", type=Path, required=True)
     p.add_argument("--key-file", type=Path, required=True, help="file containing raw key bytes")
     p.add_argument("--out", type=Path, required=True)
-    p.add_argument("--policy", choices=["fixed", "reserve", "pool", "budget", "preview"], default="budget")
+    p.add_argument("--policy", choices=["fixed", "reserve", "pool", "budget", "preview"],
+                   default="budget")
     p.add_argument("--m", type=int, default=M)
-    p.add_argument("--gamma", type=float, help="defaults to 0.625 for budget and 0.5 otherwise")
+    p.add_argument("--gamma", type=float,
+                   help="defaults to 0.625 for budget and preview, 0.5 otherwise")
     p.add_argument("--energy-window", type=float, default=0.1)
     p.set_defaults(func=emit_collection)
 

@@ -9,6 +9,10 @@
 
 **Corresponding authors:** Mustafa Kurban ([kurbanm@ankara.edu.tr](mailto:kurbanm@ankara.edu.tr)) and Hasan Kurban ([hkurban@hbku.edu.qa](mailto:hkurban@hbku.edu.qa)). Names link to ORCID profiles.
 
+## BasinMark 0.6
+
+A survival-ranked audit and an optional producer-side stress test are evaluated on independently processed releases at a fixed candidate and output budget. The comparisons include a bounded removal attack with audit feedback and paired phonon checks on edited structures. [Results and replay](results/v0.6/README.md)
+
 ## BasinMark 0.5
 
 Version 0.5 adds a calibrated recovery audit for strained, independently relaxed crystals. It reads the deposited geometry at two symmetry tolerances. An optional rank calculated from the deposited coordinates adds evidence from higher-energy classes. Every stage protects the earlier audit decisions under the same nominal false-positive level. The producer uses the 0.4 energy-budgeted selector. [Paired treatment results, material resolution and reproducibility](results/v0.5/README.md)
