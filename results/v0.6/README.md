@@ -34,6 +34,25 @@ Both prospective groups cleared the prespecified 450/500 target after strain. Th
 
 The prospective strain tests each gave 16 positive audits in the original 10,000 wrong-key trials (0.16%). We checked this with 200 additional independently drawn keys on each of the same 500 preview releases, keeping those first results in the table. The follow-up gave 85/100,000 on E and 93/100,000 on F at the nominal 0.1% threshold. The conditional audit sizes predict 99.9 and 99.9 positive decisions. This follow-up measures variation over fresh keys on these fixed releases. [Per-release control records](preview-controls.json.gz)
 
+## Changing the downstream relaxation model
+
+We kept the releases and the auditor fixed and replaced CHGNet-r2SCAN with MACE-MPA-0 medium for downstream relaxation. The producer preview still used CHGNet-r2SCAN. With the preview, detection after strain was **496/500 on E and 493/500 on F** under MACE-MPA-0. The budget producer gave 497/500 and 490/500, respectively. This follow-up tests sensitivity to the downstream model on previously evaluated cohorts. Each set of 500 trials resamples candidates and keys within one fixed pool; 108 distinct emitted structures per cohort covered both producers.
+
+| Cohort | Treatment | Producer | CHGNet detected / 500 | MACE detected / 500 | Gained / lost on model switch | MACE wrong keys / 10,000 | Δ common score (meV/atom) |
+|---|---|---|---:|---:|---:|---:|---:|
+| E | Ordinary | Budget | 498 | 496 | 1 / 3 | 11 | -20.1 |
+| E | Ordinary | Preview | 498 | 496 | 1 / 3 | 15 | -20.1 |
+| E | Strain | Budget | 492 | 497 | 6 / 1 | 8 | -21.2 |
+| E | Strain | Preview | 496 | 496 | 3 / 3 | 10 | -21.2 |
+| F | Ordinary | Budget | 498 | 497 | 0 / 1 | 17 | -21.1 |
+| F | Ordinary | Preview | 498 | 497 | 0 / 1 | 17 | -20.9 |
+| F | Strain | Budget | 493 | 490 | 3 / 6 | 15 | -23.8 |
+| F | Strain | Preview | 497 | 493 | 1 / 5 | 18 | -23.9 |
+
+All 432 alternate-model relaxations converged and the resulting structures passed the minimum-distance validity check. The last column compares the same structure after the two relaxations, using the same MACE-OMAT ranking model at both endpoints. Differences are weighted by emission frequency and computed only when both endpoints could be scored. Endpoint quality in this test covers convergence, minimum-distance validity and the common energy score. Source phonon labels describe the producer crystals. The paired endpoint phonon screens below concern the separate shear experiment.
+
+For the strained preview releases the original wrong-key sample gave 10/10,000 on E and 18/10,000 on F with MACE-MPA-0. Reusing the previously fixed set of additional control keys across relaxation models gave 85/100,000 and 96/100,000 on these alternate endpoints. Both control sets are retained. [Matched protocol](cross-model-protocol.md) · [E trial records](E-cross-model.json.gz) · [F trial records](F-cross-model.json.gz) · [Wrong-key follow-up](cross-model-controls.json.gz) · [Physical replay](reproduce.md#changing-the-downstream-relaxation-model)
+
 ## Bounded removal with audit feedback
 
 A third party tries up to eight ordinary or edited collections, with access to the binary audit result. The collection membership stays fixed. The ordinary audit detected 489/500. Applying all energy-eligible shears detected 483/500. Choosing between the proposals gave 474/500, a loss of 15 previously detected collections. A separate force calculation compared both endpoints of each of the 85 distinct emitted structures eligible for an edit. 11 passed the phonon screen at both endpoints, 1 lost a pass, 3 gained one and 70 failed both. Restricting edits to pairs passing at both endpoints gave 487/500. Allowing an edit whenever it preserved an existing pass gave 474/500. These tests assess one shear, one cohort and a finite model-based phonon screen. The reference and deformed geometries both come from the initially released coordinates.

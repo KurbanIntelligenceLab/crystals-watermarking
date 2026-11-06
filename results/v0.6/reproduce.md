@@ -12,6 +12,8 @@ for cohort in A B first-confirm dev shear mattergen C D E F; do
   python scripts/benchmark_producer_preview.py --case "$cohort"
 done
 python scripts/check_preview_controls.py
+for cohort in E F; do python scripts/benchmark_cross_model.py --case "$cohort"; done
+python scripts/check_preview_controls.py --cross-model
 python scripts/benchmark_bounded_removal.py --verify results/v0.6/bounded-removal.json.gz
 for rule in both-pass preserve; do
   python scripts/benchmark_bounded_removal.py --phonons results/v0.6/emitted-removal-phonons.json.gz \
@@ -48,6 +50,21 @@ done
 ~~~
 
 The same preview command accepts the older archived input cohorts. Use the input paths in the replay script for A, B, the first confirmation, the original development cohort and MatterGen. The shear comparison uses the first confirmation producer geometries. Each preview deforms a copy of a producer candidate by 0.8%, relaxes it and reads its two symmetry fingerprints. Only the original candidate can be emitted.
+
+## Changing the downstream relaxation model
+
+The archived measurement files contain the deposited fingerprints, common energy, validity and convergence for all emitted IDs under both treatments. The base-package replay compares the full trial records. To repeat the physical work, use the original PhononBench archive and MACE-OMAT ranking weights from the input guide, plus the pinned MACE-MPA-0 medium relaxation weights. The measurement command resumes its single output file when the source files, model hashes, recorded software versions and identities match. Reuse of previously computed endpoints across the 500 releases is intentional. [Frozen comparison](cross-model-protocol.md) · [Foundation model source](https://github.com/ACEsuit/mace-mp/releases/tag/mace_mpa_0)
+
+~~~bash
+curl -fL https://github.com/ACEsuit/mace-mp/releases/download/mace_mpa_0/mace-mpa-0-medium.model -o "$src/mpa.model"
+for cohort in E F; do
+  python scripts/measure_cross_model.py --case "$cohort" --archive "$src/phonon.zip" \
+    --relax-weights "$src/mpa.model" --rank-weights "$src/omat.model" --workers 2 \
+    --out "$out/$cohort-cross-model-physics.json.gz"
+  python scripts/benchmark_cross_model.py --case "$cohort" --physics "$out/$cohort-cross-model-physics.json.gz" \
+    --out "$out/$cohort-cross-model.json.gz"
+done
+~~~
 
 ## Active removal and endpoint quality
 
