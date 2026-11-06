@@ -15,15 +15,18 @@ from .core import (
     q_green,
     select_green,
 )
+from .symmetry_audit import audit_deposited, paired_audit
 
 __all__ = [
     "AuditResult",
     "audit",
+    "audit_deposited",
     "audit_size",
     "critical_value",
     "fingerprint_structure",
     "is_green",
     "n_forge",
+    "paired_audit",
     "power",
     "prf_uniform",
     "q_flipped",
@@ -32,4 +35,4 @@ __all__ = [
     "select_green",
 ]
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

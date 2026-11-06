@@ -18,3 +18,6 @@ prune final_template
 prune manuscript
 prune manuscripts
 global-exclude .DS_Store *.py[cod]
+include scripts/benchmark_symmetry_audit.py scripts/compare_symmetry_resolution.py scripts/diagnose_strain.py
+include scripts/measure_symmetry_views.py scripts/measure_shear.py scripts/split_recovery_cohort.py
+include scripts/profile_deposit.py scripts/replay_symmetry_audit.py results/v0.5/SHA256SUMS

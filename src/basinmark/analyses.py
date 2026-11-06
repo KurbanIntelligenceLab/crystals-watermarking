@@ -7,11 +7,12 @@ import hashlib
 import math
 import time
 from collections import Counter, defaultdict
+from dataclasses import asdict
 from pathlib import Path
 
 import numpy as np
 
-from . import __version__, select_collection
+from . import __version__, audit_deposited, select_collection
 from .classification import ClassificationConfig, FlipClassifier
 from .collections import collection_benchmark, key_controls, reuse
 from .core import (
@@ -435,6 +436,25 @@ def run_self_test(_):
         raise RuntimeError("self-test failed")
 
 
+def audit_deposit(a):
+    from pymatgen.core import Structure
+
+    key = a.key_file.read_bytes()
+    if not key:
+        raise ValueError("empty key file")
+    structures = (Structure.from_file(path) for path in a.structures)
+    ranker = None
+    if bool(a.weights) != bool(a.hull):
+        raise ValueError("supply both the pinned ranking weights and hull")
+    if a.weights:
+        from .deposit_energy import DepositedEnergy
+
+        ranker = DepositedEnergy(a.weights, a.hull)
+    result = audit_deposited(structures, key, gamma=a.gamma, alpha=a.alpha, ranker=ranker)
+    save({"structures": len(a.structures), "gamma": a.gamma, "alpha": a.alpha,
+          **asdict(result)}, a.out)
+
+
 def emit_collection(a):
     records = JsonStore(a.candidates).read_object().get("candidates")
     if not isinstance(records, list) or not records or any(
@@ -484,6 +504,16 @@ def main(argv=None):
     p.add_argument("--gamma", type=float, help="defaults to 0.625 for budget and 0.5 otherwise")
     p.add_argument("--energy-window", type=float, default=0.1)
     p.set_defaults(func=emit_collection)
+
+    p = sub.add_parser("audit-deposit", help="audit deposited structures with symmetry recovery")
+    p.add_argument("--structures", type=Path, nargs="+", required=True)
+    p.add_argument("--weights", type=Path, help="enable deposited energy ranking with MACE-OMAT")
+    p.add_argument("--hull", type=Path, help="matching public LeMat hull parquet")
+    p.add_argument("--key-file", type=Path, required=True, help="file containing raw marking key")
+    p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--gamma", type=float, default=0.625, help="producer green probability")
+    p.add_argument("--alpha", type=float, default=0.001)
+    p.set_defaults(func=audit_deposit)
 
     p = sub.add_parser("generator-controls", help="run marked and unmarked generator controls")
     common(p)
