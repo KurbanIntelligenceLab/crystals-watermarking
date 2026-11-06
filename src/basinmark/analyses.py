@@ -468,9 +468,12 @@ def emit_collection(a):
     key = a.key_file.read_bytes()
     if not key:
         raise ValueError("empty key file")
+    if a.policy == "preview" and any("preview" not in r for r in records):
+        raise ValueError("supply a preview pair or explicit null for every candidate")
     selection = select_collection(
         [r["fingerprint"] for r in records], [r["energy"] for r in records], key,
         m=a.m, energy_window=a.energy_window, gamma=a.gamma, policy=a.policy,
+        previews=[r["preview"] for r in records] if a.policy == "preview" else None,
     )
     output = [{"id": records[i]["id"], "energy": records[i]["energy"],
                "reference_energy": float(ref)}
@@ -499,7 +502,7 @@ def main(argv=None):
     p.add_argument("--candidates", type=Path, required=True)
     p.add_argument("--key-file", type=Path, required=True, help="file containing raw key bytes")
     p.add_argument("--out", type=Path, required=True)
-    p.add_argument("--policy", choices=["fixed", "reserve", "pool", "budget"], default="budget")
+    p.add_argument("--policy", choices=["fixed", "reserve", "pool", "budget", "preview"], default="budget")
     p.add_argument("--m", type=int, default=M)
     p.add_argument("--gamma", type=float, help="defaults to 0.625 for budget and 0.5 otherwise")
     p.add_argument("--energy-window", type=float, default=0.1)
@@ -633,7 +636,7 @@ def main(argv=None):
 
     args = ap.parse_args(argv)
     if args.analysis == "select-collection" and args.gamma is None:
-        args.gamma = 0.625 if args.policy == "budget" else 0.5
+        args.gamma = 0.625 if args.policy in ("budget", "preview") else 0.5
     if hasattr(args, "gamma") and not 0 < args.gamma < 1:
         ap.error("--gamma must be strictly between 0 and 1")
     if hasattr(args, "alpha") and not 0 < args.alpha < 1:

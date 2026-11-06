@@ -94,3 +94,28 @@ def test_budget_default_maximizes_green_under_slot_and_mean_limits():
         assert (sum(marked[chosen.indices]), -sum(e[chosen.indices])) == pytest.approx(score)
         assert np.all(e[chosen.indices] <= cap)
         assert e[chosen.indices].mean() <= budget
+
+
+def test_preview_obeys_caps_and_preserves_color_count():
+    from basinmark.core import is_green
+
+    rng = np.random.default_rng(738)
+    fps = [str(i) for i in range(256)]
+    views = [(str(i // 3), str(i // 2)) for i in range(256)]
+    e = rng.uniform(0, 0.3, 256)
+    for i in range(8):
+        key = bytes([i])
+        old = select_collection(fps, e, key)
+        new = select_collection(fps, e, key, policy="preview", previews=views)
+        fixed = select_collection(fps, e, key, policy="fixed", gamma=0.625)
+        assert sum(is_green(fps[j], key, 0.625) for j in new.indices) == sum(
+            is_green(fps[j], key, 0.625) for j in old.indices
+        )
+        assert np.all(e[new.indices] <= old.reference_energies + 0.1)
+        assert (
+            e[new.indices].mean()
+            <= min(np.sort(e)[:32].mean() + 0.1, e[fixed.indices].mean()) + 1e-12
+        )
+        assert len(set(new.indices)) == 32
+        fallback = select_collection(fps, e, key, policy="preview", previews=[None] * len(e))
+        assert np.array_equal(fallback.indices, old.indices)
