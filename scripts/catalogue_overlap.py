@@ -67,6 +67,9 @@ def main():
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--trials", type=int, default=200)
     parser.add_argument("--seed", type=int, default=31415)
+    parser.add_argument(
+        "--observations", type=int, help="number of genuine outputs visible per trial"
+    )
     args = parser.parse_args()
     if args.out.exists() or min(args.external_size, args.workers, args.trials) <= 0:
         parser.error("choose a new output and positive sample, worker and trial counts")
@@ -128,6 +131,9 @@ def main():
 
     summary = {}
     trials = {}
+    observations = len(mp) // 8 if args.observations is None else args.observations
+    if not 1 <= observations <= len(mp) // 8:
+        parser.error("observations exceed the number of complete source batches or are nonpositive")
     for mode in ("full", "no_cell"):
         source_classes = {r[2][mode] for r in mp}
         shared = [r for r in overlap if r[1][mode] in source_classes]
@@ -136,7 +142,7 @@ def main():
         for seed in rng.integers(0, 2**53, size=args.trials):
             trial = np.random.default_rng(seed)
             key = trial.bytes(16)
-            batches = trial.permutation(len(mp))[: len(mp) // 8 * 8].reshape(-1, 8)
+            batches = trial.permutation(len(mp))[: observations * 8].reshape(-1, 8)
             selected = set()
             for batch in batches:
                 idx, _ = select_green(
@@ -179,7 +185,7 @@ def main():
             "gamma": 0.5,
             "alpha": 0.001,
             "collection_size": 200,
-            "observed_outputs": len(mp) // 8,
+            "observed_outputs": observations,
             "summary": summary,
             "trial_columns": [
                 "seed",
