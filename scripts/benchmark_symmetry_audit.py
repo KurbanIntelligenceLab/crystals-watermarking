@@ -15,8 +15,21 @@ from basinmark.symmetry_audit import RECOVERY_SYMPREC, eligible_recovery, paired
 COLUMNS = ["K_primary", "K_secondary", "K_shared", "G_primary", "G_secondary", "old", "new"]
 
 
-def measure(corpus, view_file, tolerance, seed, trials, control_seed, controls):
+def measure(
+    corpus,
+    view_file,
+    tolerance,
+    seed,
+    trials,
+    control_seed,
+    controls,
+    emissions=32,
+    m=8,
+    geometry_only=False,
+):
     meta, rows = prepared(corpus)
+    if emissions < 1 or m < 1 or len(rows) < m * emissions:
+        raise ValueError("not enough eligible candidates for the specified release")
     digest = hashlib.sha256(corpus.read_bytes()).hexdigest()
     if view_file is None:
         views = {
@@ -50,7 +63,7 @@ def measure(corpus, view_file, tolerance, seed, trials, control_seed, controls):
                 for stage, fp in original.items()
             }
         )
-    scored = "scores" in views["rows"][0]
+    scored = "scores" in views["rows"][0] and not geometry_only
     records = []
     total = {st: Counter() for st in stages}
     seeds = np.random.default_rng(seed).integers(0, 2**53, size=trials).tolist()
@@ -59,9 +72,11 @@ def measure(corpus, view_file, tolerance, seed, trials, control_seed, controls):
         rng = np.random.default_rng(s)
         key = rng.bytes(16)
         rng.bytes(16)  # Match the secondary-key draw in the original paired benchmark.
-        batch = rng.permutation(len(rows))[:256]
+        batch = rng.permutation(len(rows))[: m * emissions]
         energy = [rows[i]["energy"] for i in batch]
-        chosen = select_collection([rows[i]["producer"]["no_cell"] for i in batch], energy, key)
+        chosen = select_collection(
+            [rows[i]["producer"]["no_cell"] for i in batch], energy, key, m=m
+        )
         indices = batch[chosen.indices].tolist()
         outputs = [rows[i] for i in indices]
         row = {
@@ -136,7 +151,7 @@ def measure(corpus, view_file, tolerance, seed, trials, control_seed, controls):
             "lost": c["lost"],
             "wrong_key": rate(c["wrong"], controls * trials) if controls else None,
             "attainable_null": c["null_mass"] / trials,
-            "coverage": c["deposited"] / (32 * trials),
+            "coverage": c["deposited"] / (emissions * trials),
         }
         if scored:
             summary[st].update(
@@ -154,6 +169,11 @@ def measure(corpus, view_file, tolerance, seed, trials, control_seed, controls):
         "trials": trials,
         "control_seed": control_seed,
         "controls": controls,
+        **(
+            {"emissions": emissions, "m": m, "geometry_only": geometry_only}
+            if (emissions, m, geometry_only) != (32, 8, False)
+            else {}
+        ),
         "columns": COLUMNS + (["K_ranked", "G_ranked", "ranked"] if scored else []),
         "summary": summary,
         "records": records,
@@ -169,13 +189,27 @@ def main():
     ap.add_argument("--trials", type=int, default=500)
     ap.add_argument("--control-seed", type=int, default=486209)
     ap.add_argument("--controls", type=int, default=20)
+    ap.add_argument("--emissions", type=int, default=32)
+    ap.add_argument("--m", type=int, default=8)
+    ap.add_argument("--geometry-only", action="store_true")
     group = ap.add_mutually_exclusive_group(required=True)
     group.add_argument("--out", type=Path)
     group.add_argument("--verify", type=Path)
     a = ap.parse_args()
     if (a.out and a.out.exists()) or a.trials < 1 or a.controls < 0:
         ap.error("supply a new output and valid trial counts")
-    result = measure(a.corpus, a.views, a.tolerance, a.seed, a.trials, a.control_seed, a.controls)
+    result = measure(
+        a.corpus,
+        a.views,
+        a.tolerance,
+        a.seed,
+        a.trials,
+        a.control_seed,
+        a.controls,
+        a.emissions,
+        a.m,
+        a.geometry_only,
+    )
     if a.verify:
         if result != JsonStore(a.verify).read_object():
             raise ValueError("replayed results differ")

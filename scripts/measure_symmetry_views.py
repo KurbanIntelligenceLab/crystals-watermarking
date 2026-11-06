@@ -95,8 +95,7 @@ def measure(item):
             values.append(fp)
         stages[name] = values
         if weights:
-            from prepare_phononbench import calculator
-            from pymatgen.io.ase import AseAtomsAdaptor
+            from basinmark.deposit_energy import energy_per_atom
 
             if (
                 structure.composition.fractional_composition
@@ -106,9 +105,7 @@ def measure(item):
             if row.get("hull_eV_per_atom") is None:
                 scores[name] = None
                 continue
-            atoms = AseAtomsAdaptor.get_atoms(structure)
-            atoms.calc = calculator(weights)
-            score = float(atoms.get_potential_energy() / len(atoms) - row["hull_eV_per_atom"])
+            score = energy_per_atom(structure, weights) - row["hull_eV_per_atom"]
             if not np.isfinite(score):
                 raise ValueError("nonfinite deposited energy")
             scores[name] = score
@@ -129,10 +126,9 @@ def main():
         ap.error("choose a new output and positive parameters")
     meta, rows = prepared(a.corpus)
     if a.weights:
-        from prepare_phononbench import WEIGHTS, verify
+        from basinmark.deposit_energy import HULL, WEIGHTS, verify
 
         verify(a.weights, WEIGHTS)
-        from basinmark.deposit_energy import HULL
 
         if a.hull:
             verify(a.hull, HULL)

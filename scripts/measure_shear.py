@@ -9,12 +9,11 @@ from pathlib import Path
 import numpy as np
 from measure_symmetry_views import structures
 from prepare_collection import REGISTRY, deposit, variants
-from prepare_phononbench import WEIGHTS, calculator, verify
 from pymatgen.core import Lattice, Structure
 from pymatgen.io.ase import AseAtomsAdaptor
 
 from basinmark.collections import prepared
-from basinmark.deposit_energy import energy_per_atom
+from basinmark.deposit_energy import WEIGHTS, calculator, energy_per_atom, verify
 from basinmark.io import JsonStore
 from basinmark.relaxation import RelaxationEngine
 from basinmark.symmetry_audit import RECOVERY_SYMPREC, recovery_class
@@ -47,8 +46,10 @@ def measure(job):
         out.update(steps=run.steps, converged=run.converged)
         if run.converged:
             endpoint = deposit(run.structure, 5)
-            out["stages"]["shear_rerelaxed"] = variants(endpoint)
-            out["views"]["shear_rerelaxed"] = recovery_class(endpoint)
+            endpoint_fp = variants(endpoint)
+            secondary = recovery_class(endpoint)
+            out["stages"]["shear_rerelaxed"] = endpoint_fp
+            out["views"]["shear_rerelaxed"] = secondary
             out["valid_after"] = bool(run.structure.is_valid())
             if scored:
                 out["scores"]["shear_rerelaxed"] = (
