@@ -23,3 +23,4 @@ include scripts/measure_symmetry_views.py scripts/measure_shear.py scripts/split
 include scripts/profile_deposit.py scripts/replay_symmetry_audit.py results/v0.5/SHA256SUMS
 include scripts/fit_survival.py scripts/benchmark_reliability.py scripts/measure_producer_preview.py scripts/benchmark_producer_preview.py
 include scripts/measure_removal_phonons.py scripts/benchmark_bounded_removal.py scripts/replot_reuse.py scripts/check_preview_controls.py results/v0.6/SHA256SUMS
+include results/v0.6/class-reuse.svg

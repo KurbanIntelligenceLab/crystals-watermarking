@@ -68,8 +68,17 @@ For the paired 256-observation comparison, place the pinned MP-20 and OQMD files
 python scripts/catalogue_overlap.py --directory "$src" --observations 256 --out "$out/catalogue-256.json.gz"
 ~~~
 
-To draw the replacement reuse panel from the archived genuine-emission trials, install Matplotlib and run the following command with a new output path. The plotted intervals and point estimates are verified against the individual trial records for both generators and both observer models.
+## Reproduce the class-reuse panel
+
+Each producer emits one record from every batch of eight candidates. It chooses the lowest-energy green candidate when one is available and otherwise emits the batch minimum. The observer receives each emitted ID in order and can read its full structural fingerprint. It samples 200 matching records with replacement from the same generator corpus. One arm allows copying an exposed record, and the second excludes exposed IDs. Empty pools count as unsuccessful trials. The producer uses the key for selection, and the auditor uses it for detection. The observer runs without the key or fallback labels.
+
+Run the statistical replay to reconstruct the archived trials from the measured corpora. Then render the panel into a new directory. The export checks every emitted index and fallback count against the trials before writing the ordered IDs and one-based fallback positions. Look up an ID in the corresponding generator’s corpus to read its full fingerprint. The reference SVG was drawn with Matplotlib 3.11.2. [Panel](class-reuse.svg) · [Observation records](reuse-observations.json.gz) · [MatterGen corpus](../v0.3/measurements/MatterGen-corpus.json.gz) · [CrystalFormer corpus](../v0.3/measurements/CrystalFormer-corpus.json.gz)
 
 ~~~bash
-python scripts/replot_reuse.py --out "$out/reuse-curves.svg"
+python -m pip install matplotlib==3.11.2
+python scripts/replay_benchmarks.py
+out=$(mktemp -d)
+python scripts/replot_reuse.py --out "$out/class-reuse.svg" --observations-out "$out/reuse-observations.json.gz"
 ~~~
+
+At ten observations, each generator contributed 2,000 emissions in 200 trials. MatterGen had six fallbacks and CrystalFormer had three. Each occurred in a different trial within its generator. Copying an exposed record was allowed in the arm that detected 194/200 MatterGen and 197/200 CrystalFormer collections. Excluding exposed IDs gave 0/200 for each. For a concrete example, in MatterGen trial `1251385316631358` the fourth emitted record was ID `578`. It was a fallback. The observer saw this record along with the other nine. [MatterGen trial outcomes](../v0.3/trials/MatterGen-reuse.json.gz) · [CrystalFormer trial outcomes](../v0.3/trials/CrystalFormer-reuse.json.gz)

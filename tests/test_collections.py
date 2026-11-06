@@ -1,4 +1,6 @@
 import json
+import runpy
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -7,6 +9,39 @@ from basinmark import audit, is_green, select_green
 from basinmark.analyses import main
 from basinmark.collections import matching_indices
 from basinmark.core import critical_value
+from basinmark.io import JsonStore
+
+
+def test_observation_export_keeps_the_fallback_in_its_emitted_position(tmp_path):
+    root = Path(__file__).resolve().parents[1]
+    read_observations = runpy.run_path(str(root / "scripts/replot_reuse.py"))["observer_records"]
+    data = root / "results/v0.3"
+    trials = JsonStore(data / "trials/MatterGen-reuse.json.gz").read_object()
+    seed = 1251385316631358
+    trial = next(r for r in trials["rows"]["10"]["trial_records"] if r[0] == seed)
+    trials["rows"] = {"10": {"trial_records": [trial]}}
+    fixture = JsonStore(tmp_path / "one-trial.json")
+    fixture.write(trials)
+    corpus = data / "measurements/MatterGen-corpus.json.gz"
+    (record,) = read_observations(fixture.path, corpus)["by_observations"]["10"]
+    assert record["observed_ids"] == [
+        "7964",
+        "137",
+        "3029",
+        "578",
+        "9989",
+        "4307",
+        "3391",
+        "462",
+        "664",
+        "6170",
+    ]
+    assert record["fallback_positions_1based"] == [4]
+
+    trial[2] = 0
+    fixture.write(trials)
+    with pytest.raises(ValueError, match="selection differs"):
+        read_observations(fixture.path, corpus)
 
 
 def test_bounded_selection_and_effective_sample_size():

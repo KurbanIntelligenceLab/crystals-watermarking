@@ -42,6 +42,8 @@ A third party tries up to eight ordinary or edited collections, with access to t
 
 With 256 genuine outputs available to the observer, cross-catalogue reuse triggered 20/200 full-fingerprint audits and 105/200 no-cell audits. At the previous exposure of 1,130 genuine outputs, both representations gave 200/200. The lower-exposure comparison uses the same catalogues and paired seeds and changes the observation budget. [Earlier catalogue comparison](../v0.3/README.md)
 
+The within-generator class-reuse panel uses the full fingerprint. Its trial archive lists every emitted record, including non-green fallbacks. The observer can use matching fingerprints in public records. The retrospective fallback annotations let readers check exactly what entered the pool. [Class-reuse panel](class-reuse.svg) · [Emission IDs and fallback positions](reuse-observations.json.gz) · [Replay instructions](reproduce.md#reproduce-the-class-reuse-panel)
+
 ## Running the comparison
 
 Use the replay scripts to regenerate every statistical record from archived measurements. The producer API accepts an optional `preview` policy with one primary/secondary preview pair per candidate. A JSON input to `basinmark select-collection --policy preview` carries a `preview` pair or explicit null on each candidate. Each scored deposited audit uses the fixed survival table from four historical cohorts. [Reproduction instructions and source identities](reproduce.md)
