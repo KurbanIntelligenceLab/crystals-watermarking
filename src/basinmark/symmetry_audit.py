@@ -118,7 +118,9 @@ def audit_deposited(structures, key, *, gamma=0.625, alpha=0.001, ranker=None):
         if ranker is not None:
             ranked.append((fp, alt, ranker(structure)))
     if ranker is not None:
-        return ranked_audit(ranked, key, gamma=gamma, alpha=alpha)
+        from .reliability import reliable_audit
+
+        return reliable_audit(ranked, key, gamma=gamma, alpha=alpha)
     return paired_audit(primary, secondary, key, gamma=gamma, alpha=alpha)
 
 
