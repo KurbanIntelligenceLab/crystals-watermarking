@@ -1,7 +1,10 @@
 """Validated input readers and atomic JSON output."""
 
+import gzip
+import io
 import json
 import os
+from contextlib import ExitStack
 from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -12,7 +15,8 @@ class JsonStore:
     path: Path
 
     def read_object(self):
-        with self.path.open(encoding="utf-8") as handle:
+        opener = gzip.open if self.path.suffix == ".gz" else open
+        with opener(self.path, "rt", encoding="utf-8") as handle:
             result = json.load(handle)
         if not isinstance(result, dict):
             raise ValueError(f"{self.path}: expected a JSON object")
@@ -21,20 +25,18 @@ class JsonStore:
     def write(self, value):
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with NamedTemporaryFile(
-            mode="w",
-            encoding="utf-8",
-            dir=self.path.parent,
-            prefix=".checkpoint-",
-            suffix=".tmp",
-            delete=False,
-        ) as handle:
-            temporary = Path(handle.name)
-            try:
-                json.dump(value, handle, indent=2, default=float, allow_nan=False)
-            except BaseException:
-                temporary.unlink(missing_ok=True)
-                raise
+            dir=self.path.parent, prefix=".checkpoint-", suffix=".tmp", delete=False
+        ) as tmp:
+            temporary = Path(tmp.name)
         try:
+            with ExitStack() as stack:
+                stream = stack.enter_context(temporary.open("wb"))
+                if self.path.suffix == ".gz":
+                    stream = stack.enter_context(
+                        gzip.GzipFile(filename="", mode="wb", fileobj=stream, mtime=0)
+                    )
+                handle = stack.enter_context(io.TextIOWrapper(stream, encoding="utf-8"))
+                json.dump(value, handle, indent=2, default=float, allow_nan=False)
             os.replace(temporary, self.path)
         finally:
             temporary.unlink(missing_ok=True)

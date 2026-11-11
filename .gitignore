@@ -4,6 +4,7 @@
 /final_template/
 /manuscript/
 /manuscripts/
+/submitted-*-template/
 .DS_Store
 __pycache__/
 *.py[cod]
