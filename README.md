@@ -2,9 +2,25 @@
 
 Anonymous authors.
 
+## BasinMark 0.6
+
+A survival-ranked audit and an optional producer-side stress test are evaluated on independently processed releases at a fixed candidate and output budget. The comparisons include a bounded removal attack with audit feedback and paired phonon checks on edited structures. [Results and replay](results/v0.6/README.md)
+
+## BasinMark 0.5
+
+Version 0.5 adds a calibrated recovery audit for strained, independently relaxed crystals. It reads the deposited geometry at two symmetry tolerances. An optional rank calculated from the deposited coordinates adds evidence from higher-energy classes. Every stage protects the earlier audit decisions under the same nominal false-positive level. The producer uses the 0.4 energy-budgeted selector. [Paired treatment results, material resolution and reproducibility](results/v0.5/README.md)
+
+## BasinMark 0.4
+
+Version 0.4 adds fixed-budget selection across interchangeable output slots. It includes paired baselines, downstream treatment of selected structures, independent material-quality labels, wrong-key controls and an optional reference-geometry comparison. [Results, energy guarantees and replay instructions](results/v0.4/README.md)
+
+## BasinMark 0.3
+
+Version 0.3 adds an optional energy ceiling to keyed selection, collection audits after independent re-relaxation, and trial-level calibration and class-reuse benchmarks. The public measurement files support offline replay of the statistical results. See the [evaluation, results and reproduction instructions](results/v0.3/README.md).
+
 ## Abstract
 
-When crystals are generated, they are relaxed and standardised before scientific use. However, this can erase or alter structural evidence of their production. We ask what a structure-only watermark can preserve through this processing, how an auditor should calibrate the surviving evidence, and which provenance claims the resulting decision supports. **BasinMark** connects the deposited observation to a collection audit by selecting generated candidates according to keyed structural fingerprints. Exact relaxation to the same basin minimum erases coordinate marks, so the protocol instead selects among alternatives whose fingerprint distinctions may survive deposition. Across the evaluated generators and interatomic potentials, cell-shape bins account for much of the observed fingerprint instability; removing them in two generator populations substantially improves fingerprint-label survival while preserving structural diversity. To ensure rigorous statistical verification, under a key-independent null, counting each unique fingerprint class once provides exact false-positive control. However, because detection operates at the structural class level, collections with identical fingerprints remain indistinguishable—allowing watermark evidence to be copied or reused across datasets. Ultimately, physical processing, fingerprint choices, and structural duplicate handling determine how much watermark evidence actually survives.
+When crystals are generated, they are relaxed and standardised before scientific use. However, this can erase or alter structural evidence of their production. We ask what a structure-only watermark can preserve through this processing, how an auditor should calibrate the surviving evidence, and which provenance claims the resulting decision supports. **BasinMark** connects the deposited observation to a collection audit by selecting generated candidates according to keyed structural fingerprints. Exact relaxation to the same basin minimum erases coordinate marks, so the protocol instead selects among alternatives whose fingerprint distinctions may survive deposition. Across the evaluated generators and interatomic potentials, cell-shape bins account for much of the observed fingerprint instability; removing them in two generator populations substantially improves fingerprint-label survival while retaining nearly all observed fingerprint classes in those two populations. To ensure rigorous statistical verification, under a key-independent null, counting each unique fingerprint class once provides exact false-positive control. However, because detection operates at the structural class level, collections with identical fingerprints remain indistinguishable—allowing watermark evidence to be copied or reused across datasets. Ultimately, physical processing, fingerprint choices, and structural duplicate handling determine how much watermark evidence actually survives.
 
 ## Code and results
 
@@ -81,7 +97,9 @@ basinmark fingerprint-ablation \
 | `potential-comparison` | `--pairs`: JSON records with `raw` and `dft` paths | Relax raw structures with selected potentials and measure flips and distances |
 | `fingerprint-ablation` | `--pairs`: JSON records with `raw` and `relaxed` or `dft` paths | Compare fingerprints with and without cell shape |
 | `generator-calibration` | `--fingerprint-files`: text files, one fingerprint per line | Compare naive and deduplicated rejection rates |
-| `class-reuse` | `--fingerprints`: one fingerprint per line | Simulate reuse of observed green fingerprint classes |
+| `class-reuse` | `--corpus`: prepared records with energies, or `--fingerprints`: equal-energy classes | Compare replay and disjoint-record reuse from unfiltered producer observations |
+| `key-controls` | `--corpus`: prepared records | Compare unmarked and independent-key audit rates with attainable null rates |
+| `collection-benchmark` | `--corpus`: prepared producer and deposition records | Compare full and no-cell fingerprints, bounded selection, and matched-budget controls |
 | `cross-database-matching` | `--external` and `--marked`: fingerprint text files | Evaluate shared classes under the supplied marking key |
 | `classify-flips` | potential result, pair metadata, and CIF directory | Classify full-fingerprint flips by mechanism |
 | `self-test` | none | Run fast statistical and selection checks |
@@ -92,7 +110,7 @@ Statistical commands expose `--gamma` and `--alpha`. Commands that model candida
 
 ## Input data
 
-Input structures and manifests are not included in the repository. To run structure-based analyses, supply these inputs in `data/` using the layout below. The statistical self-test and unit tests do not require the experimental datasets.
+The repository includes derived v0.3 measurement snapshots. Original structure inputs and manifests are obtained separately. To run structure-based analyses, supply these inputs in `data/` using the layout below. The statistical self-test and unit tests do not require the experimental datasets.
 
 ```text
 data/

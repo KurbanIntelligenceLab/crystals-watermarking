@@ -27,9 +27,14 @@ class CalculatorRegistry:
         import torch
 
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        if e == "chgnet":
+        if e in {"chgnet", "chgnet-r2scan"}:
             from chgnet.model.dynamics import CHGNetCalculator
 
+            if e == "chgnet-r2scan":
+                from chgnet.model.model import CHGNet
+
+                model = CHGNet.load(model_name="r2scan", use_device=device)
+                return CHGNetCalculator(model=model, use_device=device)
             return CHGNetCalculator(use_device=device)
         elif e.startswith("mace"):
             from mace.calculators import mace_mp
@@ -58,6 +63,7 @@ class RelaxationResult:
     structure: Structure
     energy_per_atom: float
     steps: int
+    converged: bool = False
 
 
 @dataclass
@@ -77,9 +83,10 @@ class RelaxationEngine:
         atoms = AseAtomsAdaptor.get_atoms(structure)
         atoms.calc = self.registry.get(self.engine)
         optimizer = FIRE(FrechetCellFilter(atoms), logfile=None)
-        optimizer.run(fmax=self.fmax, steps=self.steps)
+        converged = optimizer.run(fmax=self.fmax, steps=self.steps)
         return RelaxationResult(
             AseAtomsAdaptor.get_structure(atoms),
             float(atoms.get_potential_energy() / len(atoms)),
             int(optimizer.get_number_of_steps()),
+            bool(converged),
         )
