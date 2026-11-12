@@ -6,6 +6,10 @@ Anonymous authors.
 
 A survival-ranked audit and an optional producer-side stress test are evaluated on independently processed releases at a fixed candidate and output budget. The comparisons include a bounded removal attack with audit feedback and paired phonon checks on edited structures. [Results and replay](results/v0.6/README.md)
 
+## Statistical follow-ups
+
+Two statistics-only analyses on the archived measurements: a reuse-exposure law for cross-catalogue transfer as a function of observed outputs, and a selection-power check for the fixed capped and pooled budget selectors. [Results and scripts](results/stats/README.md)
+
 ## BasinMark 0.5
 
 Version 0.5 adds a calibrated recovery audit for strained, independently relaxed crystals. It reads the deposited geometry at two symmetry tolerances. An optional rank calculated from the deposited coordinates adds evidence from higher-energy classes. Every stage protects the earlier audit decisions under the same nominal false-positive level. The producer uses the 0.4 energy-budgeted selector. [Paired treatment results, material resolution and reproducibility](results/v0.5/README.md)
@@ -20,19 +24,20 @@ Version 0.3 adds an optional energy ceiling to keyed selection, collection audit
 
 ## Abstract
 
-When crystals are generated, they are relaxed and standardised before scientific use. However, this can erase or alter structural evidence of their production. We ask what a structure-only watermark can preserve through this processing, how an auditor should calibrate the surviving evidence, and which provenance claims the resulting decision supports. **BasinMark** connects the deposited observation to a collection audit by selecting generated candidates according to keyed structural fingerprints. Exact relaxation to the same basin minimum erases coordinate marks, so the protocol instead selects among alternatives whose fingerprint distinctions may survive deposition. Across the evaluated generators and interatomic potentials, cell-shape bins account for much of the observed fingerprint instability; removing them in two generator populations substantially improves fingerprint-label survival while retaining nearly all observed fingerprint classes in those two populations. To ensure rigorous statistical verification, under a key-independent null, counting each unique fingerprint class once provides exact false-positive control. However, because detection operates at the structural class level, collections with identical fingerprints remain indistinguishable—allowing watermark evidence to be copied or reused across datasets. Ultimately, physical processing, fingerprint choices, and structural duplicate handling determine how much watermark evidence actually survives.
+Generated crystals are relaxed and standardised before scientific use, so a provenance watermark must survive that processing. Exact relaxation to a common basin minimum erases coordinate marks, and selection audits fail when relaxation flips fine-grained fingerprint bins or when duplicate structures inflate false positives. **BasinMark** is a structure-only protocol that selects generated candidates by keyed structural fingerprints and audits deposited files at the level of distinct fingerprint classes. Across the evaluated generators and interatomic potentials, cell-shape bins account for most fingerprint instability; removing them substantially improves label survival while preserving structural diversity. Energy-budgeted selection that exchanges candidates across interchangeable output slots, combined with class-deduplicated binomial calibration, keeps collections detectable under exact false-positive control. With 32 structures released from 256 relaxed candidates, the audit detects 499/500 MatterGen and 476/500 CrystalFormer collections after independent re-relaxation, standardization and CIF deposition, at 11.9 and 37.3 meV/atom above the cheapest unmarked release, and 496/500 and 497/500 held-out collections both after bounded strain and after a change of relaxation model. Because detection operates on fingerprint classes, collections with identical fingerprints are indistinguishable, which bounds the provenance claim the audit supports.
 
 ## Code and results
 
 Source code and reported results for the manuscript and supplementary information. The package contains fingerprint construction, statistical audits, relaxation comparisons, and flip classification.
 
-Analysis results are available in `results/` as JSON summaries and CSV tables. The supporting code is in `src/`.
+Analysis results are available in `results/`: JSON summaries and CSV tables at the top level, and gzipped measurement archives with checksums and per-version guides under `results/v0.3` to `results/v0.6` and `results/stats`. The supporting code is in `src/`, with benchmark, measurement and replay drivers in `scripts/`.
 
 ## Package layout
 
 ```text
 src/basinmark/   Installable library and command-line interface
-results/         Reported JSON summaries and CSV tables
+results/         Reported summaries, archived measurements, checksums and per-version guides
+scripts/         Benchmark, measurement and replay drivers for the archived results
 formal/          Pinned Lean proofs, coverage map, and axiom-checking runner
 tests/           Fast tests for the public API and validated I/O
 README.md        Installation, usage, inputs, and result map
@@ -56,6 +61,8 @@ The base installation provides NumPy and SciPy for statistical calculations. Str
 ```bash
 python -m pip install -e '.[structures]'
 ```
+
+The `benchmark` extra adds the catalogue and collection drivers in `scripts/`, and the `phononbench` extra pins the MACE and CHGNet versions used for the archived phonon measurements.
 
 Install the selected potential package and obtain its checkpoint in the same environment: CHGNet, MACE, ORB, SevenNet, or MatterSim. These are optional, separately managed dependencies.
 
@@ -92,6 +99,8 @@ basinmark fingerprint-ablation \
 
 | Command | Required input | Purpose |
 | --- | --- | --- |
+| `select-collection` | `--candidates`: prepared candidate records, `--key-file`: raw key bytes | Select interchangeable outputs from candidates under a fixed, reserve, pool, budget or preview policy |
+| `audit-deposit` | `--structures`: deposited structure files, `--key-file`: raw marking key | Audit deposited structures with symmetry recovery and optional deposited-energy ranking |
 | `generator-controls` | `--gen-dirs`: directories of CIF/VASP structures | Marked, unmarked, and shuffled-key controls after relaxation |
 | `relaxation-stability` | `--pairs`: JSON records with `mlip` and `dft` paths | Compare already-relaxed structures with DFT references |
 | `potential-comparison` | `--pairs`: JSON records with `raw` and `dft` paths | Relax raw structures with selected potentials and measure flips and distances |
@@ -110,7 +119,7 @@ Statistical commands expose `--gamma` and `--alpha`. Commands that model candida
 
 ## Input data
 
-The repository includes derived v0.3 measurement snapshots. Original structure inputs and manifests are obtained separately. To run structure-based analyses, supply these inputs in `data/` using the layout below. The statistical self-test and unit tests do not require the experimental datasets.
+The repository includes the archived measurements for versions 0.3 to 0.6 and the statistical follow-ups; the per-version guides in `results/` give their replay commands. Original structure inputs and manifests are obtained separately. To run structure-based analyses, supply these inputs in `data/` using the layout below. The statistical self-test and unit tests do not require the experimental datasets.
 
 ```text
 data/
@@ -141,6 +150,12 @@ The input must contain a `chgnet` object with `per_pair` records. Classification
 
 - `core.py`: reusable fingerprint, selection, and statistical functions.
 - `io.py`: validated inputs and atomic JSON output.
+- `allocation.py`: budget-matched selection of interchangeable outputs from one candidate collection.
+- `collections.py`: collection experiments using measured fingerprints and producer energies.
+- `deposit_energy.py`: source-pinned single-point ranking for deposited structures.
+- `reference.py`: scale-free local geometry summaries for comparing a deposited record to a reference.
+- `reliability.py`: calibrated reliability-ranked extension of the deposited-energy audit.
+- `symmetry_audit.py`: paired, deduplicated class audit for two views of a deposited collection.
 - `relaxation.py`: lazy potential construction and relaxation.
 - `classification.py`: resumable flip-mechanism classification.
 - `analyses.py`: analysis commands and CLI wiring.
@@ -149,7 +164,7 @@ The statistical functions remain independent of model loading. Importing the pac
 
 ## Reported results
 
-`results/` contains summaries and tables for analyses reported in the manuscript or supplementary information: representation invariance, relaxation stability, potential comparison, fingerprint granularity, continuous descriptors, flip mechanisms, calibration, controls, class reuse, and cross-database matching.
+`results/` contains summaries and tables for analyses reported in the manuscript or supplementary information: representation invariance, relaxation stability, potential comparison, fingerprint granularity, continuous descriptors, flip mechanisms, calibration, controls, class reuse, and cross-database matching. The archived collection trials, deposition audits, removal and cross-model checks, and the reuse-exposure and selection-power statistics are under `results/v0.3` to `results/v0.6` and `results/stats`, each with a README, checksums and replay instructions.
 
 ## Formal mathematical verification
 
